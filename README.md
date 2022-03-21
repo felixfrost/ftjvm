@@ -1,12 +1,13 @@
-# FTJVM
+# FTJVM 
+### (Featuring Java Virtual Machine)
 Group project during Spring 2022 12-week Java-Course
 
 Group members:
--Felix Frost
--Theodor Persson
--Veronica Danko
--Joel Rosenstam
--Melody Vikström
+Felix Frost, 
+Theodor Persson, 
+Veronica Danko, 
+Joel Rosenstam, 
+Melody Vikström.
 
 ## Must have
 * API
