@@ -8,18 +8,18 @@ Group members:
 -Joel Rosenstam
 -Melody Vikström
 
-#From Miro:#
+# From Miro:
 
-##Must have##
-*API
-*Webapp
-*Colorscheme ("clean, slick")
-*Mobilefirst, responsive design
-*Users/accounts
-*Databases
-*Java, Html, Css, Javascript (React)
+## Must have
+* API
+* Webapp
+* Colorscheme ("clean, slick")
+* Mobilefirst, responsive design
+* Users/accounts
+* Databases
+* Java, Html, Css, Javascript (React)
 
-##Nice to have##
+## Nice to have
 * Mobile app
 * Multiplayer
 * Leaderboard
