@@ -7,3 +7,22 @@ Group members:
 -Veronica Danko
 -Joel Rosenstam
 -Melody Vikström
+
+## Must have
+* API
+* Webapp
+* Colorscheme ("clean, slick")
+* Mobilefirst, responsive design
+* Users/accounts
+* Databases
+* Java, Html, Css, Javascript (React)
+
+## Nice to have
+* Mobile app
+* Multiplayer
+* Leaderboard
+* Darkmode
+* Gamemodes
+* Animations
+* Friends (chatt, lists etc)
+* Easter eggs
