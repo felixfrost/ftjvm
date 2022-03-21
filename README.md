@@ -1,10 +1,11 @@
-# FTJVM 
-### (Featuring Java Virtual Machine) Groupname
+# Trivimania
 Group project during Spring 2022 12-week Java-Course
 
-Project name: tbd
+Project name: *Trivimania*
 
 Description: Web based quiz-game, collects questions from an external database through the external api (opentdb). The goal is to have multiplayer support as well as an mobile application.
+
+Group name: Ft. JVM.
 
 Group members:
 Felix Frost, 
