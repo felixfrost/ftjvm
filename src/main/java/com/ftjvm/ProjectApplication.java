@@ -1,4 +1,4 @@
-package com.ftjvm.ftjvm;
+package com.ftjvm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
