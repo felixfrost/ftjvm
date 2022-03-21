@@ -8,8 +8,6 @@ Group members:
 -Joel Rosenstam
 -Melody Vikström
 
-# From Miro:
-
 ## Must have
 * API
 * Webapp
