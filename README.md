@@ -1,6 +1,10 @@
 # FTJVM 
-### (Featuring Java Virtual Machine)
+### (Featuring Java Virtual Machine) Groupname
 Group project during Spring 2022 12-week Java-Course
+
+Project name: tbd
+
+Description: Web based quiz-game, collects questions from an external database through the external api (opentdb). The goal is to have multiplayer support as well as an mobile application.
 
 Group members:
 Felix Frost, 
