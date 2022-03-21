@@ -8,8 +8,9 @@ Group members:
 -Joel Rosenstam
 -Melody Vikström
 
-From Miro:
-#Must have
+#From Miro:#
+
+##Must have##
 *API
 *Webapp
 *Colorscheme ("clean, slick")
@@ -18,7 +19,7 @@ From Miro:
 *Databases
 *Java, Html, Css, Javascript (React)
 
-#Nice to have
+##Nice to have##
 * Mobile app
 * Multiplayer
 * Leaderboard
