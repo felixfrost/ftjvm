@@ -24,5 +24,5 @@ Group members:
 * Darkmode
 * Gamemodes
 * Animations
-* Friends (chatt, lists etc)
+* Friends (chat, lists etc)
 * Easter eggs
