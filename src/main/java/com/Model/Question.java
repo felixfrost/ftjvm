@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.util.HtmlUtils;
 
 
 public class Question {
@@ -71,5 +72,12 @@ public class Question {
 
     public void setIncorrect_answers(String[] incorrect_answers) {
         this.incorrect_answers = incorrect_answers;
+    }
+
+    public void htmlCodeStrip() {
+        question = HtmlUtils.htmlUnescape(question);
+        correct_answer = HtmlUtils.htmlUnescape(correct_answer);
+        for (int i=0; i< incorrect_answers.length; i++)
+            incorrect_answers[i] = HtmlUtils.htmlUnescape(incorrect_answers[i]);
     }
 }
