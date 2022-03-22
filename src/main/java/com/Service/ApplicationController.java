@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ApplicationController {
@@ -22,6 +25,21 @@ public class ApplicationController {
         return "home";
     }
 
+    @PostMapping("/")
+    public String addUser(@ModelAttribute User user) {
+
+    }
+
+
+    @GetMapping("/settings")
+    public String settings () {
+        return "settings";
+    }
+
+    @GetMapping("/login")
+    public String addUser(){
+        return "";
+    }
 
     @GetMapping("/getQuiz")
     public String apiTest(@RequestParam("amount") int amount, @RequestParam("category") int category,@RequestParam("difficulty") String difficulty, Model model) throws JsonProcessingException {
