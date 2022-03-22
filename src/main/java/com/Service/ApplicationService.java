@@ -1,5 +1,6 @@
-package Service;
+package com.Service;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +10,16 @@ import java.util.Scanner;
 
 @Service
 public class ApplicationService {
-    public String apiConnect(Integer amount, Integer category){
+    public JSONArray apiConnect(Integer amount, Integer category, String difficulty){
         StringBuilder informationString = new StringBuilder();
+        JSONObject object = new JSONObject();
 
         try {
             //Public API:
             //https://www.metaweather.com/api/location/search/?query=<CITY>
             //https://www.metaweather.com/api/location/44418/
 
-            URL url = new URL("https://opentdb.com/api.php?amount=" + amount + "&category=" + category);
+            URL url = new URL("https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -41,7 +43,7 @@ public class ApplicationService {
 
                 System.out.println(informationString);
 
-                JSONObject object = new JSONObject(informationString.toString());
+                object = new JSONObject(informationString.toString());
                 System.out.println(object.getJSONArray("results").get(0));
 
             }
@@ -49,6 +51,6 @@ public class ApplicationService {
             e.printStackTrace();
         }
 
-        return informationString.toString();
+        return object.getJSONArray("results");
     }
 }
