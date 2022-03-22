@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <title>Login</title>
 </head>
-<body>
+<body class="login-screen">
+
+<div class="center">
+    <img class="login" src="../IMG/Logo_text.png">
+</div>
+
+
+<div class="center">
+    <form class="form-signin" method="POST" action="#">
+        <input class="form-field" type="text" id="inputUsername" placeholder="Username" name="username">
+        <input class="form-field" type="password" id="inputPasword" placeholder="Password" name="password">
+        <div class="center">
+            <button class="login-button" type="submit">Login</button>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
