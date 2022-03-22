@@ -1,18 +1,10 @@
-package com.ftjvm;
-import org.apache.tomcat.util.json.JSONParser;
+package Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.json.JSONObject;
-
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
 
 @Controller
 public class ApplicationController {

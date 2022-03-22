@@ -1,4 +1,4 @@
-package com.ftjvm;
+package Service;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
