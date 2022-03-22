@@ -15,7 +15,7 @@ p{
 font-family: 'Maven Pro', sans-serif;
 }
 
-.login-screen {
+body {
 background-color: #ECF1EB;
 }
 
@@ -41,4 +41,5 @@ padding: 5px;
 padding: 5px 15px 5px 15px;
 background-color: #1BC4BD;
 color: #ECF1EB;
+font-family: 'Fredoka', sans-serif;
 }
