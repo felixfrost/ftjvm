@@ -1,56 +1,29 @@
 package com.Service;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.Model.Question;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class ApplicationService {
-    public JSONArray apiConnect(Integer amount, Integer category, String difficulty){
-        StringBuilder informationString = new StringBuilder();
-        JSONObject object = new JSONObject();
 
-        try {
-            //Public API:
-            //https://www.metaweather.com/api/location/search/?query=<CITY>
-            //https://www.metaweather.com/api/location/44418/
+    @Autowired
+    RestTemplate resttemplate;
 
-            URL url = new URL("https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty);
+    public List<Question> getQuestions(int amount, int category, String difficulty) throws JsonProcessingException {
+        String response = resttemplate.getForObject("https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty, String.class);
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.connect();
+        String json = response.substring(29,response.length()-1);
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Question> questions = Arrays.asList(objectMapper.readValue(json, Question[].class));
+        questions.forEach(Question::htmlCodeStrip);
 
-            //Check if connect is made
-            int responseCode = conn.getResponseCode();
-
-            // 200 OK
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-
-                Scanner scanner = new Scanner(url.openStream());
-
-                while (scanner.hasNext()) {
-                    informationString.append(scanner.nextLine());
-                }
-                //Close the scanner
-                scanner.close();
-
-                System.out.println(informationString);
-
-                object = new JSONObject(informationString.toString());
-                System.out.println(object.getJSONArray("results").get(0));
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return object.getJSONArray("results");
+        return questions;
     }
 }
