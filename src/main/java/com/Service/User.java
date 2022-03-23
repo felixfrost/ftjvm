@@ -1,10 +1,12 @@
-package com.Model;
+package com.Service;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
