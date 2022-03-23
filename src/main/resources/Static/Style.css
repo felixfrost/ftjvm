@@ -17,7 +17,7 @@ font-family: 'Maven Pro', sans-serif;
 
 
 .navbar {
-background-color: #EFEFE3 !important;
+background-color: #ECF1EB !important;
 }
   
 body {
@@ -88,6 +88,17 @@ Wave login
 
 }
 
+.dropdown-menu, .footer{
+background-color: #ECF1EB !important;
+outline-color: #ECF1EB !important;
+border: 0px solid;
+}
+
+.icon-one, .icon-two, .icon-text-one, .icon-text-two,
+.icon-three, .icon-text-three, .icon-four, .icon-text-four,
+.trivimania-text{
+display: inline-block;
+}
 /*
 Game board
 */
