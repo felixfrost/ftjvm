@@ -1,5 +1,6 @@
 package com.Service;
 
+import com.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class ApplicationController {
 
     @PostMapping("/")
     public String addUser(@ModelAttribute User user) {
-
+        return "";
     }
 
 
