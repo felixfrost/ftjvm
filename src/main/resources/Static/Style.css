@@ -163,3 +163,31 @@ padding:50px 100px 50px 100px;
 border-radius: 60px;
 position: relative;
 }
+
+.leaderboards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+margin: 40px;
+border: solid green;
+}
+
+.left, .mid, .right {
+margin: 5px;
+padding: 5px;
+}
+
+.left {
+border: solid red;
+}
+
+.mid {
+border: solid yellow;
+}
+
+.right {
+border: solid blue;
+}
+
+td:nth-child(2) {
+border: dotted black;
+}
