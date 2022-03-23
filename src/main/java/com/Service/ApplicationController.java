@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class ApplicationController {
@@ -24,12 +26,24 @@ public class ApplicationController {
         return "home";
     }
 
-    @PostMapping("/createUser")
-    public String createUser (@RequestBody User user) {
+    @GetMapping("/createuser")
+    public String createUser (Model model){
+        model.addAttribute("user", new User());
+        return "createUser";
+    }
+
+
+    @PostMapping("/createuser")
+    public String createUser (@Valid @ModelAttribute User user, BindingResult result) {
+        if(result.hasErrors()){
+            return "createUser";
+        }
         if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
             userRepo.save(user);
+            System.out.println(user.getUsername() + user.getFirstname() + user.getLastname());
             return "home";
-        } else return "login";
+        }
+        else return "login";
     }
 
     @GetMapping("/login")

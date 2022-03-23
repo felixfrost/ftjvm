@@ -134,5 +134,8 @@ left:255px;
 
 .spantag {
 background-color: red;
+}
 
+.error {
+color: red;
 }
