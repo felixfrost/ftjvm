@@ -4,6 +4,7 @@ public class Category {
 
     private Integer id;
     private String name;
+    private Integer numOfQuestions;
 
     public Integer getId() {
         return id;
@@ -21,8 +22,16 @@ public class Category {
         this.name = name;
     }
 
+    public Integer getNumOfQuestions() {
+        return numOfQuestions;
+    }
+
+    public void setNumOfQuestions(Integer numOfQuestions) {
+        this.numOfQuestions = numOfQuestions;
+    }
+
     @Override
     public String toString() {
-        return "id: " + id + ", name: " + name;
+        return "id: " + id + ", name: " + name + ", Verified questions: " + numOfQuestions;
     }
 }
