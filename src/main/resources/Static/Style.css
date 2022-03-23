@@ -96,8 +96,14 @@ border: 0px solid;
 
 .icon-one, .icon-two, .icon-text-one, .icon-text-two,
 .icon-three, .icon-text-three, .icon-four, .icon-text-four,
-.trivimania-text{
+.trivimania-text, #navbardrop{
 display: inline-block;
+}
+
+.icon-text-one, .icon-text-two,
+ .icon-text-three,.icon-text-four {
+display: inline-block;
+margin: 0 100px 0 0;
 }
 /*
 Game board
