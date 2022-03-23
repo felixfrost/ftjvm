@@ -24,12 +24,12 @@ public class ApplicationController {
     public String home (Model model){
         return "home";
     }
-
+/*
     @PostMapping("/")
     public String addUser(@ModelAttribute User user) {
 
     }
-
+*/
 
     @GetMapping("/settings")
     public String settings () {
