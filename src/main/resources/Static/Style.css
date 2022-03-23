@@ -155,3 +155,11 @@ position: relative;
 .textC {
 text-align: center;
 }
+
+.myScore {
+margin-top: 200px;
+width: 600px;
+padding:50px 100px 50px 100px;
+border-radius: 60px;
+position: relative;
+}
