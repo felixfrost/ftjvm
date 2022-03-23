@@ -132,7 +132,15 @@ left:255px;
 
 }
 
-.spantag {
-background-color: red;
+.about {
+margin-top: 70px;
+width: 600px;
+background-color: #1BC4BD;
+padding:80px 50px 80px 50px;
+border-radius: 60px;
+position: relative;
+}
 
+.textC {
+text-align: center;
 }
