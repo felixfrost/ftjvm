@@ -93,6 +93,7 @@ width: 600px;
 background-color: #1BC4BD;
 padding:50px 200px 50px 200px;
 border-radius: 60px;
+position: relative;
 }
 
 .question {
@@ -116,4 +117,13 @@ margin-bottom: 10px;
 min-width: 350px;
 font-family: 'Maven Pro', sans-serif;
 background-color: #A0FFD5;
+}
+
+.profile {
+height: 90px;
+width: 90px;
+position: absolute;
+top: -50px;
+left:255px;
+
 }
