@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <title>ApiTest</title>
 </head>
-<body th:text="${response}">
+<body>
+<tr th:each = "q : ${questions}" >
+    <td th:text ="${q.category}"></td>
+    <br>
+    <td th:text ="${q.type}"></td>
+    <br>
+    <td th:text ="${q.difficulty}"></td>
+    <br>
+    <td th:text="${q.question}"></td>
+    <br>
+    <td th:text="${q.correct_answer}"></td>
+    <br>
+    <p th:each=" qi : ${q.incorrect_answers}">
+        <span th:text="${qi}"></span>
+        <br>
+    </p>
+    <br>
+    <br>
+    <br>
+</tr>
 
 </body>
 </html>
