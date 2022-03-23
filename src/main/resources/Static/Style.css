@@ -24,6 +24,10 @@ body {
 background-color: #ECF1EB;
 }
 
+.space-below {
+margin-bottom: 5px;
+}
+
 .login {
 padding-top: 100px;
 width: 300px;
