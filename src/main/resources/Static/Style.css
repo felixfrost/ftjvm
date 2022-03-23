@@ -59,6 +59,10 @@ padding: 100px 20vw;
 background-color:#093E5E;
 }
 
+
+/*
+Wave login
+*/
 .custom-shape-divider-top-1648027069 {
     position: absolute;
     top: 0;
@@ -78,4 +82,38 @@ background-color:#093E5E;
 .custom-shape-divider-top-1648027069 .shape-fill {
     fill: #ECF1EB;
 
+}
+
+/*
+Game board
+*/
+.gameboard {
+margin-top: 200px;
+width: 600px;
+background-color: #1BC4BD;
+padding:50px 200px 50px 200px;
+border-radius: 60px;
+}
+
+.question {
+width:300px;
+min-height:100px;
+margin: 10px;
+color: #093E5E;
+font-family: 'Fredoka', sans-serif;
+text-align: center;
+}
+
+.buttons {
+display: grid;
+place-items: center;
+grid-template-areas: "inner-div";
+}
+
+.option-button {
+padding: 7px 20px;
+margin-bottom: 10px;
+min-width: 350px;
+font-family: 'Maven Pro', sans-serif;
+background-color: #A0FFD5;
 }
