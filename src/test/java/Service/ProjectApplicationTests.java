@@ -7,7 +7,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ProjectApplicationTests {
 
 	@Test
+	void testAddUser() {
+
+	}
+
+	@Test
 	void contextLoads() {
+
+
+
 	}
 
 }

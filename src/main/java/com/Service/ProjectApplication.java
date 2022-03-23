@@ -5,15 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication //(exclude = {DataSourceAutoConfiguration.class })
 public class ProjectApplication {
 
 
-			public static void main(String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
 	}
 
@@ -21,7 +19,7 @@ public class ProjectApplication {
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
-//Hejhej
+
 }
 
 

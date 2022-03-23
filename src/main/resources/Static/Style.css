@@ -54,7 +54,7 @@ position: relative;
 display: flex;
 flex-direction: column;
 align-items: center;
-min-height: 400px;
+height: 400px;
 padding: 100px 20vw;
 background-color:#093E5E;
 }
@@ -125,5 +125,10 @@ width: 90px;
 position: absolute;
 top: -50px;
 left:255px;
+
+}
+
+.spantag {
+background-color: red;
 
 }
