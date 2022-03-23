@@ -44,6 +44,32 @@ color: #ECF1EB;
 font-family: 'Fredoka', sans-serif;
 }
 
-.semi-circle {
+.section {
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 400px;
+padding: 100px 20vw;
+background-color:#093E5E;
+}
 
+.custom-shape-divider-top-1648027069 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1648027069 svg {
+    position: relative;
+    display: block;
+    width: calc(155% + 1.3px);
+    height: 99px;
+}
+
+.custom-shape-divider-top-1648027069 .shape-fill {
+    fill: #ECF1EB;
 }
