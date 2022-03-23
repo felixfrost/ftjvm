@@ -26,12 +26,12 @@ public class ApplicationController {
         service.getCategories();
         return "home";
     }
-
+/*
     @PostMapping("/")
     public String addUser(@ModelAttribute User user) {
         return "";
     }
-
+*/
 
     @GetMapping("/settings")
     public String settings () {

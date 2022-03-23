@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +11,8 @@
     <link href="Style.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
-<header>
-    <h1>Trivimania</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adip</p>
-</header>
+<div th:insert="fragments/header :: header"></div>
 
+<div th:insert="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -8,8 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import javax.persistence.Entity;
 import java.time.LocalDate;
 
