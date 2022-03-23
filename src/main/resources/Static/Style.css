@@ -21,7 +21,7 @@ background-color: #EFEFE3 !important;
 }
   
 body {
-background-color: #ECF1EB;
+background-color: #EFEFE3 !important;
 }
 
 .login {
@@ -78,4 +78,16 @@ background-color:#093E5E;
 .custom-shape-divider-top-1648027069 .shape-fill {
     fill: #ECF1EB;
 
+}
+
+.dropdown-menu, .footer{
+background-color: #EFEFE3 !important;
+outline-color: #EFEFE3 !important;
+border: 0px solid;
+}
+
+.icon-one, .icon-two, .icon-text-one, .icon-text-two,
+.icon-three, .icon-text-three, .icon-four, .icon-text-four,
+.trivimania-text{
+display: inline-block;
 }
