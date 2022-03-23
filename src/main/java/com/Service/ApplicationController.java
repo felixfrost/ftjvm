@@ -1,15 +1,11 @@
 package com.Service;
 
-import com.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -19,29 +15,50 @@ public class ApplicationController {
     ApplicationService service;
 
     @Autowired
-    RestTemplate resttemplate;
+    UserRepository userRepo;
 
     @GetMapping("/")
     public String home (Model model){
-        service.getCategories();
+        //service.getCategories();
+        service.getUsers();
         return "home";
     }
-/*
-    @PostMapping("/")
-    public String addUser(@ModelAttribute User user) {
-        return "";
+
+    @PostMapping("/createUser")
+    public String createUser (@RequestBody User user) {
+        if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
+            userRepo.save(user);
+            return "home";
+        } else return "login";
     }
-*/
+
+    @GetMapping("/login")
+    public String login (){
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
+        if (session.getAttribute("currentUser") == null){
+            if(userRepo.findByUsernameEquals(username).getPassword() == password) {
+                session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
+                return "home";
+            }
+        }
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout (HttpSession session) {
+        session.setAttribute("currentUser", null);
+        return "redirect:/";
+    }
 
     @GetMapping("/settings")
     public String settings () {
         return "settings";
     }
 
-    @GetMapping("/login")
-    public String addUser(){
-        return "";
-    }
 
     @GetMapping("/getQuiz")
     public String apiTest(@RequestParam("amount") int amount, @RequestParam("category") int category,@RequestParam("difficulty") String difficulty, Model model) throws JsonProcessingException {

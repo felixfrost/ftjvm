@@ -1,4 +1,4 @@
-package com.Model;
+package com.Service;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;

@@ -1,5 +1,0 @@
-#INSERT INTO `user` (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL) VALUES ('joelrosenstam', 'password123', 'Joel', 'Rosenstam', 'JR@EMAIL.COM')
-#INSERT INTO `user` (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL) VALUES ('felixfrost', 'password123', 'Felix', 'Frost', 'FF@EMAIL.COM')
-#INSERT INTO `user` (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL) VALUES ('melodyvikström', 'password123', 'Melody', 'Vikström', 'MV@EMAIL.COM')
-#INSERT INTO `user` (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL) VALUES ('theopersson', 'password123', 'Theo', 'Persson', 'TP@EMAIL.COM')
-#INSERT INTO `user` (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL) VALUES ('veronicadanko', 'password123', 'Veronica', 'Danko', 'VD@EMAIL.COM')
