@@ -161,3 +161,7 @@ position: relative;
 .textC {
 text-align: center;
 }
+
+.error {
+color: red;
+}
