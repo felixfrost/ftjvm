@@ -9,7 +9,7 @@ Group name: Ft. JVM.
 
 Group members:
 Felix Frost, 
-Theodor Persson, 
+Theo Persson, 
 Veronica Danko, 
 Joel Rosenstam, 
 Melody Vikström.
