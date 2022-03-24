@@ -35,6 +35,7 @@ public class ApplicationController {
     public String aboutUs () {
         return "aboutUs";
     }
+
     @GetMapping("/trivimania")
     public String game () {
         return "game";
