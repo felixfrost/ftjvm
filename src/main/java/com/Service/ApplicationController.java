@@ -22,16 +22,16 @@ public class ApplicationController {
 
     @GetMapping("/")
     public String home (Model model, HttpSession session){
+        if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }
         //service.getCategories();
         service.getUsers();
         return "home";
     }
 
     @GetMapping("/settings")
-    public String settings (HttpSession session) {
-        if(session.getAttribute("currentUser") == null){
-            return ("redirect:/login");
-        }
+    public String settings () {
         return "settings";
     }
 
@@ -46,10 +46,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/highscore")
-    public String highScore (HttpSession session) {
-        if(session.getAttribute("currentUser") == null){
-            return ("redirect:/login");
-        }
+    public String highScore () {
         return "highscore";
     }
 
@@ -97,13 +94,11 @@ public class ApplicationController {
     }
 
     @GetMapping("/getQuiz")
-    public String apiTest(@RequestParam("amount") int amount, @RequestParam("category") int category,@RequestParam("difficulty") String difficulty, Model model) throws JsonProcessingException {
-        model.addAttribute("questions", service.getQuestions(amount,category,difficulty));
+    public String apiTest(@RequestParam("limit") int limit, @RequestParam("categories") String categories, Model model) throws JsonProcessingException {
+
+        model.addAttribute("questions", service.getQuestions(limit,categories));
+
         return "game";
     }
 
-    // https://opentdb.com/api.php?amount=20&category=13
-    // https://opentdb.com/api_category.php (get all categories and their id in an array)
-    // https://opentdb.com/api.php?amount=10&category=14&difficulty=medium&type=boolean
-    // https://opentdb.com/api.php?amount=10&category=14&difficulty=medium&type=multiple
 }

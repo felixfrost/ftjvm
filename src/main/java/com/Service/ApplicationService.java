@@ -21,41 +21,14 @@ public class ApplicationService {
     @Autowired
     UserRepository userRepo;
 
-    public List<Question> getQuestions(int amount, int category, String difficulty) throws JsonProcessingException {
-        String response = resttemplate.getForObject("https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty, String.class);
+    public List<Question> getQuestions(int limit, String categories) throws JsonProcessingException {
+        String response = resttemplate.getForObject("https://the-trivia-api.com/questions?categories=" + categories + "&limit=" + limit, String.class);
 
-        String json = response.substring(29,response.length()-1);
         ObjectMapper objectMapper = new ObjectMapper();
-        List<Question> questions = Arrays.asList(objectMapper.readValue(json, Question[].class));
-        questions.forEach(Question::htmlCodeStrip);
+        List<Question> questions = Arrays.asList(objectMapper.readValue(response, Question[].class));
         questions.forEach(Question::mixAnswers);
 
         return questions;
-    }
-
-    public List<Category> getCategories() {
-        // Get a list with all categories and their id's
-        String response = resttemplate.getForObject("https://opentdb.com/api_category.php", String.class);
-        String json = response.substring(21, response.length()-1);
-        List<Category> categories = null;
-        try {
-            categories = Arrays.asList(new ObjectMapper().readValue(json, Category[].class));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        // Get a list with number of pending, rejected, verified and total sum of questions per category
-        // Takes the number of verified question and add it to the corresponding category.
-        response = resttemplate.getForObject("https://opentdb.com/api_count_global.php", String.class);
-        JSONObject jsonObject = new JSONObject(response);
-        JSONObject catNumOfQuestions = jsonObject.getJSONObject("categories");
-        for(int i = 0; i< categories.size(); i++ )
-            categories.get(i).setNumOfQuestions(
-                    catNumOfQuestions.getJSONObject(Integer.toString(i+9))
-                    .getInt("total_num_of_verified_questions"));
-
-        //categories.forEach(System.out::println);
-        return categories;
     }
 
     public void getUsers() {
