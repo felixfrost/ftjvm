@@ -12,6 +12,13 @@ font-family: 'Fredoka', sans-serif;
  color:#093E5E;
 }
 
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
+
 p{
 font-family: 'Maven Pro', sans-serif;
  color:#093E5E;
@@ -220,6 +227,9 @@ color: red;
   align-items: center;
   position: relative;
 }
+.card:hover{
+       background-color: #A0FFD5;
+ }
 
 .card-small{
   width:220px;
@@ -231,6 +241,9 @@ color: red;
   align-items: center;
   position: relative;
 
+}
+.card-small:hover{
+   background-color: #A0FFD5;
 }
 
 .top{
