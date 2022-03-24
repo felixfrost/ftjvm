@@ -7,18 +7,18 @@
 </head>
 <body>
 <div class="center">
-    <img class="login" src="../IMG/Logo_text.png">
+    <img class="login" src="../Static/IMG/Logo_text.png" th:src="'/IMG/Logo_text.png'">
 </div>
 
 
 <div class="center">
-    <form class="form-signin" method="POST" action="#">
+    <form class="form-signin" method="POST" action="/login">
         <input class="form-field" type="text" id="inputUsername" placeholder="Username" name="username">
         <input class="form-field" type="password" id="inputPasword" placeholder="Password" name="password">
+        <div class="center">
+            <button class="login-button" type="submit">Login</button>
+        </div>
     </form>
-</div>
-<div class="center">
-    <button class="login-button" type="submit">Login</button>
 </div>
 <div class="section">
     <div class="custom-shape-divider-top-1648027069">

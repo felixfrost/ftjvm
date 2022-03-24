@@ -2,10 +2,9 @@ package com.Service;
 
 import com.Model.Category;
 import com.Model.Question;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,8 @@ public class ApplicationService {
 
     @Autowired
     RestTemplate resttemplate;
+    @Autowired
+    UserRepository userRepo;
 
     public List<Question> getQuestions(int amount, int category, String difficulty) throws JsonProcessingException {
         String response = resttemplate.getForObject("https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty, String.class);
@@ -27,6 +28,7 @@ public class ApplicationService {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Question> questions = Arrays.asList(objectMapper.readValue(json, Question[].class));
         questions.forEach(Question::htmlCodeStrip);
+        questions.forEach(Question::mixAnswers);
 
         return questions;
     }
@@ -54,5 +56,10 @@ public class ApplicationService {
 
         //categories.forEach(System.out::println);
         return categories;
+    }
+
+    public void getUsers() {
+        List<User> userList = userRepo.findAll();
+        System.out.println(userList);
     }
 }

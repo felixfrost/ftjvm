@@ -1,16 +1,14 @@
 package com.Service;
 
-import com.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class ApplicationController {
@@ -19,28 +17,80 @@ public class ApplicationController {
     ApplicationService service;
 
     @Autowired
-    RestTemplate resttemplate;
+    UserRepository userRepo;
+
 
     @GetMapping("/")
-    public String home (Model model){
-        service.getCategories();
+    public String home (Model model, HttpSession session){
+        if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }
+        //service.getCategories();
+        service.getUsers();
         return "home";
     }
-/*
-    @PostMapping("/")
-    public String addUser(@ModelAttribute User user) {
-        return "";
-    }
-*/
 
     @GetMapping("/settings")
     public String settings () {
         return "settings";
     }
 
+    @GetMapping("/about-us")
+    public String aboutUs () {
+        return "aboutUs";
+    }
+
+    @GetMapping("/trivimania")
+    public String game () {
+        return "game";
+    }
+
+    @GetMapping("/highscore")
+    public String highScore () {
+        return "highscore";
+    }
+
+    @GetMapping("/createuser")
+    public String createUser (Model model){
+        model.addAttribute("user", new User());
+        return "createUser";
+    }
+
+    @PostMapping("/createuser")
+    public String createUser (@Valid @ModelAttribute User user, BindingResult result) {
+        if(result.hasErrors()){
+            return "createUser";
+        }
+        if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
+            userRepo.save(user);
+            System.out.println(user.getUsername() + user.getFirstname() + user.getLastname());
+            return "home";
+        }
+        else return "login";
+    }
+
     @GetMapping("/login")
-    public String addUser(){
-        return "";
+    public String login (){
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
+        if (session.getAttribute("currentUser") == null && userRepo.findByUsernameEquals(username) != null) {
+            if (userRepo.findByUsernameEquals(username).getPassword().equals(password)) {
+                session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
+                System.out.println("Success logging in...");
+                return "home";
+            }
+        } else { System.out.println("Error logging in..."); }
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout (HttpSession session) {
+        session.setAttribute("currentUser", null);
+        System.out.println("Logging out...");
+        return "redirect:/";
     }
 
     @GetMapping("/getQuiz")
@@ -48,7 +98,7 @@ public class ApplicationController {
 
         model.addAttribute("questions", service.getQuestions(amount,category,difficulty));
 
-        return "apiTest";
+        return "game";
     }
 
     // https://opentdb.com/api.php?amount=20&category=13

@@ -7,11 +7,11 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication (exclude = {DataSourceAutoConfiguration.class })
+@SpringBootApplication //(exclude = {DataSourceAutoConfiguration.class })
 public class ProjectApplication {
 
 
-			public static void main(String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
 	}
 
@@ -19,7 +19,7 @@ public class ProjectApplication {
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
-//Hejhej
+
 }
 
 
