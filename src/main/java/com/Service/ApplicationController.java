@@ -67,18 +67,20 @@ public class ApplicationController {
 
     @PostMapping("/login")
     public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
-        if (session.getAttribute("currentUser") == null){
-            if(userRepo.findByUsernameEquals(username).getPassword() == password) {
+        if (session.getAttribute("currentUser") == null && userRepo.findByUsernameEquals(username) != null) {
+            if (userRepo.findByUsernameEquals(username).getPassword().equals(password)) {
                 session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
+                System.out.println("Success logging in...");
                 return "home";
             }
-        }
+        } else { System.out.println("Error logging in..."); }
         return "login";
     }
 
     @GetMapping("/logout")
     public String logout (HttpSession session) {
         session.setAttribute("currentUser", null);
+        System.out.println("Logging out...");
         return "redirect:/";
     }
 
