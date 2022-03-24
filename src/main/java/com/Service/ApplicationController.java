@@ -21,7 +21,10 @@ public class ApplicationController {
 
 
     @GetMapping("/")
-    public String home (Model model){
+    public String home (Model model, HttpSession session){
+        if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }
         //service.getCategories();
         service.getUsers();
         return "home";
