@@ -26,12 +26,26 @@ public class ApplicationController {
         return "home";
     }
 
+    @GetMapping("/settings")
+    public String settings () {
+        return "settings";
+    }
+
+    @GetMapping("/about-us")
+    public String aboutUs () {
+        return "aboutUs";
+    }
+
+    @GetMapping("/trivimania")
+    public String game () {
+        return "game";
+    }
+
     @GetMapping("/createuser")
     public String createUser (Model model){
         model.addAttribute("user", new User());
         return "createUser";
     }
-
 
     @PostMapping("/createuser")
     public String createUser (@Valid @ModelAttribute User user, BindingResult result) {
@@ -67,12 +81,6 @@ public class ApplicationController {
         session.setAttribute("currentUser", null);
         return "redirect:/";
     }
-
-    @GetMapping("/settings")
-    public String settings () {
-        return "settings";
-    }
-
 
     @GetMapping("/getQuiz")
     public String apiTest(@RequestParam("amount") int amount, @RequestParam("category") int category,@RequestParam("difficulty") String difficulty, Model model) throws JsonProcessingException {
