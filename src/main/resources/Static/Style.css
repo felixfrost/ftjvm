@@ -12,6 +12,13 @@ font-family: 'Fredoka', sans-serif;
  color:#093E5E;
 }
 
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
+
 p{
 font-family: 'Maven Pro', sans-serif;
  color:#093E5E;
@@ -220,6 +227,9 @@ color: red;
   align-items: center;
   position: relative;
 }
+.card:hover{
+       background-color: #A0FFD5;
+ }
 
 .card-small{
   width:220px;
@@ -231,6 +241,9 @@ color: red;
   align-items: center;
   position: relative;
 
+}
+.card-small:hover{
+   background-color: #A0FFD5;
 }
 
 .top{
@@ -282,4 +295,66 @@ color: red;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.myScore {
+margin-top: 100px;
+width: 600px;
+padding:40px 40px 40px 40px;
+border-radius: 60px;
+border: solid purple;
+position: relative;
+}
+
+.leaderboards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+margin: 40px;
+border: solid green;
+
+}
+
+.week, .allTime, .day {
+margin: 10px;
+padding: 10px 0px;
+border-radius: 20px 20px 0px 0px;
+background-color: #1BC4BD;
+}
+
+.week {
+border: solid red;
+}
+
+.allTime {
+border: solid yellow;
+}
+
+.day {
+border: solid blue;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+td {
+padding: 10px 20px;
+}
+
+td:nth-child(2) {
+text-align: right;
+}
+
+tr:nth-child(odd) {
+background-color: #A0FFD5;
+}
+
+.row1 {
+background-color: green;
+}
+
+tr {
+border: dotted black;
+
 }
