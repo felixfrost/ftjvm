@@ -22,16 +22,16 @@ public class ApplicationController {
 
     @GetMapping("/")
     public String home (Model model, HttpSession session){
-        if(session.getAttribute("currentUser") == null){
-            return ("redirect:/login");
-        }
         //service.getCategories();
         service.getUsers();
         return "home";
     }
 
     @GetMapping("/settings")
-    public String settings () {
+    public String settings (HttpSession session) {
+        if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }
         return "settings";
     }
 
@@ -46,7 +46,10 @@ public class ApplicationController {
     }
 
     @GetMapping("/highscore")
-    public String highScore () {
+    public String highScore (HttpSession session) {
+        if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }
         return "highscore";
     }
 
@@ -95,9 +98,7 @@ public class ApplicationController {
 
     @GetMapping("/getQuiz")
     public String apiTest(@RequestParam("amount") int amount, @RequestParam("category") int category,@RequestParam("difficulty") String difficulty, Model model) throws JsonProcessingException {
-
         model.addAttribute("questions", service.getQuestions(amount,category,difficulty));
-
         return "game";
     }
 
