@@ -285,10 +285,11 @@ color: red;
 }
 
 .myScore {
-margin-top: 200px;
+margin-top: 100px;
 width: 600px;
-padding:50px 100px 50px 100px;
+padding:40px 40px 40px 40px;
 border-radius: 60px;
+border: solid purple;
 position: relative;
 }
 
@@ -297,25 +298,50 @@ display: grid;
 grid-template-columns: repeat(3, 1fr);
 margin: 40px;
 border: solid green;
+
 }
 
-.left, .mid, .right {
-margin: 5px;
-padding: 5px;
+.week, .allTime, .day {
+margin: 10px;
+padding: 10px 0px;
+border-radius: 20px 20px 0px 0px;
+background-color: #1BC4BD;
 }
 
-.left {
+.week {
 border: solid red;
 }
 
-.mid {
+.allTime {
 border: solid yellow;
 }
 
-.right {
+.day {
 border: solid blue;
 }
 
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+td {
+padding: 10px 20px;
+}
+
 td:nth-child(2) {
+text-align: right;
+}
+
+tr:nth-child(odd) {
+background-color: #A0FFD5;
+}
+
+.row1 {
+background-color: green;
+}
+
+tr {
 border: dotted black;
+
 }
