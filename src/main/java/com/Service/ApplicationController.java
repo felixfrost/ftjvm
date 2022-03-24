@@ -19,6 +19,7 @@ public class ApplicationController {
     @Autowired
     UserRepository userRepo;
 
+
     @GetMapping("/")
     public String home (Model model){
         //service.getCategories();
@@ -94,7 +95,7 @@ public class ApplicationController {
 
         model.addAttribute("questions", service.getQuestions(amount,category,difficulty));
 
-        return "apiTest";
+        return "game";
     }
 
     // https://opentdb.com/api.php?amount=20&category=13

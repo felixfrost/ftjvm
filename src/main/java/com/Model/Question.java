@@ -1,9 +1,9 @@
 package com.Model;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.web.util.HtmlUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Question {
@@ -14,16 +14,26 @@ public class Question {
     private String question;
     private String correct_answer;
     private String[] incorrect_answers;
+    private List<String> mixed_answers;
+
 
     public Question() { }
 
-    public Question(String category, String type, String difficulty, String question, String correct_answer, String[] incorrect_answers) {
+    public Question(String category, String type, String difficulty, String question, String correct_answer, String[] incorrect_answers, List<String> mixed_answers) {
         this.category = category;
         this.type = type;
         this.difficulty = difficulty;
         this.question = question;
         this.correct_answer = correct_answer;
         this.incorrect_answers = incorrect_answers;
+    }
+
+    public List<String> getMixed_answers() {
+        return mixed_answers;
+    }
+
+    public void setMixed_answers(List<String> mixed_answers) {
+        this.mixed_answers = mixed_answers;
     }
 
     public String getCategory() {
@@ -79,5 +89,17 @@ public class Question {
         correct_answer = HtmlUtils.htmlUnescape(correct_answer);
         for (int i=0; i< incorrect_answers.length; i++)
             incorrect_answers[i] = HtmlUtils.htmlUnescape(incorrect_answers[i]);
+    }
+
+    public void mixAnswers (){
+        List<String> mixAnswers = new ArrayList<>();
+        mixAnswers.add(this.correct_answer);
+        for (String i : this.incorrect_answers) {
+            mixAnswers.add(i);
+        }
+        System.out.println(mixAnswers);
+        Collections.shuffle(mixAnswers);
+        System.out.println(mixAnswers);
+        this.mixed_answers = mixAnswers;
     }
 }

@@ -28,6 +28,7 @@ public class ApplicationService {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Question> questions = Arrays.asList(objectMapper.readValue(json, Question[].class));
         questions.forEach(Question::htmlCodeStrip);
+        questions.forEach(Question::mixAnswers);
 
         return questions;
     }
