@@ -19,8 +19,12 @@ public class ApplicationController {
     @Autowired
     UserRepository userRepo;
 
+
     @GetMapping("/")
-    public String home (Model model){
+    public String home (Model model, HttpSession session){
+        if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }
         //service.getCategories();
         service.getUsers();
         return "home";
@@ -94,7 +98,7 @@ public class ApplicationController {
 
         model.addAttribute("questions", service.getQuestions(amount,category,difficulty));
 
-        return "apiTest";
+        return "game";
     }
 
     // https://opentdb.com/api.php?amount=20&category=13
