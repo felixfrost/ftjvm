@@ -41,6 +41,11 @@ public class ApplicationController {
         return "game";
     }
 
+    @GetMapping("/highscore")
+    public String highScore () {
+        return "highscore";
+    }
+
     @GetMapping("/createuser")
     public String createUser (Model model){
         model.addAttribute("user", new User());
