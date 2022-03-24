@@ -9,12 +9,13 @@
 }
 h1, h2, h3, a{
 font-family: 'Fredoka', sans-serif;
+ color:#093E5E;
 }
 
 p{
 font-family: 'Maven Pro', sans-serif;
+ color:#093E5E;
 }
-
 
 .navbar {
 background-color: #ECF1EB !important;
@@ -164,4 +165,121 @@ text-align: center;
 
 .error {
 color: red;
+}
+
+/*=======  Home CSS   ===========*/
+
+.rotate{
+  font-size: 80px;
+  transform: rotate(20deg);
+  position: absolute;
+  right: 30px;
+  color:#093E5E;
+  font-family: 'Fredoka', sans-serif;
+}
+.crown{
+  width: 5rem;
+  position: absolute;
+  bottom: 70px;
+}
+.friends{
+  fill:#093E5E;
+  width:3rem;
+  position: absolute;
+  top: 62px;
+  right: 25px;
+}
+.user{
+  width:6rem;
+  position: absolute;
+  top: 160px;
+  right: 40px;
+}
+
+.fa-gears{
+  color:#093E5E;
+  size: 20px;
+  position: absolute;
+  bottom: 50px;
+  right: -10px;
+}
+.profile-img{
+  width:90px;
+  position: absolute;
+  bottom: 70px;
+  left: 150px;
+}
+
+.card{
+  width:400px;
+  height: 100px;
+  border-radius: 25px;
+  background-color: #1BC4BD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card-small{
+  width:220px;
+  height: 90px;
+  border-radius: 25px;
+  background-color: #1BC4BD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+
+.top{
+  position: relative;
+  margin-bottom: 20px;
+}
+.middle{
+  width:400px;
+  background-color: #1BC4BD;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.middle:hover{
+  background-color: #A0FFD5;
+}
+.left{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.small-wrapper{
+  height: 250px;
+  width: 1250px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.large-wrapper{
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.site{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
