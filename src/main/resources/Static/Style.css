@@ -418,6 +418,37 @@ background-color: #A0FFD5;
 background-color: #1BC4BD;
 }
 
+.small {
+margin-top: 50px 5px;
+width: 400px;
+padding:40px;
+border-radius: 60px;
+position: relative;
+}
+
+.big{
+margin: 50px 20px;
+width: 400px;
+padding:100px 40px;
+border-radius: 60px;
+position: relative;
+}
+
+.express {
+font-size: 80px;
+transform: rotate(20deg);
+position: absolute;
+margin-left: 300px;
+color:#093E5E;
+font-family: 'Fredoka', sans-serif;
+}
+
+.man {
+width:6rem;
+position: absolute;
+margin-left: 100px;
+margin-top: 80px;
+}
 
 .winston{
 margin-top: 10px;
