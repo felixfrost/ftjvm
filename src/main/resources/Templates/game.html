@@ -15,7 +15,7 @@
             <div class="center question" th:text="${questions[0].question}"> A question about something profound, that gives you a hard time figuring out
                 the answer?
             </div>
-            <div th:each=" q : ${questions[0].mixed_answers}" class="center buttons">
+            <div th:each=" q : ${questions[0].mixedAnswers}" class="center buttons">
                 <button th:text="${q}" class="option-button" type="submit" value="#"> A good answer, but is it correct?</button>
 
                 <!-- Fallback...
