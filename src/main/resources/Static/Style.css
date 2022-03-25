@@ -111,6 +111,9 @@ border: 0px solid;
 display: inline-block;
 }
 
+/*
+Knappar som andas när man hover nedanför
+*/
 #logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover {
     -webkit-animation: breathing 5s ease-out infinite normal;
     animation: breathing 5s ease-out infinite normal;
