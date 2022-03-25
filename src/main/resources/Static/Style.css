@@ -285,7 +285,7 @@ color: red;
 .card{
   width:400px;
   height: 100px;
-  border-radius: 25px;
+  border-radius: 60px;
   background-color: #1BC4BD;
   display: flex;
   justify-content: center;
@@ -299,7 +299,7 @@ color: red;
 .card-small{
   width:220px;
   height: 90px;
-  border-radius: 25px;
+  border-radius: 60px;
   background-color: #1BC4BD;
   display: flex;
   justify-content: center;
@@ -318,7 +318,7 @@ color: red;
 .middle{
   width:400px;
   background-color: #1BC4BD;
-  border-radius: 25px;
+  border-radius: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
