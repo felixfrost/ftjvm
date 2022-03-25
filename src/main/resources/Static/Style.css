@@ -99,10 +99,11 @@ Wave login
 /*
 Menu samt knappar och ikoner och dess Css styling
 */
+
 .footer{
 position: absolute;
 bottom: 0;
-margin-left: 50%;
+margin-left: 10px;
 background-color: #ECF1EB !important;
 outline-color: #ECF1EB !important;
 border: 0px solid;
