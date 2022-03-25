@@ -1,11 +1,9 @@
 package com.Service;
 
-import com.Model.Category;
 import com.Model.Question;
-
+import com.Model.QuizCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,8 +19,14 @@ public class ApplicationService {
     @Autowired
     UserRepository userRepo;
 
+    List<QuizCategory> quizCategories = List.of(QuizCategory.values());
+
     public List<Question> getQuestions(int limit, String categories) throws JsonProcessingException {
-        String response = resttemplate.getForObject("https://the-trivia-api.com/questions?categories=" + categories + "&limit=" + limit, String.class);
+        String response;
+        if (categories.equals(""))
+            response = resttemplate.getForObject("https://the-trivia-api.com/questions?limit=" + limit, String.class);
+        else
+            response = resttemplate.getForObject("https://the-trivia-api.com/questions?categories=" + categories + "&limit=" + limit, String.class);
 
         ObjectMapper objectMapper = new ObjectMapper();
         List<Question> questions = Arrays.asList(objectMapper.readValue(response, Question[].class));
@@ -34,5 +38,9 @@ public class ApplicationService {
     public void getUsers() {
         List<User> userList = userRepo.findAll();
         System.out.println(userList);
+    }
+
+    public List<QuizCategory> getQuizCategories() {
+        return quizCategories;
     }
 }

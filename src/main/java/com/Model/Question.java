@@ -16,7 +16,7 @@ public class Question {
     private String correctAnswer;
     private String[] incorrectAnswers;
     private String[] tags;
-    private List<String> mixedAnswers;
+    private List<String> mixedAnswers = new ArrayList<>();
 
     public Question() { }
 
