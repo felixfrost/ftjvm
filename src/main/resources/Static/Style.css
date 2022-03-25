@@ -365,8 +365,20 @@ color: red;
 }
 
 /*=====Home responsive =====*/
-@media screen and (max-width: 1200px){
-
+@media screen and (max-width: 1200px) {
+.small-wrapper {
+border: solid black;
+}
+.againstFriend, .lead, .settings {
+position: absolute;
+}
+.disapear {
+display: none;
+}
+.right, .left {
+border: solid green;
+align-items: center;
+}
 }
 
 
