@@ -2,6 +2,7 @@ package com.Model;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,31 +10,48 @@ import java.util.List;
 public class Question {
 
     private String category;
+    private String id;
     private String type;
-    private String difficulty;
     private String question;
-    private String correct_answer;
-    private String[] incorrect_answers;
-    private List<String> mixed_answers;
-
+    private String correctAnswer;
+    private String[] incorrectAnswers;
+    private String[] tags;
+    private List<String> mixedAnswers;
 
     public Question() { }
 
-    public Question(String category, String type, String difficulty, String question, String correct_answer, String[] incorrect_answers, List<String> mixed_answers) {
+    public Question(String category, String id, String type, String question, String correctAnswer, String[] incorrectAnswers, String[] tags) {
         this.category = category;
+        this.id = id;
         this.type = type;
-        this.difficulty = difficulty;
         this.question = question;
-        this.correct_answer = correct_answer;
-        this.incorrect_answers = incorrect_answers;
+        this.correctAnswer = correctAnswer;
+        this.incorrectAnswers = incorrectAnswers;
+        this.tags = tags;
     }
 
-    public List<String> getMixed_answers() {
-        return mixed_answers;
+    public String getId() {
+        return id;
     }
 
-    public void setMixed_answers(List<String> mixed_answers) {
-        this.mixed_answers = mixed_answers;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
+    public List<String> getMixedAnswers() {
+        return mixedAnswers;
+    }
+
+    public void setMixedAnswers(List<String> mixed_answers) {
+        this.mixedAnswers = mixed_answers;
     }
 
     public String getCategory() {
@@ -52,13 +70,6 @@ public class Question {
         this.type = type;
     }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
 
     public String getQuestion() {
         return question;
@@ -68,38 +79,25 @@ public class Question {
         this.question = question;
     }
 
-    public String getCorrect_answer() {
-        return correct_answer;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setCorrect_answer(String correct_answer) {
-        this.correct_answer = correct_answer;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
-    public String[] getIncorrect_answers() {
-        return incorrect_answers;
+    public String[] getIncorrectAnswers() {
+        return incorrectAnswers;
     }
 
-    public void setIncorrect_answers(String[] incorrect_answers) {
-        this.incorrect_answers = incorrect_answers;
-    }
-
-    public void htmlCodeStrip() {
-        question = HtmlUtils.htmlUnescape(question);
-        correct_answer = HtmlUtils.htmlUnescape(correct_answer);
-        for (int i=0; i< incorrect_answers.length; i++)
-            incorrect_answers[i] = HtmlUtils.htmlUnescape(incorrect_answers[i]);
+    public void setIncorrectAnswers(String[] incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
     }
 
     public void mixAnswers (){
-        List<String> mixAnswers = new ArrayList<>();
-        mixAnswers.add(this.correct_answer);
-        for (String i : this.incorrect_answers) {
-            mixAnswers.add(i);
-        }
-        System.out.println(mixAnswers);
-        Collections.shuffle(mixAnswers);
-        System.out.println(mixAnswers);
-        this.mixed_answers = mixAnswers;
+        mixedAnswers.add(this.correctAnswer);
+        mixedAnswers.addAll(Arrays.asList(this.incorrectAnswers));
+        Collections.shuffle(mixedAnswers);
     }
 }

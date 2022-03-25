@@ -13,7 +13,7 @@
     <nav class="navbar bg-light navbar-light">
         <div>
         <a class="navbar-brand" th:href="'/'" href="#">
-            <img th:src="${'/IMG/Small_logo.png'}" alt="logo" width="40" height="34" class="d-inline-block align-text-top">
+            <img th:src="${'/IMG/Small_logo.png'}" alt="logo" width="40" height="34" class="d-inline-block align-text-top" id="logo-front">
             Trivimania
         </a>
         </div>
@@ -29,7 +29,7 @@
                     </svg>
                     </div>
                     <div class="icon-text-one">
-                    <a class="nav-link" th:href="'/trivimania'" href="/trivimania">Start a game</a>
+                    <a class="nav-link" th:href="'/trivimania'" href="/trivimania" id="start-button">Start a game</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -39,7 +39,7 @@
                     </svg>
                     </div>
                     <div class="icon-text-two">
-                    <a class="nav-link" th:href="'/highscore'" href="/highscore">Leaderboard</a>
+                    <a class="nav-link" th:href="'/highscore'" href="/highscore" id="leaderboard-button">Leaderboard</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -49,7 +49,7 @@
                         </svg>
                         </div>
                     <div class="icon-text-three">
-                    <a class="nav-link" th:href="'/about-us'" href="/about-us">About us</a>
+                    <a class="nav-link" th:href="'/about-us'" href="/about-us" id="about-button">About us</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

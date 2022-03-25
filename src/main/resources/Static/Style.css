@@ -96,6 +96,9 @@ Wave login
 
 }
 
+/*
+Menu samt knappar och ikoner och dess Css styling
+*/
 .dropdown-menu, .footer{
 background-color: #ECF1EB !important;
 outline-color: #ECF1EB !important;
@@ -107,6 +110,65 @@ border: 0px solid;
 .trivimania-text, #navbardrop{
 display: inline-block;
 }
+
+#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover {
+    -webkit-animation: breathing 5s ease-out infinite normal;
+    animation: breathing 5s ease-out infinite normal;
+    -webkit-font-smoothing: antialiased;
+    }
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+/*
+ANIMATION OVANFÖR
+*/
+
 
 .icon-text-one, .icon-text-two,
  .icon-text-three,.icon-text-four {
@@ -302,7 +364,6 @@ margin-top: 100px;
 width: 600px;
 padding:40px 40px 40px 40px;
 border-radius: 60px;
-border: solid purple;
 position: relative;
 }
 
@@ -310,7 +371,6 @@ position: relative;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 margin: 40px;
-border: solid green;
 
 }
 
@@ -319,18 +379,19 @@ margin: 10px;
 padding: 10px 0px;
 border-radius: 20px 20px 0px 0px;
 background-color: #1BC4BD;
+position: relative;
 }
 
-.week {
-border: solid red;
+.steps {
+align: bottom;
+align-self: end;
 }
 
-.allTime {
-border: solid yellow;
-}
-
-.day {
-border: solid blue;
+.hat {
+position: absolute;
+width: 80px;
+left: 35%;
+top: -50px;
 }
 
 table {
@@ -354,12 +415,12 @@ background-color: #A0FFD5;
 background-color: green;
 }
 
-tr {
-border: dotted black;
-
-}
 
 .winston{
 margin-top: 10px;
 width: 60%;
 }
+
+
+/*=======  Button Animations  ===========*/
+
