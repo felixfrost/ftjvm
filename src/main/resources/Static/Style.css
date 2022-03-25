@@ -444,16 +444,71 @@ font-family: 'Fredoka', sans-serif;
 }
 
 .man {
-width:6rem;
+width:5rem;
 position: absolute;
-margin-left: 100px;
-margin-top: 80px;
+}
+
+.game {
+position: absolute;
+margin-left: 280px;
+margin-top: -130px;
 }
 
 .comment {
 position: absolute;
 margin-left: 300px;
 margin-top: -110px;
+}
+
+.star {
+position: absolute;
+margin-left: 310px;
+margin-top: -100px;
+}
+
+@media screen and (max-width: 1200px) {
+  .extra, .secret, .quotes {
+  position: absolute;
+  }
+  .secret {
+  margin-top: 300px;
+  }
+  .extra, .quotes {
+  margin-top: 680px;
+  }
+  .extra {
+  margin-right: 220px;
+  background-color: #1BC4BD;
+  border-radius: 60px;
+  padding: 20px 0px;
+  }
+  .quotes {
+  margin-left: 220px;
+  }
+  .small {
+  width: 200px;
+  padding: 10px;
+  }
+
+  .star {
+  position: absolute;
+  margin-left: 140px;
+  margin-top: -100px;
+  transform: rotate(20deg);
+  }
+
+  .comment {
+  position: absolute;
+  margin-left: 130px;
+  margin-top: -120px;
+  }
+}
+
+.all {
+display: flex;
+margin: auto;
+width: 50%;
+justify-content: center;
 }
 
 .winston{
