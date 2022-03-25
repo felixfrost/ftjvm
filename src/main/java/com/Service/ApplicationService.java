@@ -20,8 +20,8 @@ public class ApplicationService {
     @Autowired
     UserRepository userRepo;
 
-    List<QuizCategory> quizCategories = List.of(QuizCategory.values());
-    List<Integer> quizLimits = List.of(10,25,50);
+    private List<QuizCategory> quizCategories = List.of(QuizCategory.values());
+    private List<Integer> quizLimits = List.of(10,25,50);
 
     public List<Question> getQuestions(int limit, String categories) {
         String response;
