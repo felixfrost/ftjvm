@@ -450,6 +450,12 @@ margin-left: 100px;
 margin-top: 80px;
 }
 
+.comment {
+position: absolute;
+margin-left: 300px;
+margin-top: -110px;
+}
+
 .winston{
 margin-top: 10px;
 width: 60%;

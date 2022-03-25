@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
     <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
     <title>What are you doing here!?</title>
 </head>
 <body>
@@ -18,25 +19,31 @@
 <div class="center">
     <div>
         <div onclick="location.href='http://localhost:8081/selecttrivimania'" style="cursor: pointer;">
-            <h1 class="small color textC">Funny Quotes</h1>
-        </div>
-    </div>
-    <div>
-        <div onclick="location.href='http://localhost:8081/selecttrivimania'" style="cursor: pointer;">
-            <div class="center">
-            <h1 class="big color textC">Play secret game</h1>
-            <span class="express">?!</span>
-            <img class="man" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
+            <div>
+                <h1 class="small color textC">Funny Quotes</h1>
+                <div class="comment">
+                    <i class="fa-4x fa-solid fa-comments"></i>
+                </div>
             </div>
         </div>
     </div>
     <div>
         <div onclick="location.href='http://localhost:8081/selecttrivimania'" style="cursor: pointer;">
-            <h1 class="small color textC">Extra</h1>
+            <div class="center">
+                <h1 class="big color textC">Play secret game</h1>
+                <span class="express">?!</span>
+                <img class="man" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div>
+        <div onclick="location.href='http://localhost:8081/selecttrivimania'" style="cursor: pointer;">
+            <div>
+                <h1 class="small color textC">Extra</h1>
+            </div>
         </div>
     </div>
 
 </div>
 </body>
-<script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
 </html>
