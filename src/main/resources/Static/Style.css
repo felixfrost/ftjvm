@@ -375,7 +375,6 @@ margin-top: 100px;
 width: 600px;
 padding:40px 40px 40px 40px;
 border-radius: 60px;
-border: solid purple;
 position: relative;
 }
 
@@ -383,7 +382,6 @@ position: relative;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 margin: 40px;
-border: solid green;
 
 }
 
@@ -392,18 +390,19 @@ margin: 10px;
 padding: 10px 0px;
 border-radius: 20px 20px 0px 0px;
 background-color: #1BC4BD;
+position: relative;
 }
 
-.week {
-border: solid red;
+.steps {
+align: bottom;
+align-self: end;
 }
 
-.allTime {
-border: solid yellow;
-}
-
-.day {
-border: solid blue;
+.hat {
+position: absolute;
+width: 80px;
+left: 35%;
+top: -50px;
 }
 
 table {
@@ -423,13 +422,101 @@ tr:nth-child(odd) {
 background-color: #A0FFD5;
 }
 
-.row1 {
-background-color: green;
+.color {
+background-color: #1BC4BD;
 }
 
-tr {
-border: dotted black;
+.small {
+margin-top: 50px 5px;
+width: 400px;
+padding:40px;
+border-radius: 60px;
+position: relative;
+}
 
+.big{
+margin: 50px 20px;
+width: 400px;
+padding:100px 40px;
+border-radius: 60px;
+position: relative;
+}
+
+.express {
+font-size: 80px;
+transform: rotate(20deg);
+position: absolute;
+margin-left: 300px;
+color:#093E5E;
+font-family: 'Fredoka', sans-serif;
+}
+
+.man {
+width:5rem;
+position: absolute;
+}
+
+.game {
+position: absolute;
+margin-left: 280px;
+margin-top: -130px;
+}
+
+.comment {
+position: absolute;
+margin-left: 300px;
+margin-top: -110px;
+}
+
+.star {
+position: absolute;
+margin-left: 310px;
+margin-top: -100px;
+}
+
+@media screen and (max-width: 1200px) {
+  .extra, .secret, .quotes {
+  position: absolute;
+  }
+  .secret {
+  margin-top: 300px;
+  }
+  .extra, .quotes {
+  margin-top: 680px;
+  }
+  .extra {
+  margin-right: 220px;
+  background-color: #1BC4BD;
+  border-radius: 60px;
+  padding: 20px 0px;
+  }
+  .quotes {
+  margin-left: 220px;
+  }
+  .small {
+  width: 200px;
+  padding: 10px;
+  }
+
+  .star {
+  position: absolute;
+  margin-left: 140px;
+  margin-top: -100px;
+  transform: rotate(20deg);
+  }
+
+  .comment {
+  position: absolute;
+  margin-left: 130px;
+  margin-top: -120px;
+  }
+}
+
+.all {
+display: flex;
+margin: auto;
+width: 50%;
+justify-content: center;
 }
 
 .winston{
