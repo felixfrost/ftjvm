@@ -18,6 +18,9 @@ $(document).ready(function() {
 
 
     }
+   if (counter_value > lValue) {
+        document.forms["quizForm"].submit()
+   }
 
   }
 
