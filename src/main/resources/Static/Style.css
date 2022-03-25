@@ -111,9 +111,6 @@ border: 0px solid;
 display: inline-block;
 }
 
-/*
-Knappar som andas när man hover nedanför
-*/
 #logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover {
     -webkit-animation: breathing 5s ease-out infinite normal;
     animation: breathing 5s ease-out infinite normal;
@@ -182,7 +179,7 @@ margin: 0 100px 0 0;
 Game board
 */
 .gameboard {
-margin-top: 80px; /*changed from 200px to 50px*/
+margin-top: 200px;
 width: 600px;
 background-color: #1BC4BD;
 padding:50px 200px 50px 200px;
@@ -360,8 +357,6 @@ color: red;
   display: flex;
   justify-content: center;
   align-items: center;
-  width:100vw;
-  height: 100vh;
 }
 
 .myScore {
@@ -429,68 +424,3 @@ width: 60%;
 
 /*=======  Button Animations  ===========*/
 
-/*======= Progress bar ============*/
-
-.center-wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.progress-container{
-  display: flex;
-  width:50%;
-  align-items: center;
-
-}
-.progress-arrow-left{
-  padding-top: 50px;
-  padding-right:20px;
-}
-.fa-arrow-left-long{
-color: #1BC4BD;
-}
-.svg-icons{
-filter: invert(63%) sepia(29%) saturate(1086%) hue-rotate(129deg) brightness(96%) contrast(92%);
-}
-
-.counter{
-display: none;
-}
-.progress-arrow-right{
-   padding-top: 50px;
-   padding-left:20px;
- }
-.fa-arrow-right-long{
-color: #1BC4BD;
-}
-.progress-wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width:100%;
-}
-.progressbar {
-  position: relative;
-  max-width: 500px;
-  width: 100%;
-  margin: 30px auto 0;
-  height: 50px;
-
-  background: #A0FFD5;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-span.progress {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  height:100%;
-  background: #1BC4BD;
-  transition: all .3s;
-}

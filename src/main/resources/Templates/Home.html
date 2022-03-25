@@ -13,9 +13,9 @@
 
 <body>
 <div th:insert="fragments/header :: header"></div>
-<section class="site"> <!--Går att plocka bort-->
+<section class="site">
     <div class="large-wrapper">
-        <div class="top" onclick="location.href='http://localhost:8081/404'" style="cursor: pointer;">
+        <div class="top">
             <div class="card">
                 <h2>Quizslayer1337</h2>
             </div>
@@ -23,13 +23,13 @@
         </div>
 
         <div class="small-wrapper">
-            <div class="left" onclick="location.href='http://localhost:8081/404'" style="cursor: pointer;">
+            <div class="left">
                 <div class="card">
-                    <h2><a>Play against a friend (wip)</a></h2>
+                    <h2><a href="">Play against a friend</a></h2>
                     <img class="friends"  th:src="${'/IMG/icons/friends.svg'}" src="../Static/IMG/icons/friends.svg" alt="">
                 </div>
-                <div class="card-small" onclick="location.href='http://localhost:8081/aboutUs'" style="cursor: pointer;">
-                    <h2><a>About us </a></h2>
+                <div class="card-small">
+                    <h2><a th:href="'/about-us'" href="/aboutUs">About us </a></h2>
                     <div> <!--Ikoner syns inte-->
                         <i class="fa-solid fa-hand-back-point-right fa-4x"></i>
                         <i class="fa-solid fa-hand-back-point-left fa-4x"></i>
@@ -38,20 +38,20 @@
             </div>
             <!--ändra onclick länk-->
 
-            <div class="middle" onclick="location.href='http://localhost:8081/selecttrivimania'" style="cursor: pointer;">
+            <div class="middle" onclick="location.href='http://localhost:8081/trivimania'" style="cursor: pointer;">
                 <h2>Play a game </h2>
                 <span class="rotate">?!</span>
                 <img class="user" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
             </div>
 
-            <div class="right" onclick="location.href='http://localhost:8081/highscore'" style="cursor: pointer;">
+            <div class="right">
                 <div class="card ">
                     <img class="crown" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
-                    <h2><a>Leaderboards</a></h2>
+                    <h2><a th:href="'/highscore'" href="/highscore">Leaderboards</a></h2>
                 </div>
-                <div class="card-small" onclick="location.href='http://localhost:8081/settings'" style="cursor: pointer;">
+                <div class="card-small ">
                     <!-- add a onclick function that dropdowns menu-->
-                    <h2><a> Settings</a></h2>
+                    <h2><a href="#"> Settings</a></h2>
                     <i class="fa-solid fa-gears fa-4x"></i>
                 </div>
             </div>
