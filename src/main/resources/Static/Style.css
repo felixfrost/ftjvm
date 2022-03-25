@@ -368,18 +368,51 @@ color: red;
 /*=====Home responsive =====*/
 @media screen and (max-width: 1200px) {
 .small-wrapper {
-border: solid black;
+justify-content: center;
 }
 .againstFriend, .lead, .settings {
 position: absolute;
 }
+
+.againstFriend {
+margin-top: 260px;
+margin-right: -400px;
+}
+
+.settings {
+margin-top: 380px;
+margin-left: -200px;
+}
+
+.crown {
+bottom: 50px;
+}
+
+.fa-gears {
+bottom: 40px;
+}
+
+.lead {
+margin-top: 380px;
+margin-left: -600px;
+}
+
+.card-small {
+width: 160px;
+}
+
+.lead .card {
+width: 160px;
+height: 90px;
+}
+
 .disapear {
 display: none;
 }
-.right, .left {
-border: solid green;
+.right, .left{
 align-items: center;
 }
+
 }
 
 
