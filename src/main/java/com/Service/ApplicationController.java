@@ -1,7 +1,9 @@
 package com.Service;
 
+import com.Model.Question;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class ApplicationController {
@@ -18,6 +21,7 @@ public class ApplicationController {
 
     @Autowired
     UserRepository userRepo;
+
 
 
     @GetMapping("/")
@@ -96,8 +100,10 @@ public class ApplicationController {
     @GetMapping("/game")
     //public String apiTest(@RequestParam("limit") int limit, @RequestParam("categories") String categories, Model model) throws JsonProcessingException {
     public String getQuiz(HttpSession session, Model model) {
-        model.addAttribute("questions",
-                service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category")));
+        List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        session.setAttribute("questionCounter", 0);
+        session.setAttribute("questions", questions);
+        model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         return "game";
     }
 
@@ -113,10 +119,30 @@ public class ApplicationController {
     @PostMapping("/select")
     public String postSelectionScreen(@RequestParam(required = false) String category, @RequestParam(required = false) Integer limit, HttpSession session, Model model) {
         session.setAttribute("limit", limit);
-        if (limit != null) return "redirect:/getQuiz";
+        if (limit != null) return "redirect:/game";
 
         session.setAttribute("category", category);
         model.addAttribute("limit", service.getQuizLimits());
         return "gameSelection";
     }
+
+    int correct = 0;
+    @PostMapping("/nextQuestion")
+    public String nextQuestion(HttpSession session, Model model, @RequestParam int answer) {
+        int ctr = (int)session.getAttribute("questionCounter");
+        List<Question> q2 = (List<Question>)session.getAttribute("questions");
+
+        if(q2.get(ctr).getMixedAnswers().get(answer).equals(q2.get(ctr).getCorrectAnswer())) {
+            correct++;
+            System.out.println("Correct!");
+        }
+        if(ctr == q2.size()-1) {
+            System.out.println("Finished...\nYour Score: " + correct);
+            return "";
+        }
+            session.setAttribute("questionCounter", ctr + 1);
+            model.addAttribute("currentQuestion", q2.get(ctr));
+            return "game";
+    }
+
 }
