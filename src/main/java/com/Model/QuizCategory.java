@@ -2,7 +2,7 @@ package com.Model;
 
 public enum QuizCategory {
     ALL("", "Random Categories"),
-    ARTS_LITERATURE("arts&litterature", "Arts & Literature"),
+    ARTS_LITERATURE("arts&literature", "Arts & Literature"),
     FILM_TV("film&tv", "Film & TV"),
     FOOD_DRINK("food&drink", "Food & Drink"),
     GENERAL_KNOWLEDGE("generalknowledge", "General Knowledge"),
