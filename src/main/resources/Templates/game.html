@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
     <title>Trivimania</title>
+    <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body >
 <div th:insert="fragments/header :: header"></div>
-<div class="center">
 
+<div class="center-wrapper">
+    <!--timer / progressbar-->
+       <div class="progress-container">
+            <span class="progress-arrow-left"> <i class="fa-solid fa-arrow-left-long"></i></span>
+            <div class="progress-wrapper">
+                <img class="svg-icons" th:src="${'/IMG/icons/stopwatch.svg'}" src="../Static/IMG/icons/stopwatch.svg">
+                <div class="counter">0</div>
+                <div class="progressbar">
+                    <span class="progress"></span>
+                </div>
+            </div>
+            <span class="progress-arrow-right"><i class="fa-solid fa-arrow-right-long"></i></span>
+       </div>
+    <!-- Game board -->
     <div class="center gameboard">
         <div class="center"><img class="profile" th:src="${'/IMG/Avatar/18.png'}" src="../Static/IMG/Avatar/18.png"></div>
         <form th:object="${questions}"  method="POST" action="#">
@@ -31,6 +45,11 @@
         </form>
     </div>
 </div>
+
 <div th:insert="fragments/footer :: footer"></div>
+
+<!-- Script 4 progressbar-->
+<script th:src="'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'"  src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script type="text/javascript" th:src="@{'/script/script.js'}"   src="/static/script/script.js"></script>
 </body>
 </html>
