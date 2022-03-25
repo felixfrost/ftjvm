@@ -94,10 +94,10 @@ public class ApplicationController {
     }
 
     @GetMapping("/getQuiz")
-    public String apiTest(@RequestParam("limit") int limit, @RequestParam("categories") String categories, Model model) throws JsonProcessingException {
-
-        model.addAttribute("questions", service.getQuestions(limit,categories));
-
+    //public String apiTest(@RequestParam("limit") int limit, @RequestParam("categories") String categories, Model model) throws JsonProcessingException {
+    public String getQuiz(HttpSession session, Model model) {
+        model.addAttribute("questions",
+                service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category")));
         return "game";
     }
 
@@ -111,9 +111,12 @@ public class ApplicationController {
     }
 
     @PostMapping("/select")
-    public String postSelectionScreen(@RequestParam("category") String category, HttpSession session, Model model) throws JsonProcessingException {
-        // todo enable redirection for selection of limit
-        model.addAttribute("questions", service.getQuestions(20,category));
-        return "game";
+    public String postSelectionScreen(@RequestParam(required = false) String category, @RequestParam(required = false) Integer limit, HttpSession session, Model model) {
+        session.setAttribute("limit", limit);
+        if (limit != null) return "redirect:/getQuiz";
+
+        session.setAttribute("category", category);
+        model.addAttribute("limit", service.getQuizLimits());
+        return "gameSelection";
     }
 }
