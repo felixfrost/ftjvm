@@ -99,7 +99,16 @@ Wave login
 /*
 Menu samt knappar och ikoner och dess Css styling
 */
-.dropdown-menu, .footer{
+
+.footer{
+position: absolute;
+bottom: 0;
+margin-left: 10px;
+background-color: #ECF1EB !important;
+outline-color: #ECF1EB !important;
+border: 0px solid;
+}
+.dropdown-menu{
 background-color: #ECF1EB !important;
 outline-color: #ECF1EB !important;
 border: 0px solid;
@@ -285,7 +294,7 @@ color: red;
 .card{
   width:400px;
   height: 100px;
-  border-radius: 25px;
+  border-radius: 60px;
   background-color: #1BC4BD;
   display: flex;
   justify-content: center;
@@ -299,7 +308,7 @@ color: red;
 .card-small{
   width:220px;
   height: 90px;
-  border-radius: 25px;
+  border-radius: 60px;
   background-color: #1BC4BD;
   display: flex;
   justify-content: center;
@@ -318,7 +327,7 @@ color: red;
 .middle{
   width:400px;
   background-color: #1BC4BD;
-  border-radius: 25px;
+  border-radius: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -355,6 +364,24 @@ color: red;
   justify-content: center;
   align-items: center;
 }
+
+/*=====Home responsive =====*/
+@media screen and (max-width: 1200px) {
+.small-wrapper {
+border: solid black;
+}
+.againstFriend, .lead, .settings {
+position: absolute;
+}
+.disapear {
+display: none;
+}
+.right, .left {
+border: solid green;
+align-items: center;
+}
+}
+
 
 .site{
   display: flex;
@@ -416,10 +443,102 @@ tr:nth-child(odd) {
 background-color: #A0FFD5;
 }
 
-.row1 {
-background-color: green;
+.color {
+background-color: #1BC4BD;
 }
 
+.small {
+margin-top: 50px 5px;
+width: 400px;
+padding:40px;
+border-radius: 60px;
+position: relative;
+}
+
+.big{
+margin: 50px 20px;
+width: 400px;
+padding:100px 40px;
+border-radius: 60px;
+position: relative;
+}
+
+.express {
+font-size: 80px;
+transform: rotate(20deg);
+position: absolute;
+margin-left: 300px;
+color:#093E5E;
+font-family: 'Fredoka', sans-serif;
+}
+
+.man {
+width:5rem;
+position: absolute;
+}
+
+.game {
+position: absolute;
+margin-left: 280px;
+margin-top: -130px;
+}
+
+.comment {
+position: absolute;
+margin-left: 300px;
+margin-top: -110px;
+}
+
+.star {
+position: absolute;
+margin-left: 310px;
+margin-top: -100px;
+}
+
+@media screen and (max-width: 1200px) {
+  .extra, .secret, .quotes {
+  position: absolute;
+  }
+  .secret {
+  margin-top: 300px;
+  }
+  .extra, .quotes {
+  margin-top: 680px;
+  }
+  .extra {
+  margin-right: 220px;
+  background-color: #1BC4BD;
+  border-radius: 60px;
+  padding: 20px 0px;
+  }
+  .quotes {
+  margin-left: 220px;
+  }
+  .small {
+  width: 200px;
+  padding: 10px;
+  }
+
+  .star {
+  position: absolute;
+  margin-left: 140px;
+  margin-top: -100px;
+  transform: rotate(20deg);
+  }
+
+  .comment {
+  position: absolute;
+  margin-left: 130px;
+  margin-top: -120px;
+  }
+}
+
+.all {
+display: flex;
+margin: auto;
+width: 50%;
+justify-content: center;
+}
 
 .winston{
 margin-top: 10px;
