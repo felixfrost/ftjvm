@@ -101,4 +101,19 @@ public class ApplicationController {
         return "game";
     }
 
+    @GetMapping("/select")
+    public String getSelectionScreen(HttpSession session, Model model) {
+      /*  if(session.getAttribute("currentUser") == null){
+            return ("redirect:/login");
+        }*/
+        model.addAttribute("categories", service.getQuizCategories());
+        return "gameSelection";
+    }
+
+    @PostMapping("/select")
+    public String postSelectionScreen(@RequestParam("category") String category, HttpSession session, Model model) throws JsonProcessingException {
+        // todo enable redirection for selection of limit
+        model.addAttribute("questions", service.getQuestions(20,category));
+        return "game";
+    }
 }
