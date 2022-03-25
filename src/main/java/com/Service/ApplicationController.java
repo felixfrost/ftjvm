@@ -138,7 +138,7 @@ public class ApplicationController {
         }
         if(ctr == q2.size()-1) {
             System.out.println("Finished...\nYour Score: " + correct);
-            return "";
+            return "home";
         }
             session.setAttribute("questionCounter", ctr + 1);
             model.addAttribute("currentQuestion", q2.get(ctr));

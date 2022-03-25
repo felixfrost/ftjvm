@@ -99,7 +99,15 @@ Wave login
 /*
 Menu samt knappar och ikoner och dess Css styling
 */
-.dropdown-menu, .footer{
+.footer{
+position: absolute;
+bottom: 0;
+margin-left: 50%;
+background-color: #ECF1EB !important;
+outline-color: #ECF1EB !important;
+border: 0px solid;
+}
+.dropdown-menu{
 background-color: #ECF1EB !important;
 outline-color: #ECF1EB !important;
 border: 0px solid;
