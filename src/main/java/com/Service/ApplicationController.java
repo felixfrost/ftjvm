@@ -93,7 +93,7 @@ public class ApplicationController {
         return "redirect:/";
     }
 
-    @GetMapping("/getQuiz")
+    @GetMapping("/game")
     //public String apiTest(@RequestParam("limit") int limit, @RequestParam("categories") String categories, Model model) throws JsonProcessingException {
     public String getQuiz(HttpSession session, Model model) {
         model.addAttribute("questions",
