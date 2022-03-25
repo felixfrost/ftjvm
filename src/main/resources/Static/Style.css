@@ -364,6 +364,12 @@ color: red;
   align-items: center;
 }
 
+/*=====Home responsive =====*/
+@media screen and (max-width: 1200px){
+
+}
+
+
 .site{
   display: flex;
   justify-content: center;
