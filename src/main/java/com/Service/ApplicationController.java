@@ -128,20 +128,22 @@ public class ApplicationController {
 
     int correct = 0;
     @PostMapping("/nextQuestion")
-    public String nextQuestion(HttpSession session, Model model, @RequestParam int answer) {
+    public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
         int ctr = (int)session.getAttribute("questionCounter");
         List<Question> q2 = (List<Question>)session.getAttribute("questions");
 
-        if(q2.get(ctr).getMixedAnswers().get(answer).equals(q2.get(ctr).getCorrectAnswer())) {
-            correct++;
-            System.out.println("Correct!");
+        if (answer != null) {
+            if (q2.get(ctr).getMixedAnswers().get(answer).equals(q2.get(ctr).getCorrectAnswer())) {
+                correct++;
+                System.out.println("Correct!");
+            }
         }
         if(ctr == q2.size()-1) {
             System.out.println("Finished...\nYour Score: " + correct);
             return "home";
         }
             session.setAttribute("questionCounter", ctr + 1);
-            model.addAttribute("currentQuestion", q2.get(ctr));
+            model.addAttribute("currentQuestion", q2.get(ctr + 1));
             return "game";
     }
 

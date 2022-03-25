@@ -15,7 +15,7 @@
 <div th:insert="fragments/header :: header"></div>
 <section class="">
     <div class="large-wrapper">
-        <div class="top" onclick="location.href='http://localhost:8081/404'" style="cursor: pointer;">
+        <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
             <div class="card">
                 <h2>Quizslayer1337</h2>
             </div>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="small-wrapper">
-            <div class="left" onclick="location.href='http://localhost:8081/404'" style="cursor: pointer;">
+            <div class="left" onclick="location.href='/404'" style="cursor: pointer;">
                 <div class="againstFriend">
                     <div class="card">
                         <h2><a>Play against a friend (wip)</a></h2>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="disapear">
-                    <div class="card-small" onclick="location.href='http://localhost:8081/aboutUs'"
+                    <div class="card-small" onclick="location.href='/aboutUs'"
                          style="cursor: pointer;">
                         <h2><a>About us </a></h2>
                         <div> <!--Ikoner syns inte-->
@@ -44,13 +44,13 @@
             </div>
             <!--ändra onclick länk-->
 
-            <div class="middle" onclick="location.href='http://localhost:8081/select'" style="cursor: pointer;">
+            <div class="middle" onclick="location.href='/select'" style="cursor: pointer;">
                 <h2>Play a game </h2>
                 <span class="rotate">?!</span>
                 <img class="user" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
             </div>
 
-            <div class="right" onclick="location.href='http://localhost:8081/highscore'" style="cursor: pointer;">
+            <div class="right" onclick="location.href='/highscore'" style="cursor: pointer;">
                 <div class="lead">
                     <div class="card ">
                         <img class="crown" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg"
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="settings">
-                    <div class="card-small" onclick="location.href='http://localhost:8081/settings'"
+                    <div class="card-small" onclick="location.href='/settings'"
                          style="cursor: pointer;">
                         <!-- add a onclick function that dropdowns menu-->
                         <h2><a> Settings</a></h2>
