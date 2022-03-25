@@ -112,8 +112,7 @@ public class ApplicationController {
 
     @PostMapping("/select")
     public String postSelectionScreen(@RequestParam("category") String category, HttpSession session, Model model) throws JsonProcessingException {
-        // todo enable selection for limit
-        System.out.println(category);
+        // todo enable redirection for selection of limit
         model.addAttribute("questions", service.getQuestions(20,category));
         return "game";
     }
