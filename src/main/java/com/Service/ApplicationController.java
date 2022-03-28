@@ -50,6 +50,12 @@ public class ApplicationController {
         return "game";
     }
 
+    @GetMapping("/score")
+    public String score (HttpSession session, Model model){
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        return "score";
+    }
+
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
         model.addAttribute("user", session.getAttribute("currentUser"));
@@ -149,7 +155,7 @@ public class ApplicationController {
         }
         if(ctr == questionList.size()-1) {
             System.out.println("Finished...\nYour Score: " + correct);
-            return "redirect:/";
+            return "redirect:/score";
         }
             session.setAttribute("questionCounter", ctr + 1);
             model.addAttribute("currentQuestion", questionList.get(ctr + 1));

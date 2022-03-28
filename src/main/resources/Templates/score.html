@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="center">
+    <div class="myScore">
+        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="'/IMG/Avatar/18.png'"></div>
+        <h1 class="center" th:text="${user.username}">Quizslayer1337</h1>
+        <div class="center">
+        <a class="link" th:href="'/select'" href="#">Play again</a>
+        <a class="link" th:href="'/highscore'" href="#">Show highscore</a>
+        <a class="link" th:href="'/'" href="#">Return home</a>
+        </div>
+    </div>
+</div>
+<div class="leaderboards">
+    <div class="steps"></div>
+    <div class="steps">
+        <div class="allTime">
+            <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+            <h1 class="textC"> Your Score </h1>
+            <!--Add th:each i table ?-->
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Score</td>
+                </tr>
+                <tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
