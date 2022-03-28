@@ -28,6 +28,7 @@
     transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
  }
 
+
  .menu-open {
     display: none;
  }
@@ -91,7 +92,6 @@
     box-sizing: border-box;
     font-size: 26px;
  }
-
 
 
  .menu-item:hover {
@@ -196,7 +196,6 @@
  }
 
  .profilepos {
-     border: solid green 1px;
      position: relative;
-     margin-top: 150px;
+     margin-top: 90px;
  }

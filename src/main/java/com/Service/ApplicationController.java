@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -36,8 +33,20 @@ public class ApplicationController {
     }
 
     @GetMapping("/settings")
-    public String settings () {
+    public String settings (Model model, HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
         return "settings";
+    }
+
+    @GetMapping("settings/{num}")
+    public String avatar(HttpSession session, @PathVariable Integer num) {
+        User user = (User) session.getAttribute("currentUser");
+        user.setAvatarId(num);
+        return "redirect:/settings";
     }
 
     @GetMapping("/about-us")
