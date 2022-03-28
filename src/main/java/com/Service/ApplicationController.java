@@ -1,13 +1,14 @@
 package com.Service;
 
 import com.Model.Question;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -110,9 +111,9 @@ public class ApplicationController {
 
     @GetMapping("/select")
     public String getSelectionScreen(HttpSession session, Model model) {
-      /*  if(session.getAttribute("currentUser") == null){
+        if(session.getAttribute("currentUser") == null){
             return ("redirect:/login");
-        }*/
+        }
         model.addAttribute("categories", service.getQuizCategories());
         return "gameSelection";
     }

@@ -3,7 +3,6 @@ package com.Service;
 import com.Model.Question;
 import com.Model.QuizCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +19,8 @@ public class ApplicationService {
     @Autowired
     UserRepository userRepo;
 
-    private List<QuizCategory> quizCategories = List.of(QuizCategory.values());
-    private List<Integer> quizLimits = List.of(10,25,50);
+    private final List<QuizCategory> quizCategories = List.of(QuizCategory.values());
+    private final List<Integer> quizLimits = List.of(10,25,50);
 
     public List<Question> getQuestions(int limit, String categories) {
         String response;
@@ -40,11 +39,6 @@ public class ApplicationService {
         questions.forEach(Question::mixAnswers);
 
         return questions;
-    }
-
-    public void getUsers() {
-        List<User> userList = userRepo.findAll();
-        System.out.println(userList);
     }
 
     public List<QuizCategory> getQuizCategories() {
