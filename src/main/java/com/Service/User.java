@@ -27,5 +27,6 @@ public class User {
     private String lastname;
     @Email
     private String email;
+    private Integer avatarId;
 
 }

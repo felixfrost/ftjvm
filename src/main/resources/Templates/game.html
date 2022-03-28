@@ -24,7 +24,7 @@
        </div>
     <!-- Game board -->
     <div class="center gameboard">
-        <div class="center"><img class="profile" th:src="${'/IMG/Avatar/18.png'}" src="../Static/IMG/Avatar/18.png"></div>
+        <div class="center"><img class="profile" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'" src="../Static/IMG/Avatar/18.png"></div>
         <form th:object="${currentQuestion}"  method="POST" action="/nextQuestion" name="quizForm">
             <div class="center question" th:text="${currentQuestion.question}"> A question about something profound, that gives you a hard time figuring out
                 the answer?

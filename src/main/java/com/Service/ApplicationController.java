@@ -26,11 +26,11 @@ public class ApplicationController {
 
     @GetMapping("/")
     public String home (Model model, HttpSession session){
-        if(session.getAttribute("currentUser") == null){
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
             return ("redirect:/login");
         }
-        //service.getCategories();
-        service.getUsers();
+        model.addAttribute("user", user);
         return "home";
     }
 
@@ -40,7 +40,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/about-us")
-    public String aboutUs () {
+    public String aboutUs (HttpSession session) {
         return "aboutUs";
     }
 
@@ -50,7 +50,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/highscore")
-    public String highScore () {
+    public String highScore (HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
         return "highscore";
     }
 
@@ -68,7 +69,7 @@ public class ApplicationController {
         if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
             userRepo.save(user);
             System.out.println(user.getUsername() + user.getFirstname() + user.getLastname());
-            return "home";
+            return "redirect:/";
         }
         else return "login";
     }
@@ -79,12 +80,12 @@ public class ApplicationController {
     }
 
     @PostMapping("/login")
-    public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
+    public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         if (session.getAttribute("currentUser") == null && userRepo.findByUsernameEquals(username) != null) {
             if (userRepo.findByUsernameEquals(username).getPassword().equals(password)) {
                 session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
                 System.out.println("Success logging in...");
-                return "home";
+                return "redirect:/";
             }
         } else { System.out.println("Error logging in..."); }
         return "login";
@@ -98,12 +99,12 @@ public class ApplicationController {
     }
 
     @GetMapping("/game")
-    //public String apiTest(@RequestParam("limit") int limit, @RequestParam("categories") String categories, Model model) throws JsonProcessingException {
     public String getQuiz(HttpSession session, Model model) {
         List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
         session.setAttribute("questionCounter", 0);
         session.setAttribute("questions", questions);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
+        model.addAttribute("user", session.getAttribute("currentUser"));
         return "game";
     }
 
@@ -130,20 +131,21 @@ public class ApplicationController {
     @PostMapping("/nextQuestion")
     public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
         int ctr = (int)session.getAttribute("questionCounter");
-        List<Question> q2 = (List<Question>)session.getAttribute("questions");
+        List<Question> questionList = (List<Question>)session.getAttribute("questions");
 
         if (answer != null) {
-            if (q2.get(ctr).getMixedAnswers().get(answer).equals(q2.get(ctr).getCorrectAnswer())) {
+            if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
                 correct++;
                 System.out.println("Correct!");
             }
         }
-        if(ctr == q2.size()-1) {
+        if(ctr == questionList.size()-1) {
             System.out.println("Finished...\nYour Score: " + correct);
-            return "home";
+            return "redirect:/";
         }
             session.setAttribute("questionCounter", ctr + 1);
-            model.addAttribute("currentQuestion", q2.get(ctr + 1));
+            model.addAttribute("currentQuestion", questionList.get(ctr + 1));
+            model.addAttribute("user", session.getAttribute("currentUser"));
             return "game";
     }
 
