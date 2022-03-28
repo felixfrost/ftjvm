@@ -20,9 +20,9 @@ function renderChoice(number) {
     let list = avatar[number]
 
     for(let num of list) {
-        html += `<a href="/settings/${num}" th:href="/settings/${num}" class="menu-item "> <img class="profilepic" src="../Static/IMG/Avatar/${num}.png" th:src="'/IMG/Avatar/${num}.png'" onclick="changeImg(${num})"></a>`
+        html += `<a href="/settings/${num}" th:href="/settings/${num}" class="menu-item "> <img class="profilepic" src="/IMG/Avatar/${num}.png" onclick="changeImg(${num})"></a>`
     }
-    html += `<a href="#" class="menu-item "> <img class="profilepic" src="../Static/IMG/Avatar/arrow.png" th:src="'/IMG/Avatar/arrow.png'" onclick="changeNumber(${more})"></a>`
+    html += `<a href="#" class="menu-item "> <img class="profilepic" src="/IMG/Avatar/arrow.png" onclick="changeNumber(${more})"></a>`
     images.innerHTML = html
 }
 
