@@ -281,12 +281,12 @@ transition: 0.3s;
 }
 
 .option-button:hover{
-   opacity: 50%;
+    background:#093E5E;
+    color: #EFEFE3;
 }
 
 .option-button:active{
-   background:#093E5E;
-   color: #EFEFE3;
+opacity:50%;
 }
 
 .profile {
