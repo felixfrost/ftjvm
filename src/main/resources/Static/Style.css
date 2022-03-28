@@ -159,7 +159,8 @@ display: inline-block;
 margin: 0 100px 0 0;
 }
 
-/*======== gameSelection*/
+/*======== gameSelection ========== */
+
 .game-select-card{
     padding: 50px;
     background-color: #1BC4BD;
@@ -173,7 +174,9 @@ margin: 0 100px 0 0;
     align-items: center;
     height: auto;
 }
-
+.game-select-title{
+    text-align: center;
+}
 
 /*======= Login page ====*/
 
