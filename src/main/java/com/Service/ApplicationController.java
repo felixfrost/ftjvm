@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -62,6 +63,9 @@ public class ApplicationController {
     @GetMapping("/score")
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("topScores", service.getTopScores());
+        model.addAttribute("todayTop", service.getTodayTop());
+        model.addAttribute("weekTop", service.getWeekTop());
         return "score";
     }
 
@@ -118,9 +122,7 @@ public class ApplicationController {
     public String getQuiz(HttpSession session, Model model) {
         List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
         session.setAttribute("questionCounter", 0);
-
         session.setAttribute("scoreCounter", 0);
-
         session.setAttribute("questions", questions);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         model.addAttribute("user", session.getAttribute("currentUser"));
@@ -166,6 +168,7 @@ public class ApplicationController {
         }
         if(ctr == questionList.size()-1) {
             System.out.println("Finished...\nYour Score: " + correct);
+            service.saveScore(new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser")));
             return "redirect:/score";
         }
             ctr++;

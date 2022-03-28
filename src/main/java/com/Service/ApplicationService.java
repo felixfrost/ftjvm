@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -53,9 +54,31 @@ public class ApplicationService {
     }
 
     public HighScore getPersonalBest (Long userId) {
-
         List<HighScore> hsScorez = hsRepo.findFirstByUser_IdEqualsOrderByScoreDesc(userId);
-
         return hsScorez.get(0);
+    }
+
+    public List<HighScore> getWeekTop(){
+        List<HighScore> weekTop = hsRepo.findByDateIsAfterOrderByScoreDesc(LocalDate.now().minusDays(7));
+        return weekTop;
+    }
+
+    public List<HighScore> getMonthTop(){
+        List<HighScore> monthTop = hsRepo.findByDateIsAfterOrderByScoreDesc(LocalDate.now().minusMonths(1));
+        return monthTop;
+    }
+
+    public List<HighScore> getTodayTop(){
+        List<HighScore> todayTop = hsRepo.findByDateIsOrderByScoreDesc(LocalDate.now());
+        return todayTop;
+    }
+
+    public List<HighScore> getTopScores(){
+        List<HighScore> topScores = hsRepo.findByOrderByScoreDesc();
+        return topScores;
+    }
+
+    public void saveScore(HighScore hs){
+        hsRepo.save(hs);
     }
 }
