@@ -4,6 +4,10 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,4 +33,8 @@ public class User {
     private String email;
     private Integer avatarId;
 
+
 }
+
+
+

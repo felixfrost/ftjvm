@@ -103,6 +103,9 @@ public class ApplicationController {
     public String getQuiz(HttpSession session, Model model) {
         List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
         session.setAttribute("questionCounter", 0);
+
+        session.setAttribute("scoreCounter", 0);
+
         session.setAttribute("questions", questions);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         model.addAttribute("user", session.getAttribute("currentUser"));
@@ -137,6 +140,10 @@ public class ApplicationController {
         if (answer != null) {
             if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
                 correct++;
+                session.setAttribute("scoreCounter",(Integer)session.getAttribute(("scoreCounter")+1));
+
+                //öka sessionsattribut för score vid rätt svar
+
                 System.out.println("Correct!");
             }
         }

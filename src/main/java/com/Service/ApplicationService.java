@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApplicationService {
@@ -18,6 +19,8 @@ public class ApplicationService {
     RestTemplate resttemplate;
     @Autowired
     UserRepository userRepo;
+    @Autowired
+    HighScoreRepository hsRepo;
 
     private final List<QuizCategory> quizCategories = List.of(QuizCategory.values());
     private final List<Integer> quizLimits = List.of(10,25,50);
@@ -47,5 +50,12 @@ public class ApplicationService {
 
     public List<Integer> getQuizLimits() {
         return quizLimits;
+    }
+
+    public HighScore getPersonalBest (Long userId) {
+
+        List<HighScore> hsScorez = hsRepo.findFirstByUser_IdEqualsOrderByScoreDesc(userId);
+
+        return hsScorez.get(0);
     }
 }
