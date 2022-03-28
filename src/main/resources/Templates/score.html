@@ -9,7 +9,7 @@
 <div th:insert="fragments/header :: header"></div>
 <div class="center">
     <div class="myScore">
-        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="'/IMG/Avatar/18.png'"></div>
+        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"></div>
         <h1 class="center" th:text="${user.username}">Quizslayer1337</h1>
         <div class="center">
         <a class="link" th:href="'/select'" href="#">Play again</a>
