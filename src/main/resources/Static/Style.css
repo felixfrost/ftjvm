@@ -59,7 +59,7 @@ height: 100%;
 .site-column{
 display: flex;
 flex-direction: column;
-height: 100vh;
+margin-top: 50px;
 }
 
 button{
@@ -425,7 +425,7 @@ color: red;
 }
 
 .large-wrapper{
-  height: 850px;
+  /*height: 850px;*/
   display: flex;
   flex-direction: column;
   justify-content: center;

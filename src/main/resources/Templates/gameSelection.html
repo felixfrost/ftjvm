@@ -19,13 +19,13 @@
 
             <section th:if="${limit} == null">
                 <h2 class="game-select-title">Choose your category</h2>
-                <div th:each=" category : ${categories}">
+                <div th:each=" category : ${categories}" class="center">
                     <button th:text="${category.fancyString}" class="option-button" type="submit" name="category" th:value="${category.urlString}"> A good answer, but is it correct?</button>
                 </div>
             </section>
             <section th:if="${limit} != null">
                 <h2 class="game-select-title">Choose number of questions</h2>
-                <div th:each=" l : ${limit}">
+                <div th:each=" l : ${limit}" class="center">
                     <button th:text="${l} + ' Questions'" class="option-button" type="submit" name="limit" th:value="${l}"> Number of questions</button>
                 </div>
             </section>
