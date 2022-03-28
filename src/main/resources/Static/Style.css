@@ -274,6 +274,16 @@ margin-bottom: 10px; /*ändrat från 7 till 10 t&p*/
 min-width: 350px;
 font-family: 'Maven Pro', sans-serif;
 background-color: #A0FFD5;
+transition: 0.3s;
+}
+
+.option-button:hover{
+   opacity: 50%;
+}
+
+.option-button:active{
+   background:#093E5E;
+   color: #EFEFE3;
 }
 
 .profile {
