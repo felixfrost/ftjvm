@@ -14,8 +14,8 @@
 <body>
     <div th:insert="fragments/header :: header"></div>
 
-    <section>
-        <form method="post">
+    <section class="site">
+        <form class="game-select-card" method="post">
             <section th:if="${limit} == null">
                 <div th:each=" category : ${categories}">
                     <button th:text="${category.fancyString}" class="option-button" type="submit" name="category" th:value="${category.urlString}"> A good answer, but is it correct?</button>

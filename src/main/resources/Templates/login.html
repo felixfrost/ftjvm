@@ -6,28 +6,30 @@
     <title>Login</title>
 </head>
 <body>
-<div class="center">
-    <img class="login" src="../Static/IMG/Logo_text.png" th:src="'/IMG/Logo_text.png'">
-</div>
-
-
-<div class="center">
-    <form class="form-signin" method="POST" action="/login">
-        <input class="form-field" type="text" id="inputUsername" placeholder="Username" name="username">
-        <input class="form-field" type="password" id="inputPasword" placeholder="Password" name="password">
-        <div class="center">
-            <button class="login-button" type="submit">Login</button>
-        </div>
-    </form>
-</div>
-<div class="section">
-    <div class="custom-shape-divider-top-1648027069">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                  class="shape-fill"></path>
-        </svg>
+<section class="site-column">
+    <div class="center">
+        <img class="login" src="../Static/IMG/Logo_text.png" th:src="'/IMG/Logo_text.png'">
     </div>
-</div>
-</div>
+
+
+    <div class="center">
+        <form class="form-signin" method="POST" action="/login">
+            <input class="form-field" type="text" id="inputUsername" placeholder="Username" name="username">
+            <input class="form-field" type="password" id="inputPasword" placeholder="Password" name="password">
+            <div class="center">
+                <button class="login-button" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <div class="section">
+        <div class="custom-shape-divider-top-1648027069">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                      class="shape-fill"></path>
+            </svg>
+        </div>
+    </div>
+    </div>
+</section>
 </body>
 </html>
