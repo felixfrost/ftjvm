@@ -5,9 +5,23 @@
     <title>Trivimania - Settings</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../Static/profilepic.css" th:href="'/profilepic.css'">
-
+    <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
 </head>
 <body>
+<div th:insert="fragments/header :: header"></div>
+<div class="center">
+    <div class="center myScore">
+        <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
+            <div class="card">
+                <h2 th:text="${user.username}">Quizslayer1337</h2>
+            </div>
+            <img class="profile-img"
+                 th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"
+                 src="../Static/IMG/Avatar/18.png">
+        </div>
+    </div>
+</div>
 <div class="profilepos">
     <nav class="menu">
         <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
@@ -21,6 +35,7 @@
     </span>
     </nav>
 </div>
+
 
 <script src="../Static/script/scriptSettings.js" th:src="@{'/script/scriptSettings.js'}"></script>
 </body>
