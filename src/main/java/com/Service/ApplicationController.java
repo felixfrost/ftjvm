@@ -115,6 +115,8 @@ public class ApplicationController {
         session.setAttribute("questions", questions);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("currentQuestionNumber", 1);
+        model.addAttribute("totalNumberOfQuestions", questions.size());
         return "game";
     }
 
@@ -157,9 +159,12 @@ public class ApplicationController {
             System.out.println("Finished...\nYour Score: " + correct);
             return "redirect:/score";
         }
-            session.setAttribute("questionCounter", ctr + 1);
-            model.addAttribute("currentQuestion", questionList.get(ctr + 1));
+            ctr++;
+            session.setAttribute("questionCounter", ctr);
+            model.addAttribute("currentQuestion", questionList.get(ctr));
             model.addAttribute("user", session.getAttribute("currentUser"));
+            model.addAttribute("currentQuestionNumber", ctr+1);
+            model.addAttribute("totalNumberOfQuestions", questionList.size());
             return "game";
     }
 
