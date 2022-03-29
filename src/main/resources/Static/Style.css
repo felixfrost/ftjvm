@@ -718,3 +718,20 @@ span.progress {
   transition: all .3s;
 }
 
+.speaker {
+margin-right: 30px;
+}
+
+.note {
+margin-left: 30px;
+}
+
+.sound-container {
+position:relative;
+width: 50%;
+margin:auto;
+justify-content: center
+
+}
+
+

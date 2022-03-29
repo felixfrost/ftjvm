@@ -1,9 +1,3 @@
-@media screen and (max-width: 700px) {
-    body {
-       padding: 170px 0 0 0;
-       width: 100%
-    }
- }
 
  a {
     color: inherit;
@@ -17,7 +11,7 @@
     height: 50px;
     margin-left: -40px;
     position: absolute;
-    color: #FFFFFF;
+    color: #1BC4BD;
     text-align: center;
     line-height: 80px;
     -webkit-transform: translate3d(0, 0, 0);
@@ -193,6 +187,8 @@
 
  .profilepic {
      width: 50px;
+     position: absolute;
+     display: flex;
  }
 
  .profilepos {

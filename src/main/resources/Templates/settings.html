@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../Static/profilepic.css" th:href="'/profilepic.css'">
     <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
     <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
@@ -20,6 +21,19 @@
                  th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"
                  src="../Static/IMG/Avatar/18.png">
         </div>
+    </div>
+</div>
+<div class="center sound-container">
+    <div class="speaker">
+        <i class="fa-3x fa-solid fa-volume-high"></i>
+    </div>
+    <div class="note">
+        <i class="fa-3x fa-brands fa-itunes-note"></i>
+    </div>
+</div>
+<div class="center darkmode-container">
+    <div class="darkmode-switch">
+
     </div>
 </div>
 <div class="profilepos">
