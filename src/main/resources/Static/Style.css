@@ -392,6 +392,10 @@ color: red;
    background-color: #A0FFD5;
 }
 
+.card-small h3{
+    text-align:center;
+}
+
 .top{
   position: relative;
   margin-bottom: 20px;
