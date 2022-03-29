@@ -21,37 +21,9 @@
             <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
             <h1 class="textC"> This Week </h1>
             <table>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
+                <tr th:each="wt : ${weekTop}">
+                    <td th:text="${wt.user.username}">Name</td>
+                    <td th:text="${wt.score}">Score</td>
                 </tr>
             </table>
         </div>
@@ -61,45 +33,9 @@
             <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
             <h1 class="textC"> Top scores </h1>
             <table>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
+                <tr th:each="ts : ${topScores}">
+                    <td th:text="${ts.user.username}">Name</td>
+                    <td th:text="${ts.score}">Score</td>
                 </tr>
             </table>
         </div>
@@ -109,29 +45,9 @@
             <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
             <h1 class="textC"> Today </h1>
             <table>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Score</td>
+                <tr th:each="tt : ${todayTop}">
+                    <td th:text="${tt.user.username}">Name</td>
+                    <td th:text="${tt.score}">Score</td>
                 </tr>
             </table>
         </div>
