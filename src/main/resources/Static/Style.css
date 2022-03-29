@@ -62,6 +62,10 @@ flex-direction: column;
 margin-top: 50px;
 }
 
+#login-container{
+height: 100vh;
+}
+
 button{
     border-radius: 10px;
     border: none;
