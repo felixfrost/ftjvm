@@ -726,3 +726,20 @@ span.progress {
   transition: all .3s;
 }
 
+.winstonPic {
+position: absolute;
+  animation-name: winster;
+  animation-duration: 10s;
+  animation-iteration-count: 100;
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+}
+
+@keyframes winster {
+  0%   {left:420px; top:210px}
+  25%  {left:420px; top:210px}
+  50%  { left:450px; top:110px}
+  75%  { left:450px; top:110px}
+  100% { left:420px; top:210px;}
+}
