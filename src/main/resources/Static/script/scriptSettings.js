@@ -3,6 +3,13 @@ const images = document.querySelector(".avatars")
 let number = 0
 renderChoice(number)
 
+function darken() {
+console.log("hey")
+var background = document.querySelector(".back");
+background.classList.toggle("dim")
+console.log("something")
+}
+
 function changeImg(number) {
 
 const allImg = document.querySelectorAll(".menu-item")
