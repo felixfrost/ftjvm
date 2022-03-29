@@ -518,6 +518,10 @@ background-color: #1BC4BD;
 position: relative;
 }
 
+#soloScore {
+    border-radius: 20px;
+}
+
 .steps {
 align: bottom;
 align-self: end;

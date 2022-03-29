@@ -63,15 +63,20 @@ public class ApplicationController {
     @GetMapping("/score")
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
-        model.addAttribute("topScores", service.getTopScores());
-        model.addAttribute("todayTop", service.getTodayTop());
-        model.addAttribute("weekTop", service.getWeekTop());
+        model.addAttribute("score", session.getAttribute("scoreCounter"));
         return "score";
     }
 
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
         model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("topScores", service.getTopScores());
+        model.addAttribute("todayTop", service.getTodayTop());
+        model.addAttribute("weekTop", service.getWeekTop());
+
+        System.out.println(service.getWeekTop());
+        System.out.println(service.getTodayTop());
+        System.out.println(service.getTopScores());
         return "highscore";
     }
 
@@ -159,7 +164,7 @@ public class ApplicationController {
         if (answer != null) {
             if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
                 correct++;
-                session.setAttribute("scoreCounter",(Integer)session.getAttribute(("scoreCounter")+1));
+                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter")+1);
 
                 //öka sessionsattribut för score vid rätt svar
 
