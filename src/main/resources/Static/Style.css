@@ -741,8 +741,8 @@ span.progress {
 @keyframes winster {
   0%   {left:50%; top:30%}
   25%  {left:50%; top:30%}
-  50%  { left:55%; top:12%}
-  75%  { left:55%; top:12%}
+  50%  { left:55%; top:20%}
+  75%  { left:55%; top:20%}
   100% { left:50%; top:30%}
 }
 
