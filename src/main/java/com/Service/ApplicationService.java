@@ -53,11 +53,6 @@ public class ApplicationService {
         return quizLimits;
     }
 
-    public HighScore getPersonalBest (Long userId) {
-        List<HighScore> hsScorez = hsRepo.findFirstByUser_IdEqualsOrderByScoreDesc(userId);
-        return hsScorez.get(0);
-    }
-
     public List<HighScore> getMonthTop(){
         List<HighScore> monthTop = hsRepo.findTop8ByDateIsAfterOrderByScoreDesc(LocalDate.now().minusMonths(1));
         return monthTop;
@@ -91,6 +86,11 @@ public class ApplicationService {
             }
         }
         return topScores;
+    }
+
+    public HighScore findUserTopScore(String username){
+        HighScore userTop = hsRepo.findFirstByUser_UsernameEqualsOrderByScoreDesc(username);
+        return userTop;
     }
 
     public void saveScore(HighScore hs){

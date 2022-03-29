@@ -72,6 +72,7 @@ public class ApplicationController {
 
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
+        model.addAttribute("userTop", service.findUserTopScore((String)session.getAttribute("currentUser")).getUser().getUsername());
         model.addAttribute("user", session.getAttribute("currentUser"));
         return "highscore";
     }

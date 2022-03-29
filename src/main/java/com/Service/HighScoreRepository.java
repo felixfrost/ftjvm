@@ -8,15 +8,13 @@ import java.util.Optional;
 
 public interface HighScoreRepository extends JpaRepository<HighScore, Long> {
 
-    List<HighScore> findFirstByUser_IdEqualsOrderByScoreDesc(long id);
-
     List<HighScore> findTop8ByDateIsAfterOrderByScoreDesc(LocalDate date);
 
     List<HighScore> findTop6ByDateIsOrderByScoreDesc(LocalDate date);
 
     List<HighScore> findTop10ByOrderByScoreDesc();
 
-
+    HighScore findFirstByUser_UsernameEqualsOrderByScoreDesc(String username);
 
 
 }
