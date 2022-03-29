@@ -34,15 +34,32 @@ function changeNumber(amt) {
     renderChoice(number)
 }
 
-function change(num) {
-
+function changeSound(num) {
+var on = document.getElementById("on");
+var off = document.getElementById("off");
 if(num == 1) {
-console.log("Hey!")
-
+on.style.display = "none"
+off.style.display = "block";
 }
 
 if(num == 2) {
+on.style.display = "block"
+off.style.display = "none";
+}
 
+}
+
+function changeMusic(num) {
+var on = document.getElementById("on-n");
+var off = document.getElementById("off-n");
+if(num == 1) {
+on.style.display = "none"
+off.style.display = "block";
+}
+
+if(num == 2) {
+on.style.display = "block"
+off.style.display = "none";
 }
 
 }
