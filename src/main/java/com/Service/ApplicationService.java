@@ -99,4 +99,11 @@ public class ApplicationService {
     public void saveScore(HighScore hs){
         hsRepo.save(hs);
     }
+
+    public String getFancyCategoryString(String category) {
+        for (QuizCategory q : QuizCategory.values())
+            if (q.getUrlString().equals(category))
+                return q.getFancyString();
+        return null;
+    }
 }

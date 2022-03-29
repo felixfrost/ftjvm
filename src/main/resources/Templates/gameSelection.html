@@ -24,7 +24,8 @@
                 </div>
             </section>
             <section th:if="${limit} != null">
-                <h2 class="game-select-title">Choose number of questions</h2>
+                <h2 class="game-select-title" th:text="${chosenCategory}">Chosen category</h2>
+                <h2 class="game-select-title">Choose the number of questions</h2>
                 <div th:each=" l : ${limit}" class="center">
                     <button th:text="${l} + ' Questions'" class="option-button" type="submit" name="limit" th:value="${l}"> Number of questions</button>
                 </div>
