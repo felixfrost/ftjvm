@@ -20,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
     @Size(min=1, max=30)
     private String username;
     @Size(min=6, max=30)

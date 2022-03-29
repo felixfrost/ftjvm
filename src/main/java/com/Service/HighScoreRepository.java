@@ -10,11 +10,11 @@ public interface HighScoreRepository extends JpaRepository<HighScore, Long> {
 
     List<HighScore> findFirstByUser_IdEqualsOrderByScoreDesc(long id);
 
-    List<HighScore> findByDateIsAfterOrderByScoreDesc(LocalDate date);
+    List<HighScore> findTop8ByDateIsAfterOrderByScoreDesc(LocalDate date);
 
-    List<HighScore> findByDateIsOrderByScoreDesc(LocalDate date);
+    List<HighScore> findTop6ByDateIsOrderByScoreDesc(LocalDate date);
 
-    List<HighScore> findByOrderByScoreDesc();
+    List<HighScore> findTop10ByOrderByScoreDesc();
 
 
 
