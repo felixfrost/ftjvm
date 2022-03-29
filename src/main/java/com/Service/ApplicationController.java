@@ -69,8 +69,9 @@ public class ApplicationController {
 
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
-        model.addAttribute("userTop", service.findUserTopScore((String)session.getAttribute("currentUser")).getUser().getUsername());
-        model.addAttribute("user", session.getAttribute("currentUser"));
+        User user = (User)session.getAttribute("currentUser");
+        model.addAttribute("userTop", (HighScore)service.findUserTopScore(user.getUsername()));
+        model.addAttribute("user", user);
         model.addAttribute("topScores", service.getTopScores());
         model.addAttribute("todayTop", service.getTodayTop());
         model.addAttribute("weekTop", service.getWeekTop());
