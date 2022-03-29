@@ -64,15 +64,19 @@ public class ApplicationController {
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("score", session.getAttribute("scoreCounter"));
-        model.addAttribute("topScores", service.getTopScores());
-        model.addAttribute("todayTop", service.getTodayTop());
-        model.addAttribute("weekTop", service.getWeekTop());
         return "score";
     }
 
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
         model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("topScores", service.getTopScores());
+        model.addAttribute("todayTop", service.getTodayTop());
+        model.addAttribute("weekTop", service.getWeekTop());
+
+        System.out.println(service.getWeekTop());
+        System.out.println(service.getTodayTop());
+        System.out.println(service.getTopScores());
         return "highscore";
     }
 
