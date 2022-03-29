@@ -844,3 +844,13 @@ display: none;
 opacity:0.5;
 }
 
+/*=== Settings Responsivitet ==*/
+
+@media screen and (max-width: 500px) {
+.card {
+width: 70vw;
+}
+.profile-img{
+left:35%;
+}
+}
