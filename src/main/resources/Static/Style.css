@@ -739,12 +739,13 @@ span.progress {
 }
 
 @keyframes winster {
-  0%   {left:500px; top:210px}
-  25%  {left:500px; top:210px}
-  50%  { left:530px; top:110px}
-  75%  { left:530px; top:110px}
-  100% { left:500px; top:210px;}
+  0%   {left:50%; top:210px}
+  25%  {left:50%; top:210px}
+  50%  { left:55%; top:110px}
+  75%  { left:55%; top:110px}
+  100% { left:50%; top:210px;}
 }
+
 .speaker {
 margin-right: 30px;
 }
