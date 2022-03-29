@@ -729,7 +729,7 @@ span.progress {
 }
 
 .winstonPic {
-position: absolute;
+  position: absolute;
   animation-name: winster;
   animation-duration: 10s;
   animation-iteration-count: 100;
@@ -739,11 +739,11 @@ position: absolute;
 }
 
 @keyframes winster {
-  0%   {left:420px; top:210px}
-  25%  {left:420px; top:210px}
-  50%  { left:450px; top:110px}
-  75%  { left:450px; top:110px}
-  100% { left:420px; top:210px;}
+  0%   {left:500px; top:210px}
+  25%  {left:500px; top:210px}
+  50%  { left:530px; top:110px}
+  75%  { left:530px; top:110px}
+  100% { left:500px; top:210px;}
 }
 .speaker {
 margin-right: 30px;
