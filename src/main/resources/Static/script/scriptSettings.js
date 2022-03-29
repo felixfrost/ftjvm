@@ -33,3 +33,16 @@ function changeNumber(amt) {
     }
     renderChoice(number)
 }
+
+function change(num) {
+
+if(num == 1) {
+console.log("Hey!")
+
+}
+
+if(num == 2) {
+
+}
+
+}
