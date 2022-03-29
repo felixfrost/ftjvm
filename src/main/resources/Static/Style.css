@@ -341,12 +341,14 @@ color: red;
   position: absolute;
   top: 62px;
   right: 25px;
+  filter: invert(17%) sepia(23%) saturate(4774%) hue-rotate(179deg) brightness(91%) contrast(93%);
 }
 .user{
   width:6rem;
   position: absolute;
   top: 160px;
   right: 40px;
+  filter: invert(17%) sepia(23%) saturate(4774%) hue-rotate(179deg) brightness(91%) contrast(93%);
 }
 
 .fa-gears{
@@ -390,6 +392,10 @@ color: red;
 }
 .card-small:hover{
    background-color: #A0FFD5;
+}
+
+.card-small h3{
+    text-align:center;
 }
 
 .top{
@@ -722,6 +728,23 @@ span.progress {
   transition: all .3s;
 }
 
+.winstonPic {
+position: absolute;
+  animation-name: winster;
+  animation-duration: 10s;
+  animation-iteration-count: 100;
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+}
+
+@keyframes winster {
+  0%   {left:420px; top:210px}
+  25%  {left:420px; top:210px}
+  50%  { left:450px; top:110px}
+  75%  { left:450px; top:110px}
+  100% { left:420px; top:210px;}
+}
 .speaker {
 margin-right: 30px;
 }

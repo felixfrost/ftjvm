@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -55,6 +56,15 @@ public class ApplicationController {
         return "aboutUs";
     }
 
+    @GetMapping("/multiplayer")
+    public String multiPlayer (HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        return "multiplayer";
+    }
+
     @GetMapping("/trivimania")
     public String game () {
         return "game";
@@ -69,8 +79,12 @@ public class ApplicationController {
 
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
-        model.addAttribute("userTop", service.findUserTopScore((String)session.getAttribute("currentUser")).getUser().getUsername());
-        model.addAttribute("user", session.getAttribute("currentUser"));
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("userTop", (HighScore)service.findUserTopScore(user.getUsername()));
+        model.addAttribute("user", user);
         model.addAttribute("topScores", service.getTopScores());
         model.addAttribute("todayTop", service.getTodayTop());
         model.addAttribute("weekTop", service.getWeekTop());
@@ -153,10 +167,11 @@ public class ApplicationController {
 
         session.setAttribute("category", category);
         model.addAttribute("limit", service.getQuizLimits());
+        model.addAttribute("chosenCategory", service.getFancyCategoryString(category));
         return "gameSelection";
     }
 
-    int correct = 0;
+
     @PostMapping("/nextQuestion")
     public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
         int ctr = (int)session.getAttribute("questionCounter");
@@ -164,16 +179,12 @@ public class ApplicationController {
 
         if (answer != null) {
             if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
-                correct++;
-                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter")+1);
-
-                //öka sessionsattribut för score vid rätt svar
+                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter")+100);
 
                 System.out.println("Correct!");
             }
         }
         if(ctr == questionList.size()-1) {
-            System.out.println("Finished...\nYour Score: " + correct);
             service.saveScore(new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser")));
             return "redirect:/score";
         }

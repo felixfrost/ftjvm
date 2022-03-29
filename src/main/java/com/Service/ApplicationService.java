@@ -90,10 +90,20 @@ public class ApplicationService {
 
     public HighScore findUserTopScore(String username){
         HighScore userTop = hsRepo.findFirstByUser_UsernameEqualsOrderByScoreDesc(username);
+        if(userTop == null){
+            userTop = new HighScore(null, 0, null, null);
+        }
         return userTop;
     }
 
     public void saveScore(HighScore hs){
         hsRepo.save(hs);
+    }
+
+    public String getFancyCategoryString(String category) {
+        for (QuizCategory q : QuizCategory.values())
+            if (q.getUrlString().equals(category))
+                return q.getFancyString();
+        return null;
     }
 }
