@@ -106,4 +106,12 @@ public class ApplicationService {
                 return q.getFancyString();
         return null;
     }
+
+    public void saveUser(User user) {
+        userRepo.save(user);
+    }
+
+    public User findUser(String username) {
+        return userRepo.findByUsernameEquals(username);
+    }
 }
