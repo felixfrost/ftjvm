@@ -90,6 +90,9 @@ public class ApplicationService {
 
     public HighScore findUserTopScore(String username){
         HighScore userTop = hsRepo.findFirstByUser_UsernameEqualsOrderByScoreDesc(username);
+        if(userTop == null){
+            userTop.setScore(0);
+        }
         return userTop;
     }
 

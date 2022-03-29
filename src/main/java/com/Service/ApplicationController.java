@@ -69,7 +69,10 @@ public class ApplicationController {
 
     @GetMapping("/highscore")
     public String highScore (HttpSession session, Model model) {
-        User user = (User)session.getAttribute("currentUser");
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
         model.addAttribute("userTop", (HighScore)service.findUserTopScore(user.getUsername()));
         model.addAttribute("user", user);
         model.addAttribute("topScores", service.getTopScores());
