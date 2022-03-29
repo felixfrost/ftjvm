@@ -55,6 +55,15 @@ public class ApplicationController {
         return "aboutUs";
     }
 
+    @GetMapping("/multiplayer")
+    public String multiPlayer (HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        return "multiplayer";
+    }
+
     @GetMapping("/trivimania")
     public String game () {
         return "game";

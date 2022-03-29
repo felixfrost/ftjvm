@@ -341,12 +341,14 @@ color: red;
   position: absolute;
   top: 62px;
   right: 25px;
+  filter: invert(17%) sepia(23%) saturate(4774%) hue-rotate(179deg) brightness(91%) contrast(93%);
 }
 .user{
   width:6rem;
   position: absolute;
   top: 160px;
   right: 40px;
+  filter: invert(17%) sepia(23%) saturate(4774%) hue-rotate(179deg) brightness(91%) contrast(93%);
 }
 
 .fa-gears{
