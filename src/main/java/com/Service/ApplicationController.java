@@ -1,6 +1,7 @@
 package com.Service;
 
 import com.Model.Question;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,14 +57,26 @@ public class ApplicationController {
         return "aboutUs";
     }
 
+    @GetMapping("/createmultiplayergame")
+    public String multiPlayerInit(HttpSession session){
+        String gameId = RandomString.make(7);
+        session.setAttribute("multiplayerHost", true);
+        session.setAttribute("gameId", gameId);
+        return ("redirect:/select");
+    }
+
     @GetMapping("/multiplayer")
     public String multiPlayer (HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
-        if(user == null){
-            return ("redirect:/login");
-        }
+        if(user == null){ return ("redirect:/login"); }
         return "multiplayer";
     }
+
+    @PostMapping("/multiplayer")
+    public String joinGame(String gameId){
+        return "";
+    }
+
 
     @GetMapping("/trivimania")
     public String game () {
@@ -140,7 +153,20 @@ public class ApplicationController {
 
     @GetMapping("/game")
     public String getQuiz(HttpSession session, Model model) {
+        Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
+        Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
         List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        //är du host?
+        if(multiplayerHost != null && multiplayerHost) {
+            String gameId = (String)session.getAttribute("gameId");
+            service.createMultiplayerGame(gameId, (User)session.getAttribute("currentUser"), questions);
+        }
+        //har du joinat ett spel?
+        if(multiplayerGuest != null && multiplayerGuest) {
+            String gameId = (String)session.getAttribute("gameId");
+            questions = service.getMultiplayerQuestions(gameId);
+            service.joinMultiplayerGame(gameId, (User)session.getAttribute("currentUser"));
+        }
         session.setAttribute("questionCounter", 0);
         session.setAttribute("scoreCounter", 0);
         session.setAttribute("questions", questions);
@@ -195,6 +221,16 @@ public class ApplicationController {
             model.addAttribute("currentQuestionNumber", ctr+1);
             model.addAttribute("totalNumberOfQuestions", questionList.size());
             return "game";
+
     }
 
 }
+       /*
+
+       User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+
+
+        */

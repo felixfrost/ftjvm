@@ -4,6 +4,8 @@ import com.Model.Question;
 import com.Model.QuizCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.bytebuddy.utility.RandomString;
+import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class ApplicationService {
@@ -22,6 +25,8 @@ public class ApplicationService {
     UserRepository userRepo;
     @Autowired
     HighScoreRepository hsRepo;
+    @Autowired
+    MultiplayerRepository mpRepo;
 
     private final List<QuizCategory> quizCategories = List.of(QuizCategory.values());
     private final List<Integer> quizLimits = List.of(10,25,50);
@@ -105,5 +110,18 @@ public class ApplicationService {
             if (q.getUrlString().equals(category))
                 return q.getFancyString();
         return null;
+    }
+
+    public void createMultiplayerGame(String gameId, User user1, List<Question> questions){
+        mpRepo.save(new Multiplayer(null, gameId, questions, new HighScore(null, 0, null, user1), null));
+    }
+
+    public List<Question> getMultiplayerQuestions(String gameId) {
+        List<Question> questions = mpRepo.findFirstByGameIdEqualsOrderByQuestionsAsc(gameId);
+        return questions;
+    }
+
+    public void joinMultiplayerGame(String gameId, User currentUser) {
+        mpRepo.joinMultiplayerGame(currentUser, gameId);
     }
 }
