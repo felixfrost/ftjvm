@@ -16,8 +16,8 @@ public enum QuizCategory {
     private String urlString;
     private String fancyString;
 
-    QuizCategory(String categoryString, String fancyString) {
-        this.urlString = categoryString;
+    QuizCategory(String urlString, String fancyString) {
+        this.urlString = urlString;
         this.fancyString = fancyString;
     }
 

@@ -1,6 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
-
 
 * {
   margin: 0;
@@ -24,10 +22,21 @@ font-family: 'Maven Pro', sans-serif;
  color:#093E5E;
 }
 
+.link{
+padding-top: 5px;
+padding-right: 10px;
+}
+.link:hover{
+text-decoration: underline;
+}
+.link:last-child{
+padding-right: 0px;
+}
+
 .navbar {
 background-color: #ECF1EB !important;
 }
-  
+
 body {
 background-color: #ECF1EB;
 }
@@ -36,69 +45,36 @@ background-color: #ECF1EB;
 margin-bottom: 5px;
 }
 
-.login {
-padding-top: 100px;
-width: 300px;
+.site{ /*kan tas bort?*/
+width: 100%;
+height: 100%;
 }
-
-.center {
-display: flex;
-align-items: center;
-justify-content: center;
+.site{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  height: 100vh;
 }
-
-.form-field {
-display: flex;
-flex-direction: column;
-margin-bottom: 15px;
-padding: 5px;
-}
-
-.login-button {
-padding: 5px 15px 5px 15px;
-background-color: #1BC4BD;
-color: #ECF1EB;
-font-family: 'Fredoka', sans-serif;
-}
-
-.section {
-position: relative;
+.site-column{
 display: flex;
 flex-direction: column;
-align-items: center;
-height: 400px;
-padding: 100px 20vw;
-background-color:#093E5E;
+margin-top: 50px;
 }
 
-
-/*
-Wave login
-*/
-.custom-shape-divider-top-1648027069 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
+button{
+    border-radius: 10px;
+    border: none;
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 16px;
 }
+button:hover{
+      background:#093E5E;
+      color: #EFEFE3;
+  }
 
-.custom-shape-divider-top-1648027069 svg {
-    position: relative;
-    display: block;
-    width: calc(155% + 1.3px);
-    height: 99px;
-}
 
-.custom-shape-divider-top-1648027069 .shape-fill {
-    fill: #ECF1EB;
-
-}
-
-/*
-Menu samt knappar och ikoner och dess Css styling
-*/
+/* ==============  Menu & footer samt knappar och ikoner och dess Css styling*/
 
 .footer{
 position: absolute;
@@ -123,7 +99,7 @@ display: inline-block;
 /*
 Knappar som andas när man hover nedanför
 */
-#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover {
+#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover {
     -webkit-animation: breathing 5s ease-out infinite normal;
     animation: breathing 5s ease-out infinite normal;
     -webkit-font-smoothing: antialiased;
@@ -187,6 +163,92 @@ ANIMATION OVANFÖR
 display: inline-block;
 margin: 0 100px 0 0;
 }
+
+/*======== gameSelection ========== */
+
+.game-select-card{
+    padding: 50px;
+    background-color: #1BC4BD;
+    border-radius: 60px;
+    max-width: 610px;
+    width: 100%;
+    margin: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+.game-select-title{
+    text-align: center;
+}
+
+/*======= Login page ====*/
+
+.login {
+padding-top: 100px;
+width: 300px;
+}
+
+.center {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.form-field {
+display: flex;
+flex-direction: column;
+margin-bottom: 15px;
+padding: 5px;
+}
+
+.login-button {
+padding: 7px 15px 7px 15px;
+background-color: #1BC4BD;
+color: #093E5E;
+font-family: 'Fredoka', sans-serif;
+}
+
+.section {
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 400px;
+padding: 100px 20vw;
+background-color:#093E5E;
+
+width: 100%;
+flex: 1;
+}
+
+
+/*
+Wave login
+*/
+.custom-shape-divider-top-1648027069 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1648027069 svg {
+    position: relative;
+    display: block;
+    width: calc(155% + 1.3px);
+    height: 99px;
+}
+
+.custom-shape-divider-top-1648027069 .shape-fill {
+    fill: #ECF1EB;
+
+}
+
+
 /*
 Game board
 */
@@ -215,11 +277,21 @@ grid-template-areas: "inner-div";
 }
 
 .option-button {
-padding: 7px 20px;
-margin-bottom: 10px;
+padding: 10px 20px;
+margin-bottom: 10px; /*ändrat från 7 till 10 t&p*/
 min-width: 350px;
 font-family: 'Maven Pro', sans-serif;
 background-color: #A0FFD5;
+transition: 0.3s;
+}
+
+/*.option-button:hover{
+    background:#093E5E;
+    color: #EFEFE3;
+}*/
+
+.option-button:active{
+opacity:50%;
 }
 
 .profile {
@@ -269,12 +341,14 @@ color: red;
   position: absolute;
   top: 62px;
   right: 25px;
+  filter: invert(17%) sepia(23%) saturate(4774%) hue-rotate(179deg) brightness(91%) contrast(93%);
 }
 .user{
   width:6rem;
   position: absolute;
   top: 160px;
   right: 40px;
+  filter: invert(17%) sepia(23%) saturate(4774%) hue-rotate(179deg) brightness(91%) contrast(93%);
 }
 
 .fa-gears{
@@ -320,6 +394,10 @@ color: red;
    background-color: #A0FFD5;
 }
 
+.card-small h3{
+    text-align:center;
+}
+
 .top{
   position: relative;
   margin-bottom: 20px;
@@ -358,38 +436,70 @@ color: red;
 }
 
 .large-wrapper{
-  height: 850px;
+  /*height: 850px;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
 /*=====Home responsive =====*/
 @media screen and (max-width: 1200px) {
 .small-wrapper {
-border: solid black;
+justify-content: center;
 }
 .againstFriend, .lead, .settings {
 position: absolute;
 }
+
+.againstFriend {
+margin-top: 260px;
+margin-right: -400px;
+}
+
+.settings {
+margin-top: 380px;
+margin-left: -200px;
+}
+
+.crown {
+bottom: 50px;
+}
+
+.fa-gears {
+bottom: 40px;
+}
+
+.lead {
+margin-top: 380px;
+margin-left: -600px;
+}
+
+.card-small {
+width: 160px;
+}
+
+.lead .card {
+width: 160px;
+height: 90px;
+}
+
 .disapear {
 display: none;
 }
-.right, .left {
-border: solid green;
+.right, .left{
 align-items: center;
 }
+
+h2{
+ font-size: 20px;
+}
+
 }
 
 
-.site{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:100vw;
-  height: 100vh;
-}
+
 
 .myScore {
 margin-top: 100px;
@@ -412,6 +522,10 @@ padding: 10px 0px;
 border-radius: 20px 20px 0px 0px;
 background-color: #1BC4BD;
 position: relative;
+}
+
+#soloScore {
+    border-radius: 20px;
 }
 
 .steps {
@@ -613,3 +727,101 @@ span.progress {
   background: #1BC4BD;
   transition: all .3s;
 }
+
+.winstonPic {
+  position: absolute;
+  animation-name: winster;
+  animation-duration: 10s;
+  animation-iteration-count: 100;
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+}
+
+@keyframes winster {
+  0%   {left:50%; top:30%}
+  25%  {left:50%; top:30%}
+  50%  { left:55%; top:20%}
+  75%  { left:55%; top:20%}
+  100% { left:50%; top:30%}
+}
+
+.speaker {
+margin-right: 30px;
+}
+
+.note {
+margin-left: 30px;
+}
+
+.sound-container {
+position:relative;
+width: 50%;
+margin:auto;
+justify-content: center
+
+}
+
+.darkmode-container {
+position:relative;
+width: 50%;
+margin:auto;
+justify-content: center;
+
+}
+
+.darkmode-switch {
+margin-top: 20px;
+
+}
+
+
+.switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #093E5E;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #1BC4BD;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #ECF1EB;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
