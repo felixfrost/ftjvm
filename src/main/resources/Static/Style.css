@@ -840,3 +840,7 @@ input:checked + .slider:before {
 display: none;
 }
 
+.dim {
+opacity:0.5;
+}
+

@@ -15,6 +15,7 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
+<div class="back">
 <div class="center">
     <div class="center myScore">
         <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
@@ -56,9 +57,10 @@
         </div>
     </div>
 </div>
+</div>
 <div class=" profilepos">
     <nav class="menu">
-        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" onclick="darken()"/>
         <label class="menu-open-button" for="menu-open">
             <span class="lines line-1"></span>
             <span class="lines line-2"></span>
