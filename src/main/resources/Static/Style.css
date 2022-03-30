@@ -859,6 +859,11 @@ padding: 20px;
 .nav-item{
 z-index: 1;
 }
+
+#collapsibleNavbar{
+z-index: 1;
+}
+
 #off, #off-n {
 display: none;
 }
@@ -866,6 +871,7 @@ display: none;
 .dim {
 opacity:0.5;
 }
+
 
 .order {
 display:flex;
@@ -919,4 +925,9 @@ width: 70vw;
 .form-signin {
 margin-bottom: 250px;
 }
+}
+
+/*=== hamburgare menu hover  ===*/
+.navbar-toggler:hover{
+opacity: 80%;
 }
