@@ -4,6 +4,7 @@ import com.Model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -136,9 +139,12 @@ public class ApplicationController {
     @GetMapping("/game")
     public String getQuiz(HttpSession session, Model model) {
         List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        LocalDateTime startTime = LocalDateTime.now();
+
         session.setAttribute("questionCounter", 0);
         session.setAttribute("scoreCounter", 0);
         session.setAttribute("questions", questions);
+        session.setAttribute("startTime", startTime);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("currentQuestionNumber", 1);
@@ -168,22 +174,32 @@ public class ApplicationController {
 
 
     @PostMapping("/nextQuestion")
-    public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
+    public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer)  {
         int ctr = (int)session.getAttribute("questionCounter");
+
         List<Question> questionList = (List<Question>)session.getAttribute("questions");
+
 
         if (answer != null) {
             if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
-                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter")+100);
+                long setPoints = 10000;
+                long timeDiff = ChronoUnit.MILLIS.between((LocalDateTime)session.getAttribute("startTime"), LocalDateTime.now());
+                int points = (int) (setPoints - timeDiff);
 
+                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter") + points);
+
+                System.out.println(timeDiff);
                 System.out.println("Correct!");
             }
+
         }
         if(ctr == questionList.size()-1) {
             service.saveScore(new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser")));
             return "redirect:/score";
         }
+        // updates values of the user
             ctr++;
+            session.setAttribute("startTime", LocalDateTime.now());
             session.setAttribute("questionCounter", ctr);
             model.addAttribute("currentQuestion", questionList.get(ctr));
             model.addAttribute("user", session.getAttribute("currentUser"));
