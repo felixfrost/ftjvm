@@ -30,6 +30,10 @@ public class SecretQuestion {
     public List<SecretQuestion> findAll() {
         List<SecretQuestion> all = new ArrayList<>();
         all.add(new SecretQuestion("Vilka av dessa har varit gruppers projekt namn?", "SirQuizAlot, Bitter, IMFDB, SneakySnakey", new String[] {"SirQuizLot, Ditter, IMSDB, Sneakysnake", "CatVikingQuiz, Birdy Fake IMDB, SnakeClone", "JustAnotherQuiz, TwitterClone, BlatentRipOff, Snake... Just snake"}));
+        all.add(new SecretQuestion("Vilken hund har varit med oss under hela kursen?", "Fluto", new String[] {"Muto", "Kulo", "Chabo"}));
+        all.add(new SecretQuestion("Vad kallar Andreas detta tecken: \"", "Dubbelfnutt", new String[] {"Citat tecken", "Dubbelfjong", "Dubbelcitat"}));
+        all.add(new SecretQuestion("Vems barn har vi inte sett i Classroom?", "Vanja", new String[] {"Twana", "Rabia", "Daniel"}));
+        all.add(new SecretQuestion("Vart flyttade Christopher under kursen?", "Skellefteå", new String[] {"Örnsköldsvik", "Piteå", "Lycksele"}));
 
         all.forEach(SecretQuestion::mixSecretAnswers);
         return all;
