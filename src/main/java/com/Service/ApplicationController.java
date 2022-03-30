@@ -46,6 +46,7 @@ public class ApplicationController {
     public String avatar(HttpSession session, @PathVariable Integer num) {
         User user = (User) session.getAttribute("currentUser");
         user.setAvatarId(num);
+        service.saveAvatar(num, user.getUsername());
         return "redirect:/settings";
     }
 
