@@ -59,6 +59,7 @@ off.style.display = "none";
 function changeMusic(num) {
 var on = document.getElementById("on-n");
 var off = document.getElementById("off-n");
+
 if(num == 1) {
 on.style.display = "none"
 off.style.display = "block";

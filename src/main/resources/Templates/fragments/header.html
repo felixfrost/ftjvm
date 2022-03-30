@@ -11,6 +11,15 @@
     <link href="Style.css" rel="stylesheet"  type="text/css">
     <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
 
+    <script>
+    function startMusic() {
+
+    var audio = new Audio("Sound/backgroundMusic.mp3");
+    audio.play();
+
+    }
+    </script>
+
     <nav class="navbar bg-light navbar-light">
         <div>
         <a class="navbar-brand" th:href="'/'" href="#">
@@ -64,6 +73,15 @@
                         Settings
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <div class="icon-three">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div class="icon-text-three">
+                        <a class="nav-link" onclick="startMusic()" id="music-on" style="cursor: pointer;">Music</a>
+                    </div>
+
                 <!--Log out-->
                 <li class="nav-item">
                     <div class="icon-three">
