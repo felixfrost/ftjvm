@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
-    <title>Trivimania - 404 - Error</title>
+    <title>Multiplayer Selection</title>
 </head>
 <body>
+<div th:insert="fragments/header :: header"></div>
 <div class="center">
-    <img class="login" src="../Static/IMG/FT.JVMLogoClear.png" th:src="'/IMG/FT.JVMLogoClear.png'">
+    <h1>Multiplayer Selection</h1>
 </div>
 <div class="center">
-    <div class="about">
-        <p class="textC">This is an upcoming feature!</p>
-        <p class="textC">Keep your eyes open, our engineers are working on it!</p>
-        <p class="textC">
-            <img class="winston" src="../Static/IMG/multiplayer_pic.jpeg" th:src="'/IMG/multiplayer_pic.jpeg'">
-        </p>
-        <br>
-        <br>
-        <p class="textC"><a href="/">Go Home</a></p>
+    <div class="center gameboard">
+        <div class="center"><img class="profile"
+                                 th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"
+                                 src="../Static/IMG/Avatar/18.png">
+        </div>
+        <div>
+            <div class="center">
+                <button th:href="@{'/createmultiplayergame'}" class="option-button" type="submit" name="answer"> Create
+                    Game
+                </button>
+            </div>
+            <div class="center">
+                <button th:href="@{'/multiplayerguest'}" class="option-button" type="submit" name="answer"> Join
+                    Existing Game
+                </button>
+            </div>
+        </div>
     </div>
+</div>
 </body>
 </html>
+
+

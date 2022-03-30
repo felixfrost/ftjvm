@@ -6,22 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "multiplayer")
-public class Multiplayer {
+@Table(name = "multiplayer_high_score")
+public class MultiplayerHighScore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String gameId;
-    @ElementCollection(targetClass = Question.class)
-    private List<Question> questions = new ArrayList<>();
-
+    private Long hsId;
+    private Long mpId;
 }
