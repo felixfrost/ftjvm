@@ -148,6 +148,18 @@ public class ApplicationService {
         return valid;
     }
 
+    public void saveUser(User user) {
+        userRepo.save(user);
+    }
 
+    public User findUser(String username) {
+        return userRepo.findByUsernameEquals(username);
+    }
+
+    public void saveAvatar(int num, String username) {
+        User currentUser = userRepo.findByUsernameEquals(username);
+        currentUser.setAvatarId(num);
+        userRepo.save(currentUser);
+    }
 
 }

@@ -4,13 +4,19 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
+
 import java.util.ArrayList;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import java.util.List;
 
 @Controller
@@ -18,11 +24,6 @@ public class ApplicationController {
 
     @Autowired
     ApplicationService service;
-
-    @Autowired
-    UserRepository userRepo;
-
-
 
     @GetMapping("/")
     public String home (Model model, HttpSession session){
@@ -48,6 +49,7 @@ public class ApplicationController {
     public String avatar(HttpSession session, @PathVariable Integer num) {
         User user = (User) session.getAttribute("currentUser");
         user.setAvatarId(num);
+        service.saveAvatar(num, user.getUsername());
         return "redirect:/settings";
     }
 
@@ -149,9 +151,8 @@ public class ApplicationController {
         if(result.hasErrors()){
             return "createUser";
         }
-        if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
-            userRepo.save(user);
-            System.out.println(user.getUsername() + user.getFirstname() + user.getLastname());
+        if(service.findUser(user.getUsername()) == null) {
+            service.saveUser(user);
             return "redirect:/";
         }
         else return "login";
@@ -164,9 +165,10 @@ public class ApplicationController {
 
     @PostMapping("/login")
     public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (session.getAttribute("currentUser") == null && userRepo.findByUsernameEquals(username) != null) {
-            if (userRepo.findByUsernameEquals(username).getPassword().equals(password)) {
-                session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
+        User user = service.findUser(username);
+        if (session.getAttribute("currentUser") == null && user != null) {
+            if (user.getPassword().equals(password)) {
+                session.setAttribute("currentUser", user);
                 System.out.println("Success logging in...");
                 return "redirect:/";
             }
@@ -183,6 +185,7 @@ public class ApplicationController {
 
     @GetMapping("/game")
     public String getQuiz(HttpSession session, Model model) {
+
         System.out.println(session.getAttribute("multiplayerHost"));
         Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
         Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
@@ -200,9 +203,15 @@ public class ApplicationController {
             String gameId = (String)session.getAttribute("gameId");
             questions = service.getMultiplayerQuestions(gameId);
         }
+
+        List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        LocalDateTime startTime = LocalDateTime.now();
+
+
         session.setAttribute("questionCounter", 0);
         session.setAttribute("scoreCounter", 0);
         session.setAttribute("questions", questions);
+        session.setAttribute("startTime", startTime);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("currentQuestionNumber", 1);
@@ -235,15 +244,24 @@ public class ApplicationController {
     public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
         Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
         Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
+
         int ctr = (int)session.getAttribute("questionCounter");
+
         List<Question> questionList = (List<Question>)session.getAttribute("questions");
+
 
         if (answer != null) {
             if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
-                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter")+100);
+                long setPoints = 10000;
+                long timeDiff = ChronoUnit.MILLIS.between((LocalDateTime)session.getAttribute("startTime"), LocalDateTime.now());
+                int points = (int) (setPoints - timeDiff);
 
+                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter") + points);
+
+                System.out.println(timeDiff);
                 System.out.println("Correct!");
             }
+
         }
         if(ctr == questionList.size()-1) {
             HighScore sc = new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser"));
@@ -254,7 +272,9 @@ public class ApplicationController {
             }
             return "redirect:/score";
         }
+        // updates values of the user
             ctr++;
+            session.setAttribute("startTime", LocalDateTime.now());
             session.setAttribute("questionCounter", ctr);
             model.addAttribute("currentQuestion", questionList.get(ctr));
             model.addAttribute("user", session.getAttribute("currentUser"));
