@@ -203,8 +203,7 @@ public class ApplicationController {
             String gameId = (String)session.getAttribute("gameId");
             questions = service.getMultiplayerQuestions(gameId);
         }
-
-        List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        
         LocalDateTime startTime = LocalDateTime.now();
 
 
