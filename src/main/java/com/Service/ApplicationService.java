@@ -114,4 +114,5 @@ public class ApplicationService {
     public User findUser(String username) {
         return userRepo.findByUsernameEquals(username);
     }
+
 }
