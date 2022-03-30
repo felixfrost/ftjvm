@@ -209,4 +209,26 @@ public class ApplicationController {
             return "game";
     }
 
+    @GetMapping("/secret")
+    public String easterEgg() {
+        return "easterEgg";
+    }
+
+    @GetMapping("/secretGame")
+    public String secretGame(HttpSession session, Model model) {
+        List<SecretQuestion> questions = service.getSecretQuestions();
+        LocalDateTime startTime = LocalDateTime.now();
+
+        session.setAttribute("questionCounter", 0);
+        session.setAttribute("scoreCounter", 0);
+        session.setAttribute("questions", questions);
+        session.setAttribute("startTime", startTime);
+        model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("currentQuestionNumber", 1);
+        model.addAttribute("totalNumberOfQuestions", questions.size());
+        return "secretGame";
+    }
+
+
 }

@@ -22,6 +22,8 @@ public class ApplicationService {
     UserRepository userRepo;
     @Autowired
     HighScoreRepository hsRepo;
+    @Autowired
+    SecretQuestionRepository sqRepo;
 
     private final List<QuizCategory> quizCategories = List.of(QuizCategory.values());
     private final List<Integer> quizLimits = List.of(10,25,50);
@@ -43,6 +45,11 @@ public class ApplicationService {
         questions.forEach(Question::mixAnswers);
 
         return questions;
+    }
+
+    public List<SecretQuestion> getSecretQuestions() {
+        List<SecretQuestion> secretQuestionList = sqRepo.findAll();
+        return secretQuestionList;
     }
 
     public List<QuizCategory> getQuizCategories() {
