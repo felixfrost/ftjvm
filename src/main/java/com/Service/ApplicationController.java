@@ -19,11 +19,6 @@ public class ApplicationController {
     @Autowired
     ApplicationService service;
 
-    @Autowired
-    UserRepository userRepo;
-
-
-
     @GetMapping("/")
     public String home (Model model, HttpSession session){
         User user = (User) session.getAttribute("currentUser");
@@ -106,9 +101,8 @@ public class ApplicationController {
         if(result.hasErrors()){
             return "createUser";
         }
-        if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
-            userRepo.save(user);
-            System.out.println(user.getUsername() + user.getFirstname() + user.getLastname());
+        if(service.findUser(user.getUsername()) == null) {
+            service.saveUser(user);
             return "redirect:/";
         }
         else return "login";
@@ -121,9 +115,10 @@ public class ApplicationController {
 
     @PostMapping("/login")
     public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (session.getAttribute("currentUser") == null && userRepo.findByUsernameEquals(username) != null) {
-            if (userRepo.findByUsernameEquals(username).getPassword().equals(password)) {
-                session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
+        User user = service.findUser(username);
+        if (session.getAttribute("currentUser") == null && user != null) {
+            if (user.getPassword().equals(password)) {
+                session.setAttribute("currentUser", user);
                 System.out.println("Success logging in...");
                 return "redirect:/";
             }

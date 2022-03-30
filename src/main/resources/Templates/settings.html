@@ -2,6 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <title>Trivimania - Settings</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../Static/profilepic.css" th:href="'/profilepic.css'">
@@ -11,6 +15,7 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
+<div class="back">
 <div class="center">
     <div class="center myScore">
         <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
@@ -25,18 +30,18 @@
 </div>
 <div class="center sound-container">
     <div class="speaker">
-        <div class="on" onclick="change(1)">
+        <div id="on" onclick="changeSound(1)">
             <i class="fa-3x fa-solid fa-volume-high"></i>
         </div>
-        <div class="off" onclick="change(2)">
+        <div id="off" onclick="changeSound(2)">
             <i class="fa-3x fa-solid fa-volume-xmark"></i>
         </div>
     </div>
     <div class="note">
-        <div class="on" onclick="change(1)">
+        <div id="on-n" onclick="changeMusic(1)">
             <i class="fa-3x fa-brands fa-itunes-note"></i>
         </div>
-        <div class="off" onclick="change(2)">
+        <div id="off-n" onclick="changeMusic(2)">
             <i class="fa-3x fa-solid fa-pause"></i>
         </div>
     </div>
@@ -48,13 +53,14 @@
             <div class="slider round"></div>
         </label>
         <div class="darkmode-text">
-            <h3 class="darkmode">Dark Mode</h3>
+            <h3 class="darkmode"> Dark Mode</h3>
         </div>
     </div>
 </div>
+</div>
 <div class=" profilepos">
     <nav class="menu">
-        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" onclick="darken()"/>
         <label class="menu-open-button" for="menu-open">
             <span class="lines line-1"></span>
             <span class="lines line-2"></span>
