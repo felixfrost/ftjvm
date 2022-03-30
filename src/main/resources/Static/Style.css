@@ -892,4 +892,10 @@ left: 40%;
 .myScore {
 margin: auto;
 }
+
+/*=== Leaderboard Responsivitet */
+.day, .week {
+display: none;
+}
+
 }
