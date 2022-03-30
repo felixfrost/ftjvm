@@ -219,6 +219,8 @@ public class ApplicationController {
         List<SecretQuestion> questions = service.getSecretQuestions();
         LocalDateTime startTime = LocalDateTime.now();
 
+        System.out.println(questions);
+
         session.setAttribute("questionCounter", 0);
         session.setAttribute("scoreCounter", 0);
         session.setAttribute("questions", questions);
