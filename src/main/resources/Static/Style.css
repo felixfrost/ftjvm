@@ -844,6 +844,10 @@ display: none;
 opacity:0.5;
 }
 
+.order {
+display:flex;
+}
+
 /*=== Settings Responsivitet ==*/
 
 @media screen and (max-width: 500px) {
@@ -852,5 +856,28 @@ width: 70vw;
 }
 .profile-img{
 left:35%;
+}
+
+/*=== Score Responsivitet ===*/
+
+.order {
+display:flex;
+flex-direction: column;
+}
+
+.card-small {
+margin-bottom: 10px;
+}
+
+.allTime {
+width:70vw;
+}
+
+.profile {
+left: 40%;
+}
+
+.myScore {
+margin: auto;
 }
 }
