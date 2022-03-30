@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -58,6 +59,11 @@ public class ApplicationController {
     //skapar ett spelId och sätter spelaren till host och visar host spelId att skicka till utmanare
     @GetMapping("/createmultiplayergame")
     public String multiPlayerInit(HttpSession session, Model model){
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
         String gameId = RandomString.make(7);
         session.setAttribute("multiplayerHost", true);
         session.setAttribute("gameId", gameId);
@@ -67,14 +73,23 @@ public class ApplicationController {
 
     //du kommer till sida med 2 val (create game / join existing game)
     @GetMapping("/multiplayer")
-    public String multiPlayer (HttpSession session) {
+    public String multiPlayer (HttpSession session, Model model) {
         User user = (User) session.getAttribute("currentUser");
-        if(user == null){ return ("redirect:/login"); }
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
         return "multiplayer";
     }
 
     @GetMapping("/multiplayerguest")
-    public String multiPlayerGuest (){ return "multiplayerguest"; }
+    public String multiPlayerGuest (HttpSession session, Model model){
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
+        return "multiplayerguest"; }
 
     //när du skriver in spel id + validering
     @PostMapping("/multiplayerguest")
@@ -82,6 +97,7 @@ public class ApplicationController {
         if (gameId != "" && service.validGameId(gameId)) {
             session.setAttribute("gameId", gameId);
             session.setAttribute("multiplayerGuest", true);
+            System.out.println(session.getAttribute("multiplayerGuest"));
             return ("redirect:/game");
         }
         model.addAttribute("invalid", true);
@@ -97,6 +113,10 @@ public class ApplicationController {
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("score", session.getAttribute("scoreCounter"));
+        System.out.println(session.getAttribute("multiplayerHost"));
+        session.removeAttribute("multiplayerHost");
+        System.out.println(session.getAttribute("multiplayerHost"));
+        session.removeAttribute("multiplayerGuest");
         return "score";
     }
 
@@ -163,13 +183,17 @@ public class ApplicationController {
 
     @GetMapping("/game")
     public String getQuiz(HttpSession session, Model model) {
+        System.out.println(session.getAttribute("multiplayerHost"));
         Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
         Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
-        List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        List<Question> questions = new ArrayList<>();
+        if (multiplayerHost == null && multiplayerGuest == null)
+            questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
         //är du host?
         if(multiplayerHost != null && multiplayerHost) {
             String gameId = (String)session.getAttribute("gameId");
-            session.setAttribute("multiplayerId" , service.createMultiplayerGame(gameId, questions));
+            session.setAttribute("multiplayerId" , service.createMultiplayerGame(gameId, service.getQuestionsJSON((int)session.getAttribute("limit"),(String)session.getAttribute("category"))));
+            questions = service.getMultiplayerQuestions(gameId);
         }
         //har du joinat ett spel?
         if(multiplayerGuest != null && multiplayerGuest) {

@@ -8,16 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface MultiplayerRepository extends JpaRepository<Multiplayer, Long> {
-    List<Question> findFirstByGameIdEqualsOrderByQuestionsAsc(String gameId);
+    String findFirstByGameIdEqualsOrderByQuestionsAsc(String gameId);
+
+    @Query(value = "SELECT QUESTIONS FROM MULTIPLAYER WHERE GAME_ID=? LIMIT 1", nativeQuery = true)
+    String getQuestionsJSONByGameId(String gameId);
 
     Long findFirstByGameIdEqualsOrderByIdAsc(String gameId);
 
     boolean existsByGameIdEquals(String gameId);
-
-    @Transactional
-    @Modifying
-    @Query("update Multiplayer m set m.user2.user = ?1 where m.gameId = ?2")
-    void joinMultiplayerGame(User user, String gameId);
-
-
 }

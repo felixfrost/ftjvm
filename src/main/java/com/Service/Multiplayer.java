@@ -21,7 +21,7 @@ public class Multiplayer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String gameId;
-    @ElementCollection(targetClass = Question.class)
-    private List<Question> questions = new ArrayList<>();
+    @Column(length = 255000)
+    private String questions;
 
 }

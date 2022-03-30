@@ -46,6 +46,27 @@ public class ApplicationService {
 
         return questions;
     }
+    public String getQuestionsJSON(int limit, String categories) {
+        String response;
+        if (categories.equals(""))
+            response = resttemplate.getForObject("https://the-trivia-api.com/questions?limit=" + limit, String.class);
+        else
+            response = resttemplate.getForObject("https://the-trivia-api.com/questions?categories=" + categories + "&limit=" + limit, String.class);
+        return response;
+    }
+
+    public List<Question> getQuestionsFromJSON(String JSON) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Question> questions = null;
+        try {
+            questions = Arrays.asList(objectMapper.readValue(JSON, Question[].class));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        questions.forEach(Question::mixAnswers);
+
+        return questions;
+    }
 
     public List<QuizCategory> getQuizCategories() {
         return quizCategories;
@@ -109,12 +130,12 @@ public class ApplicationService {
         return null;
     }
 
-    public Long createMultiplayerGame(String gameId, List<Question> questions){
-        return mpRepo.save(new Multiplayer(null, gameId, questions)).getId();
+    public Long createMultiplayerGame(String gameId, String questionsJSON){
+        return mpRepo.save(new Multiplayer(null, gameId, questionsJSON)).getId();
     }
 
     public List<Question> getMultiplayerQuestions(String gameId) {
-        List<Question> questions = mpRepo.findFirstByGameIdEqualsOrderByQuestionsAsc(gameId);
+        List<Question> questions = getQuestionsFromJSON(mpRepo.getQuestionsJSONByGameId(gameId));
         return questions;
     }
 
