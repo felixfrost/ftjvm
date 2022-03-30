@@ -47,9 +47,11 @@ border-radius: 10px;
 border: none;
 margin-bottom: 10px; /*ändrat från 7 till 10 t&p*/
 min-width: 350px;
+font-size: 16px;
 font-family: 'Maven Pro', sans-serif;
 background-color: #A0FFD5;
-transition: 0.3s;
+
+/*transition: 0.3s;*/
 }
 
 .option-button:hover{
@@ -71,6 +73,11 @@ align-items: center;
 justify-content: center;
 }
 
+.center-column{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
 .site-column{
 display: flex;
 flex-direction: column;
@@ -233,15 +240,37 @@ display: flex;
 flex-direction: column;
 margin-bottom: 15px;
 padding: 5px;
+width: 100%;
+
+font-size: 16px;
+line-height: 28px;
+padding: 8px 16px;
+min-height: 44px;
+border: unset;
+border-radius: 4px;
+outline-color: #093E5E;
+background-color: rgb(255, 255, 255);
+box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
 .login-button {
 padding: 7px 15px 7px 15px;
+width: 100%;
 border-radius: 10px;
 border: none;
-background-color: #1BC4BD;
 color: #093E5E;
-font-family: 'Maven Pro', sans-serif;
+font-family: 'Fredoka', sans-serif;
+font-size: 16px;
+line-height: 28px;
+background-color: #1BC4BD;
+cursor: pointer;
+
 }
 
 .login-button:hover{
