@@ -289,6 +289,8 @@ grid-template-areas: "inner-div";
 
 .option-button {
 padding: 10px 20px;
+border-radius: 10px;
+border: none;
 margin-bottom: 10px; /*ändrat från 7 till 10 t&p*/
 min-width: 350px;
 font-family: 'Maven Pro', sans-serif;
