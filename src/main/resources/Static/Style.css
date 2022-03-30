@@ -12,8 +12,13 @@ background-color: #ECF1EB;
 
 h1, h2, h3, a{
 font-family: 'Fredoka', sans-serif;
- color:#093E5E;
+color:#093E5E;
+margin:0;
 }
+/*h2{
+font-size: 28px;
+font-weight: 600;
+}*/
 
 a{
   text-decoration: none;
@@ -155,7 +160,7 @@ z-index: 1;
 }
 
 /*Knappar som andas när man hover nedanför*/
-#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover {
+#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover , #music-on:hover {
     -webkit-animation: breathing 5s ease-out infinite normal;
     animation: breathing 5s ease-out infinite normal;
     -webkit-font-smoothing: antialiased;
@@ -350,6 +355,7 @@ flex: 1;
 
 .card-small h3{
     text-align:center;
+    font-size: 16px;
 }
 
 .top{
@@ -558,6 +564,12 @@ background-color: #1BC4BD;
 display:flex;
 }
 
+.order .card-small {
+height: 60px;
+margin-right: 10px;
+
+}
+
 /*=========================================================================================*/
 /*=========== easter-egg.html ================= */
 .small {
@@ -754,6 +766,7 @@ width: 60%;
 @media screen and (max-width: 1200px) {
 .small-wrapper {
 justify-content: center;
+width: 100%; /*added 2 make homepage not scrollable*/
 }
 .againstFriend, .lead, .settings {
 position: absolute;

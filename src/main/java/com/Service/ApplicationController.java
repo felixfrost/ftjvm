@@ -1,19 +1,22 @@
 package com.Service;
 
-import com.Model.Question;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
+
+import java.util.ArrayList;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+
 import java.util.List;
 
 @Controller
@@ -55,13 +58,52 @@ public class ApplicationController {
         return "aboutUs";
     }
 
-    @GetMapping("/multiplayer")
-    public String multiPlayer (HttpSession session) {
+    //skapar ett spelId och sätter spelaren till host och visar host spelId att skicka till utmanare
+    @GetMapping("/createmultiplayergame")
+    public String multiPlayerInit(HttpSession session, Model model){
         User user = (User) session.getAttribute("currentUser");
         if(user == null){
             return ("redirect:/login");
         }
+        model.addAttribute("user", user);
+        String gameId = RandomString.make(7);
+        session.setAttribute("multiplayerHost", true);
+        session.setAttribute("gameId", gameId);
+        model.addAttribute("gameId", gameId);
+        return "multiplayerhost";
+    }
+
+    //du kommer till sida med 2 val (create game / join existing game)
+    @GetMapping("/multiplayer")
+    public String multiPlayer (HttpSession session, Model model) {
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
         return "multiplayer";
+    }
+
+    @GetMapping("/multiplayerguest")
+    public String multiPlayerGuest (HttpSession session, Model model){
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
+        return "multiplayerguest"; }
+
+    //när du skriver in spel id + validering
+    @PostMapping("/multiplayerguest")
+    public String joinGame(@RequestParam("gameId") String gameId, HttpSession session, Model model){
+        if (gameId != "" && service.validGameId(gameId)) {
+            session.setAttribute("gameId", gameId);
+            session.setAttribute("multiplayerGuest", true);
+            System.out.println(session.getAttribute("multiplayerGuest"));
+            return ("redirect:/game");
+        }
+        model.addAttribute("invalid", true);
+        return "multiplayerguest";
     }
 
     @GetMapping("/trivimania")
@@ -73,6 +115,10 @@ public class ApplicationController {
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("score", session.getAttribute("scoreCounter"));
+        System.out.println(session.getAttribute("multiplayerHost"));
+        session.removeAttribute("multiplayerHost");
+        System.out.println(session.getAttribute("multiplayerHost"));
+        session.removeAttribute("multiplayerGuest");
         return "score";
     }
 
@@ -139,8 +185,28 @@ public class ApplicationController {
 
     @GetMapping("/game")
     public String getQuiz(HttpSession session, Model model) {
+
+        System.out.println(session.getAttribute("multiplayerHost"));
+        Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
+        Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
+        List<Question> questions = new ArrayList<>();
+        if (multiplayerHost == null && multiplayerGuest == null)
+            questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        //är du host?
+        if(multiplayerHost != null && multiplayerHost) {
+            String gameId = (String)session.getAttribute("gameId");
+            session.setAttribute("multiplayerId" , service.createMultiplayerGame(gameId, service.getQuestionsJSON((int)session.getAttribute("limit"),(String)session.getAttribute("category"))));
+            questions = service.getMultiplayerQuestions(gameId);
+        }
+        //har du joinat ett spel?
+        if(multiplayerGuest != null && multiplayerGuest) {
+            String gameId = (String)session.getAttribute("gameId");
+            questions = service.getMultiplayerQuestions(gameId);
+        }
+
         List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
         LocalDateTime startTime = LocalDateTime.now();
+
 
         session.setAttribute("questionCounter", 0);
         session.setAttribute("scoreCounter", 0);
@@ -175,7 +241,10 @@ public class ApplicationController {
 
 
     @PostMapping("/nextQuestion")
-    public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer)  {
+    public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
+        Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
+        Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
+
         int ctr = (int)session.getAttribute("questionCounter");
 
         List<Question> questionList = (List<Question>)session.getAttribute("questions");
@@ -195,7 +264,12 @@ public class ApplicationController {
 
         }
         if(ctr == questionList.size()-1) {
-            service.saveScore(new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser")));
+            HighScore sc = new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser"));
+            Long hsId = service.saveScore(sc);
+
+            if (multiplayerHost != null || multiplayerGuest != null) {
+                service.addMultiplayerScore((Long)session.getAttribute("multiplayerId"), hsId);
+            }
             return "redirect:/score";
         }
         // updates values of the user
@@ -207,6 +281,7 @@ public class ApplicationController {
             model.addAttribute("currentQuestionNumber", ctr+1);
             model.addAttribute("totalNumberOfQuestions", questionList.size());
             return "game";
+
     }
 
     @GetMapping("/secret")
