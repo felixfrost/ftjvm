@@ -1,6 +1,5 @@
 package com.Service;
 
-import com.Model.Question;
 import com.Model.QuizCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ApplicationService {
@@ -22,6 +20,10 @@ public class ApplicationService {
     UserRepository userRepo;
     @Autowired
     HighScoreRepository hsRepo;
+    @Autowired
+    MultiplayerRepository mpRepo;
+    @Autowired
+    MultiplayerHighScoreRepository mpHsRepo;
 
     private final List<QuizCategory> quizCategories = List.of(QuizCategory.values());
     private final List<Integer> quizLimits = List.of(10,25,50);
@@ -37,6 +39,27 @@ public class ApplicationService {
         List<Question> questions = null;
         try {
             questions = Arrays.asList(objectMapper.readValue(response, Question[].class));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        questions.forEach(Question::mixAnswers);
+
+        return questions;
+    }
+    public String getQuestionsJSON(int limit, String categories) {
+        String response;
+        if (categories.equals(""))
+            response = resttemplate.getForObject("https://the-trivia-api.com/questions?limit=" + limit, String.class);
+        else
+            response = resttemplate.getForObject("https://the-trivia-api.com/questions?categories=" + categories + "&limit=" + limit, String.class);
+        return response;
+    }
+
+    public List<Question> getQuestionsFromJSON(String JSON) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Question> questions = null;
+        try {
+            questions = Arrays.asList(objectMapper.readValue(JSON, Question[].class));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -96,8 +119,8 @@ public class ApplicationService {
         return userTop;
     }
 
-    public void saveScore(HighScore hs){
-        hsRepo.save(hs);
+    public Long saveScore(HighScore hs){
+        return hsRepo.save(hs).getId();
     }
 
     public String getFancyCategoryString(String category) {
@@ -105,6 +128,24 @@ public class ApplicationService {
             if (q.getUrlString().equals(category))
                 return q.getFancyString();
         return null;
+    }
+
+    public Long createMultiplayerGame(String gameId, String questionsJSON){
+        return mpRepo.save(new Multiplayer(null, gameId, questionsJSON)).getId();
+    }
+
+    public List<Question> getMultiplayerQuestions(String gameId) {
+        List<Question> questions = getQuestionsFromJSON(mpRepo.getQuestionsJSONByGameId(gameId));
+        return questions;
+    }
+
+    public void addMultiplayerScore(Long mpId, Long hsId) {
+        mpHsRepo.save(new MultiplayerHighScore(null, mpId, hsId));
+    }
+
+    public Boolean validGameId(String gameId){
+        Boolean valid = mpRepo.existsByGameIdEquals(gameId);
+        return valid;
     }
 
     public void saveUser(User user) {
