@@ -115,4 +115,10 @@ public class ApplicationService {
         return userRepo.findByUsernameEquals(username);
     }
 
+    public void saveAvatar(int num, String username) {
+        User currentUser = userRepo.findByUsernameEquals(username);
+        currentUser.setAvatarId(num);
+        userRepo.save(currentUser);
+    }
+
 }
