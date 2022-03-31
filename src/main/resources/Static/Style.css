@@ -832,10 +832,10 @@ h2{
   background-color: #1BC4BD;
   }
   .extra {
-  margin-left: 440px;
+  margin-left: 220px;
   }
   .quotes {
-  margin-right: 440px;
+  margin-right: 220px;
   }
   .small {
   width: 200px;
@@ -926,9 +926,5 @@ display: none;
 
 .express {
 display: none;
-}
-
-.comment, .star {
-margin-top: -80px;
 }
 }
