@@ -27,7 +27,7 @@ a:hover{
   text-decoration: none;
 }
 
-p{
+p, th, td{
 font-family: 'Maven Pro', sans-serif;
  color:#093E5E;
 }
@@ -655,6 +655,23 @@ margin: auto;
 width: 50%;
 justify-content: center;
 }
+
+/*===============================================*/
+/*=========== quotes.html ================= */
+.space {
+height: 40px;
+}
+
+
+th {
+padding: 10px 20px;
+text-align: left;
+}
+
+th:nth-child(2) {
+text-align: right;
+}
+
 
 /*=========================================================================================*/
 /*=========== aboutUs.html ================= */
