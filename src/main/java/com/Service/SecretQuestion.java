@@ -34,6 +34,11 @@ public class SecretQuestion {
         all.add(new SecretQuestion("Vad kallar Andreas detta tecken: \"", "Dubbelfnutt", new String[] {"Citat tecken", "Dubbelfjong", "Dubbelcitat"}));
         all.add(new SecretQuestion("Vems barn har vi inte sett i Classroom?", "Vanja", new String[] {"Twana", "Rabia", "Daniel"}));
         all.add(new SecretQuestion("Vart flyttade Christopher under kursen?", "Skellefteå", new String[] {"Örnsköldsvik", "Piteå", "Lycksele"}));
+        all.add(new SecretQuestion("Vilken modul hade vi dagen Amanda skulle spela på ESNS?", "Scrum", new String[] {"Presentations teknik", "Git", "Mini-project 1"}));
+        all.add(new SecretQuestion("Vilken av dessa böcker har inte dykt upp i Andreas bookstore?", "A Game of Thrones av George R.R Martin", new String[]{"Pippi Långstrump av Astrid Lindgren", "Iliaden av Homeros", "Hitchhiker's guide to the galaxy av Douglas Adams"}));
+        all.add(new SecretQuestion("Vem skyller Andreas på?", "Hans kollega Andreas... som definitivt existerar...", new String[]{"Molgan", "Spöket Laban", "Chicco"}));
+        all.add(new SecretQuestion("Vad heter Jessicas podcast som hon har med sin man?", "Coding after work", new String[]{"Coding after dark", "After Work Coding", "Happy hour coding"}));
+        all.add(new SecretQuestion("Vart bor Andreas?", "Älmhult", new String[] {"Lommarp", "Tingsryd", "Emmaboda"}));
 
         all.forEach(SecretQuestion::mixSecretAnswers);
         return all;
