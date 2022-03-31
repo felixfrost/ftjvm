@@ -68,6 +68,12 @@ public class ApplicationService {
         return questions;
     }
 
+    public List<SecretQuestion> getSecretQuestions() {
+        SecretQuestion sqRepo = new SecretQuestion();
+        List<SecretQuestion> secretQuestionList = sqRepo.findAll();
+        return secretQuestionList;
+    }
+
     public List<QuizCategory> getQuizCategories() {
         return quizCategories;
     }

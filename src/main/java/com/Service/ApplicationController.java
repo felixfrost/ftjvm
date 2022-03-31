@@ -115,9 +115,7 @@ public class ApplicationController {
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("score", session.getAttribute("scoreCounter"));
-        System.out.println(session.getAttribute("multiplayerHost"));
         session.removeAttribute("multiplayerHost");
-        System.out.println(session.getAttribute("multiplayerHost"));
         session.removeAttribute("multiplayerGuest");
         return "score";
     }
@@ -282,5 +280,72 @@ public class ApplicationController {
             return "game";
 
     }
+
+    @GetMapping("/secret")
+    public String easterEgg(HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        return "easterEgg";
+    }
+
+    @GetMapping("/secretGame")
+    public String secretGame(HttpSession session, Model model) {
+        List<SecretQuestion> questions = service.getSecretQuestions();
+        LocalDateTime startTime = LocalDateTime.now();
+        session.setAttribute("questions", questions);
+
+
+        session.setAttribute("questionCounter", 0);
+        session.setAttribute("scoreCounter", 0);
+        session.setAttribute("questions", questions);
+        session.setAttribute("startTime", startTime);
+        model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("currentQuestionNumber", 1);
+        model.addAttribute("totalNumberOfQuestions", questions.size());
+        return "secretGame";
+    }
+
+    @PostMapping("/nextSecretQuestion")
+    public String nextSecretQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
+
+        int ctr = (int) session.getAttribute("questionCounter");
+
+        List<SecretQuestion> questionList = (List<SecretQuestion>) session.getAttribute("questions");
+
+
+        if (answer != null) {
+            if (questionList.get(ctr).getMixedSecretAnswers().get(answer).equals(questionList.get(ctr).getCorrect_answer())) {
+                long setPoints = 10000;
+                long timeDiff = ChronoUnit.MILLIS.between((LocalDateTime) session.getAttribute("startTime"), LocalDateTime.now());
+                int points = (int) (setPoints - timeDiff);
+
+                session.setAttribute("scoreCounter", (Integer) session.getAttribute("scoreCounter") + points);
+
+            }
+
+        }
+        if (ctr == questionList.size() - 1) {
+            HighScore sc = new HighScore(null, (int) session.getAttribute("scoreCounter"), LocalDate.now(), (User) session.getAttribute("currentUser"));
+            Long hsId = service.saveScore(sc);
+
+            return "redirect:/score";
+        }
+        // updates values of the user
+        ctr++;
+        session.setAttribute("startTime", LocalDateTime.now());
+        session.setAttribute("questionCounter", ctr);
+        model.addAttribute("currentQuestion", questionList.get(ctr));
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("currentQuestionNumber", ctr + 1);
+        model.addAttribute("totalNumberOfQuestions", questionList.size());
+        return "secretGame";
+    }
+
+    @GetMapping("/quotes")
+    public String quotes(HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        return "quotes";
+    }
+
 
 }
