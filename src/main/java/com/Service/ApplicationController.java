@@ -341,4 +341,11 @@ public class ApplicationController {
         return "secretGame";
     }
 
+    @GetMapping("/quotes")
+    public String quotes(HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        return "quotes";
+    }
+
+
 }
