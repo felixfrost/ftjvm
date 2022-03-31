@@ -4,12 +4,15 @@ import com.Model.QuizCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ApplicationService {
@@ -139,8 +142,9 @@ public class ApplicationService {
         return questions;
     }
 
-    public void addMultiplayerScore(Long mpId, Long hsId) {
-        mpHsRepo.save(new MultiplayerHighScore(null, mpId, hsId));
+    public void addMultiplayerScore(String gameId, Long hsId) {
+        Multiplayer mpId = mpRepo.findByGameIdEquals(gameId);
+        mpHsRepo.save(new MultiplayerHighScore(null, hsId, mpId.getId()));
     }
 
     public Boolean validGameId(String gameId){
@@ -161,5 +165,70 @@ public class ApplicationService {
         currentUser.setAvatarId(num);
         userRepo.save(currentUser);
     }
+
+    public List<ShowMultiplayerScore> getMultiplayerScores(String username) {
+        List<ShowMultiplayerScore> scores = new ArrayList<>();
+        List<HighScore> myHighScores = hsRepo.findByUser_UsernameEquals(username);
+
+        System.out.println(myHighScores);
+
+        for (HighScore h: myHighScores) {
+            if (mpHsRepo.findByHsIdEquals(h.getId()) != null) {
+                scores.add(new ShowMultiplayerScore(h,null));
+            }
+        }
+        System.out.println(scores);
+
+        Multiplayer mp = new Multiplayer();
+        List<MultiplayerHighScore> mpHs = new ArrayList<>();
+        List<HighScore> matchingScores = new ArrayList<>();
+        List<MultiplayerHighScore> myMultiplayerGames = myHighScores.stream().map(m -> mpHsRepo.findByHsIdEquals(m.getId())).collect(Collectors.toList());
+        List<Multiplayer> myGamesIds = myMultiplayerGames.stream().map(m -> mpRepo.findByIdEquals(m.getMpId())).collect(Collectors.toList());
+        //borde vara lista med alla mina spelId (System.out.println(myGamesIds);
+        myGamesIds.forEach(m -> System.out.println(m.getGameId()));
+        int i = 0;
+        for (Multiplayer m : myGamesIds) {
+            mp = mpRepo.findByGameIdEquals(m.getGameId());
+            System.out.println(mp);
+            mpHs = mpHsRepo.findByMpIdEquals(mp.getId());
+            System.out.println(mpHs);
+            for (MultiplayerHighScore mh: mpHs) {
+                if (hsRepo.findByIdEquals(mh.getHsId()) != scores.get(i).getMyScore()) {
+                    matchingScores.add(hsRepo.findByIdEquals(mh.getHsId()));
+                }
+            }
+            matchingScores.forEach(f -> System.out.println(f.getScore()));
+            scores.get(i).setOtherScores(matchingScores);
+            i++;
+        }
+        scores.forEach(f -> f.getOtherScores().forEach(p -> System.out.println(p.getScore())));
+        return scores;
+    }
+
+/*
+    public List<HighScore> getHostScores(String username) {
+        List<HighScore> myHighScores = hsRepo.findByUsername(username);
+        List<HighScore> hostMultiplayerScores = new ArrayList<>();
+
+        for (HighScore h: myHighScores) {
+            if (mpHsRepo.findByHsIdEquals(h.getId()) != null) {
+                hostMultiplayerScores.add(h);
+            }
+        }
+
+        return hostMultiplayerScores;
+    }
+
+    public List<HighScore> getMatchingScores(List<HighScore> currentUserHs) {
+        List<HighScore> matchingScores = new ArrayList<>();
+        for (HighScore h:currentUserHs) {
+            if () {
+                matchingScores.add(h);
+            }
+        }
+
+        return matchingScores;
+    }
+*/
 
 }

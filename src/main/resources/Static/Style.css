@@ -543,7 +543,22 @@ grid-template-columns: repeat(3, 1fr);
 margin: 40px;
 
 }
+.leaderboards-col1{
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+margin: 40px;
+max-width: 900px;
+width: 100%;
+}
 
+.leaderboards-col1 .allTime {
+padding: 20px 0px;
+}
+
+.multiplayer_scores{
+display: flex;
+justify-content: space-evenly;
+}
 .week, .allTime, .day {
 margin: 10px;
 padding: 10px 0px;
@@ -940,4 +955,11 @@ width: 70vw;
 .form-signin {
 margin-bottom: 250px;
 }
+
+.leaderboards-col2{
+grid-template-columns: repeat(1, 1fr);
+
 }
+
+}
+

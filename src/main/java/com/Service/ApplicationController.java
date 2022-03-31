@@ -111,6 +111,19 @@ public class ApplicationController {
         return "game";
     }
 
+    @GetMapping("/multiplayerscore")
+    public String multiplayerScore(Model model, HttpSession session){
+        User user = (User)session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
+        List<ShowMultiplayerScore> showScores = service.getMultiplayerScores(user.getUsername());
+        model.addAttribute("showScores", showScores);
+
+        return "multiplayerScore";
+    }
+
     @GetMapping("/score")
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
@@ -267,7 +280,7 @@ public class ApplicationController {
             Long hsId = service.saveScore(sc);
 
             if (multiplayerHost != null || multiplayerGuest != null) {
-                service.addMultiplayerScore((Long)session.getAttribute("multiplayerId"), hsId);
+                service.addMultiplayerScore((String)session.getAttribute("gameId"), hsId);
             }
             return "redirect:/score";
         }

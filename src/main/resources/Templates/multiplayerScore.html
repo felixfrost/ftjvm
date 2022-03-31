@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Trivimania - Score</title>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="center">
+    <div class="myScore">
+        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png"
+                                 th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'">
+        </div>
+        <h1 class="center" th:text="${user.username}">Quizslayer1337</h1>
+
+    </div>
+</div>
+<!-- Multiplayer points-->
+<div class="center">
+    <div class="leaderboards-col1">
+        <div class="allTime" id="soloScore">
+            <!--th:if user1.score > user2.score -->
+
+            <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+            <div class="multiplayer_scores" th:each="sc : ${showScores}" th:if="${showScores != null}">
+                <h2 class="textC" th:text="'Your score: ' + ${sc.myScore.score}"> Your Score </h2>
+                <div th:each="oc : ${sc.otherScores}" th:if="${sc.otherScores != null}">
+                    <h2 class="textC" th:text="${oc.user.username} + ': ' + ${oc.score}"> User 2 score </h2>
+                </div>
+                <div th:each="oc : ${sc.otherScores}" th:if="${sc.otherScores == null}">
+                    <h2 class="textC"> Waiting for opponent to play... </h2>
+                </div>
+            </div>
+
+            <div class="multiplayer_scores" th:if="${showScores == null}">
+                <h2 class="textC"> Play a multiplayer game and come back! </h2>
+            </div>
+
+        </div>
+    </div>
+    <!--    <div class="steps">
+            <div class="allTime" id="guestScore">
+                <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+                <h1 class="textC" th:text="'Your score: ' + ${score}"> Your Score </h1>
+            </div>
+        </div>-->
+</div>
+
+<!--<div class="center">
+    <div class="order">
+        <div class="card-small" onclick="location.href='/select'" style="cursor: pointer;">
+            <h3>Play again</h3>
+        </div>
+        <div class="card-small" onclick="location.href='/highscore'" style="cursor: pointer;">
+            <h3>Show leaderboards</h3>
+        </div>
+        <div class="card-small" onclick="location.href='/'" style="cursor: pointer;">
+            <h3>Return home</h3>
+        </div>
+    </div>
+</div>-->
+</body>
+</html>
