@@ -23,9 +23,9 @@
 <div th:insert="fragments/header :: header"></div>
 <section class="site-column">
     <div class="large-wrapper">
-        <div class="top" onclick="location.href='/404'" style="cursor: pointer;" onmouseover="hoverOver()">
+        <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
             <div class="card">
-                <h2 th:text="${user.username}">Quizslayer1337</h2>
+                <h2 th:text="${user.username}" onmouseover="hoverOver()">Quizslayer1337</h2>
             </div>
             <img class="profile-img" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'" src="../Static/IMG/Avatar/18.png">
         </div>
@@ -33,16 +33,16 @@
         <div class="small-wrapper">
             <div class="left">
                 <div class="againstFriend">
-                    <div class="card"  onclick="location.href='/multiplayer'" style="cursor: pointer;" onmouseover="hoverOver()">
-                        <h2><a>Play against a friend (wip)</a></h2>
+                    <div class="card"  onclick="location.href='/multiplayer'" style="cursor: pointer;">
+                        <h2 onmouseover="hoverOver()"><a>Play against a friend (wip)</a></h2>
                         <img class="friends" th:src="${'/IMG/icons/friends.svg'}" src="../Static/IMG/icons/friends.svg"
                              alt="">
                     </div>
                 </div>
                 <div class="disapear">
                     <div class="card-small" onclick="location.href='/about-us'"
-                         style="cursor: pointer;" onmouseover="hoverOver()">
-                        <h2><a>About us </a></h2>
+                         style="cursor: pointer;">
+                        <h2 onmouseover="hoverOver()"><a>About us </a></h2>
                         <div> <!--Ikoner syns inte-->
                             <i class="fa-solid fa-hand-back-point-right fa-4x"></i>
                             <i class="fa-solid fa-hand-back-point-left fa-4x"></i>
@@ -52,25 +52,25 @@
             </div>
             <!--ändra onclick länk-->
 
-            <div class="middle" onclick="location.href='/select'; onClickPlay()" style="cursor: pointer;" onmouseover="hoverOver()">
-                <h2>Play a game </h2>
+            <div class="middle" onclick="location.href='/select'; onClickPlay()" style="cursor: pointer;">
+                <h2 onmouseover="hoverOver()">Play a game </h2>
                 <span class="rotate">?!</span>
                 <img class="user" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
             </div>
 
             <div class="right">
                 <div class="lead">
-                    <div class="card " onclick="location.href='/highscore'" style="cursor: pointer;" onmouseover="hoverOver()">
+                    <div class="card " onclick="location.href='/highscore'" style="cursor: pointer;">
                         <img class="crown" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg"
                              alt="">
-                        <h2><a>Leaderboards</a></h2>
+                        <h2 onmouseover="hoverOver()"><a>Leaderboards</a></h2>
                     </div>
                 </div>
                 <div class="settings">
                     <div class="card-small" onclick="location.href='/settings'"
-                         style="cursor: pointer;" onmouseover="hoverOver()">
+                         style="cursor: pointer;">
                         <!-- add a onclick function that dropdowns menu-->
-                        <h2><a> Settings</a></h2>
+                        <h2 onmouseover="hoverOver()"><a> Settings</a></h2>
                         <i class="fa-solid fa-gears fa-4x"></i>
                     </div>
                 </div>
