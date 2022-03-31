@@ -10,10 +10,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <title>What are you doing here!?</title>
+    <script src="script/scriptSound.js"></script>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-<h1 class="center">Shhhhh...</h1>
+<div class="quiet">
+    <h1 class="center">Shhhhh...</h1>
+</div>
 <div class="center">
     <div class="myScore color">
         <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'">
@@ -24,9 +27,9 @@
 <div class="all">
     <div class="center">
         <div class="quotes">
-            <div onclick="" style="cursor: pointer;">
+            <div style="cursor: pointer;" onclick="location.href='/quotes'">
                 <div>
-                    <h1 class="small color textC">Funny Quotes</h1>
+                    <h1 class="small color textC" onmouseover="hoverOver()">Funny Quotes</h1>
                 </div>
                 <div class="comment">
                     <i class="fa-4x fa-solid fa-comments"></i>
@@ -35,8 +38,8 @@
         </div>
         <div class="secret">
             <div onclick="" style="cursor: pointer;">
-                <div class="center">
-                    <h1 class="big color textC">Play secret game</h1>
+                <div class="center" onclick="location.href='/secretGame'">
+                    <h1 class="big color textC" onmouseover="hoverOver()"> Play secret game</h1>
                     <span class="express">?!</span>
                 </div>
                 <div class="game">
@@ -47,7 +50,7 @@
         <div class="extra">
             <div onclick="" style="cursor: pointer;">
                 <div>
-                    <h1 class="small color textC">Extra</h1>
+                    <h1 class="small color textC">-W.I.P- Extra -W.I.P-</h1>
                 </div>
                 <div class="star">
                     <i class="fa-4x fa-solid fa-star"></i>

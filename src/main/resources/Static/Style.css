@@ -27,7 +27,7 @@ a:hover{
   text-decoration: none;
 }
 
-p{
+p, th, td{
 font-family: 'Maven Pro', sans-serif;
  color:#093E5E;
 }
@@ -656,6 +656,23 @@ width: 50%;
 justify-content: center;
 }
 
+/*===============================================*/
+/*=========== quotes.html ================= */
+.space {
+height: 40px;
+}
+
+
+th {
+padding: 10px 20px;
+text-align: left;
+}
+
+th:nth-child(2) {
+text-align: right;
+}
+
+
 /*=========================================================================================*/
 /*=========== aboutUs.html ================= */
 /* about-us sidan*/
@@ -666,6 +683,19 @@ background-color: #1BC4BD;
 padding:80px 50px 80px 50px;
 border-radius: 60px;
 position: relative;
+}
+
+.mjau {
+display:flex;
+margin-left: -40px;
+}
+.mjau-text {
+color:#1BC4BD;
+}
+
+.mjau-text:hover{
+cursor: help;
+color:#18b0aa;
 }
 
 .winstonPic {
@@ -856,15 +886,15 @@ h2{
   }
   .extra, .quotes {
   margin-top: 680px;
-  }
-  .extra {
-  margin-right: 220px;
-  background-color: #1BC4BD;
   border-radius: 60px;
   padding: 20px 0px;
+  background-color: #1BC4BD;
+  }
+  .extra {
+  margin-left: 220px;
   }
   .quotes {
-  margin-left: 220px;
+  margin-right: 220px;
   }
   .small {
   width: 200px;
@@ -874,14 +904,21 @@ h2{
   .star {
   position: absolute;
   margin-left: 140px;
-  margin-top: -100px;
+  margin-top: -80px;
   transform: rotate(20deg);
   }
 
   .comment {
   position: absolute;
   margin-left: 130px;
-  margin-top: -120px;
+  margin-top: -80px;
+  }
+
+  .express {
+  margin-left:350px;
+  }
+  .man {
+  margin-left:20px;
   }
 
   .form-signin {
@@ -939,5 +976,14 @@ width: 70vw;
 /*-- Login Responsivitet --*/
 .form-signin {
 margin-bottom: 250px;
+}
+
+/*-- Easter Egg Responsivitet */
+.quiet {
+display: none;
+}
+
+.express {
+display: none;
 }
 }
