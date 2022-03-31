@@ -122,9 +122,6 @@
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.0.3</version>
-				<configuration>
-					<appName>lit-thicket-91890</appName>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
