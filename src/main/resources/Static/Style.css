@@ -232,7 +232,7 @@ margin: 0 100px 0 0;
 .login {
 padding-top: 100px;
 width: 300px;
-z-index: -1;/* Winston mellan rubrik och kort*/
+z-index: -1; /* Winston mellan rubrik och kort*/
 }
 
 .form-field {
