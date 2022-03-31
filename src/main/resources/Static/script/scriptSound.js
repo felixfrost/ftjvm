@@ -1,8 +1,5 @@
 
 
-
-
-
      function startMusic() {
 
         var audio = new Audio("Sound/backgroundMusic.mp3");

@@ -9,7 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.validation.Valid;
+import java.io.File;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -259,6 +262,26 @@ public class ApplicationController {
 
                 System.out.println(timeDiff);
                 System.out.println("Correct!");
+
+                try {
+                    File wavFile = new File("src/main/resources/Static/Sound/Right16.wav");
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(wavFile));
+                    clip.start();
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            } else {
+                try {
+                    File wavFile = new File("src/main/resources/Static/Sound/Wrong16.wav");
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(wavFile));
+                    clip.start();
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
 
         }
