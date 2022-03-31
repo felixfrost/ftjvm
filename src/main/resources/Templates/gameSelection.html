@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
     <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
     <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
+
+    <script src="script/scriptSound.js">
+    </script>
+
 </head>
 
 <body>
@@ -24,14 +28,14 @@
             <section th:if="${limit} == null">
                 <h2 class="game-select-title">Choose your category</h2>
                 <div th:each=" category : ${categories}" class="center">
-                    <button th:text="${category.fancyString}" class="option-button" type="submit" name="category" th:value="${category.urlString}"> A good answer, but is it correct?</button>
+                    <button th:text="${category.fancyString}" class="option-button" type="submit" name="category" th:value="${category.urlString}" onmouseover="hoverOver()"> A good answer, but is it correct?</button>
                 </div>
             </section>
             <section th:if="${limit} != null">
                 <h2 class="game-select-title" th:text="${chosenCategory}">Chosen category</h2>
                 <h2 class="game-select-title">Choose the number of questions</h2>
                 <div th:each=" l : ${limit}" class="center">
-                    <button th:text="${l} + ' Questions'" class="option-button" type="submit" name="limit" th:value="${l}"> Number of questions</button>
+                    <button th:text="${l} + ' Questions'" class="option-button" type="submit" name="limit" th:value="${l}" onmouseover="hoverOver()"> Number of questions</button>
                 </div>
             </section>
         </form>

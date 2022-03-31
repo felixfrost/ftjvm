@@ -9,6 +9,9 @@
     <link rel="manifest" href="/site.webmanifest">
     <title>Trivimania</title>
     <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
+
+    <script src="script/scriptSound.js">
+    </script>
 </head>
 <body >
 <div th:insert="fragments/header :: header"></div>
@@ -32,7 +35,7 @@
                 the answer?
             </div>
             <div th:each=" q : ${currentQuestion.mixedAnswers}" class="center buttons">
-                <button th:text="${q}" class="option-button" type="submit" th:value="${qStat.index}" name="answer"> A good answer, but is it correct?</button>
+                <button th:text="${q}" class="option-button" type="submit" th:value="${qStat.index}" name="answer" onmouseover="hoverOver()"> A good answer, but is it correct?</button>
             </div>
             <div class="center question" th:text="${currentQuestionNumber} + '/' + ${totalNumberOfQuestions}">
 

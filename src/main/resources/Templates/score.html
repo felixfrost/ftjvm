@@ -7,6 +7,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+
+    <script src="script/scriptSound.js">
+    </script>
+
+
     <title>Trivimania - Score</title>
 </head>
 <body>
@@ -31,13 +36,13 @@
 </div>
 <div class="center">
     <div class="order">
-        <div class="card-small" onclick="location.href='/select'" style="cursor: pointer;">
+        <div class="card-small" onclick="location.href='/select'" style="cursor: pointer;" onmouseover="hoverOver()">
             <h3>Play again</h3>
         </div>
-        <div class="card-small" onclick="location.href='/highscore'" style="cursor: pointer;">
+        <div class="card-small" onclick="location.href='/highscore'" style="cursor: pointer;" onmouseover="hoverOver()">
             <h3>Show leaderboards</h3>
         </div>
-        <div class="card-small" onclick="location.href='/'" style="cursor: pointer;">
+        <div class="card-small" onclick="location.href='/'" style="cursor: pointer;" onmouseover="hoverOver()">
             <h3>Return home</h3>
         </div>
     </div>
