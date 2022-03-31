@@ -13,7 +13,9 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-<h1 class="center">Shhhhh...</h1>
+<div class="quiet">
+    <h1 class="center">Shhhhh...</h1>
+</div>
 <div class="center">
     <div class="myScore color">
         <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'">

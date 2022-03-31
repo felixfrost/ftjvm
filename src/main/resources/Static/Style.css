@@ -827,15 +827,15 @@ h2{
   }
   .extra, .quotes {
   margin-top: 680px;
-  }
-  .extra {
-  margin-right: 220px;
-  background-color: #1BC4BD;
   border-radius: 60px;
   padding: 20px 0px;
+  background-color: #1BC4BD;
+  }
+  .extra {
+  margin-left: 440px;
   }
   .quotes {
-  margin-left: 220px;
+  margin-right: 440px;
   }
   .small {
   width: 200px;
@@ -845,14 +845,21 @@ h2{
   .star {
   position: absolute;
   margin-left: 140px;
-  margin-top: -100px;
+  margin-top: -80px;
   transform: rotate(20deg);
   }
 
   .comment {
   position: absolute;
   margin-left: 130px;
-  margin-top: -120px;
+  margin-top: -80px;
+  }
+
+  .express {
+  margin-left:350px;
+  }
+  .man {
+  margin-left:20px;
   }
 
   .form-signin {
@@ -910,5 +917,18 @@ width: 70vw;
 /*-- Login Responsivitet --*/
 .form-signin {
 margin-bottom: 250px;
+}
+
+/*-- Easter Egg Responsivitet */
+.quiet {
+display: none;
+}
+
+.express {
+display: none;
+}
+
+.comment, .star {
+margin-top: -80px;
 }
 }

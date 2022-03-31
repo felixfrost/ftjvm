@@ -115,9 +115,7 @@ public class ApplicationController {
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("score", session.getAttribute("scoreCounter"));
-        System.out.println(session.getAttribute("multiplayerHost"));
         session.removeAttribute("multiplayerHost");
-        System.out.println(session.getAttribute("multiplayerHost"));
         session.removeAttribute("multiplayerGuest");
         return "score";
     }
@@ -284,7 +282,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/secret")
-    public String easterEgg() {
+    public String easterEgg(HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
         return "easterEgg";
     }
 
