@@ -11,13 +11,7 @@
     <link href="Style.css" rel="stylesheet"  type="text/css">
     <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
 
-    <script>
-    function startMusic() {
-
-    var audio = new Audio("Sound/backgroundMusic.mp3");
-    audio.play();
-
-    }
+    <script src="../script/scriptSound.js">
     </script>
 
     <nav class="navbar bg-light navbar-light">
@@ -39,7 +33,7 @@
                     </svg>
                     </div>
                     <div class="icon-text-one">
-                    <a class="nav-link" th:href="'/select'" href="/gameSelection" id="start-button">Start a game</a>
+                    <a class="nav-link" th:href="'/select'" href="/gameSelection" id="start-button" onmouseover="hoverOver()" >Start a game</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -49,7 +43,7 @@
                     </svg>
                     </div>
                     <div class="icon-text-two">
-                    <a class="nav-link" th:href="'/highscore'" href="/highscore" id="leaderboard-button">Leaderboard</a>
+                    <a class="nav-link" th:href="'/highscore'" href="/highscore" id="leaderboard-button" onmouseover="hoverOver()">Leaderboard</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -59,7 +53,7 @@
                         </svg>
                         </div>
                     <div class="icon-text-three">
-                    <a class="nav-link" th:href="'/about-us'" href="/about-us" id="about-button">About us</a>
+                    <a class="nav-link" th:href="'/about-us'" href="/about-us" id="about-button" onmouseover="hoverOver()">About us</a>
                     </div>
                 </li>
                 <!--Drop down menu-->
@@ -69,7 +63,7 @@
                         <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
                     </svg>
                         </div>
-                    <a class="nav-link" th:href="'/settings'" href="/settings" id="navbardrop">
+                    <a class="nav-link" th:href="'/settings'" href="/settings" id="navbardrop" onmouseover="hoverOver()">
                         Settings
                     </a>
                 </li>
@@ -79,7 +73,7 @@
                         <i class="fa-solid fa-music"></i>
                     </div>
                     <div class="icon-text-three">
-                        <a class="nav-link" onclick="startMusic()" id="music-on" style="cursor: pointer;">Music</a>
+                        <a class="nav-link" onclick="startMusic()" id="music-on" style="cursor: pointer;" onmouseover="hoverOver()">Music</a>
                     </div>
 
                 <!--Log out-->
@@ -88,7 +82,7 @@
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </div>
                     <div class="icon-text-three">
-                        <a class="nav-link" th:href="'/logout'" href="/about-us" id="log-out">Logout</a>
+                        <a class="nav-link" th:href="'/logout'" href="/about-us" id="log-out" onmouseover="hoverOver()">Logout</a>
                     </div>
                 </li>
             </ul>
