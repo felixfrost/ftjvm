@@ -683,6 +683,19 @@ border-radius: 60px;
 position: relative;
 }
 
+.mjau {
+display:flex;
+margin-left: -40px;
+}
+.mjau-text {
+color:#1BC4BD;
+}
+
+.mjau-text:hover{
+cursor: help;
+color:#18b0aa;
+}
+
 .winstonPic {
   position: absolute;
   animation-name: winster;
@@ -700,6 +713,8 @@ position: relative;
   75%  { left:55%; top:20%}
   100% { left:50%; top:30%}
 }
+
+
 
 /*=========================================================================================*/
 /*=====Settings===========*/
