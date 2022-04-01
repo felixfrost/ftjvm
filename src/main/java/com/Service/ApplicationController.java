@@ -262,7 +262,7 @@ public class ApplicationController {
                 System.out.println("Correct!");
 
                 try {
-                    File wavFile = new File("src/main/resources/static/Sound/Right16.wav");
+                    File wavFile = new File("Sound/Right16.wav");
                     Clip clip = AudioSystem.getClip();
                     clip.open(AudioSystem.getAudioInputStream(wavFile));
                     clip.start();
@@ -272,7 +272,7 @@ public class ApplicationController {
                 }
             } else {
                 try {
-                    File wavFile = new File("src/main/resources/static/Sound/Wrong16.wav");
+                    File wavFile = new File("Sound/Wrong16.wav");
                     Clip clip = AudioSystem.getClip();
                     clip.open(AudioSystem.getAudioInputStream(wavFile));
                     clip.start();
