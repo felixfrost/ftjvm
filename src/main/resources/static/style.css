@@ -27,7 +27,7 @@ a:hover{
   text-decoration: none;
 }
 
-p, th, td{
+p{
 font-family: 'Maven Pro', sans-serif;
  color:#093E5E;
 }
@@ -144,7 +144,7 @@ border: 0px solid;
 }
 
 .icon-one, .icon-two, .icon-text-one, .icon-text-two,
-.icon-three, .icon-text-three, .icon-four, .icon-text-four, .icon-five, .icon-text-five,
+.icon-three, .icon-text-three, .icon-four, .icon-text-four,
 .trivimania-text, #navbardrop{
 display: inline-block;
 }
@@ -167,14 +167,14 @@ z-index: 1;
 }
 
 /*Knappar som andas när man hover nedanför*/
-#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover , #music-on:hover, #crown-button:hover {
+#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover , #music-on:hover {
     -webkit-animation: breathing 5s ease-out infinite normal;
     animation: breathing 5s ease-out infinite normal;
     -webkit-font-smoothing: antialiased;
     }
 
 .icon-text-one, .icon-text-two,
- .icon-text-three,.icon-text-four, .icon-text-five {
+ .icon-text-three,.icon-text-four {
 display: inline-block;
 margin: 0 100px 0 0;
 }
@@ -232,7 +232,7 @@ margin: 0 100px 0 0;
 .login {
 padding-top: 100px;
 width: 300px;
-z-index: -1; /* Winston mellan rubrik och kort*/
+z-index: -1;/* Winston mellan rubrik och kort*/
 }
 
 .form-field {
@@ -291,12 +291,6 @@ width: 100%;
 flex: 1;
 }
 
-#create-account-box{
-margin-top: 10px;
-}
-.create-account-link:hover{
-text-decoration: underline;
-}
 /* Wave */
 .custom-shape-divider-top-1648027069 {
     position: absolute;
@@ -549,7 +543,22 @@ grid-template-columns: repeat(3, 1fr);
 margin: 40px;
 
 }
+.leaderboards-col1{
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+margin: 40px;
+max-width: 900px;
+width: 100%;
+}
 
+.leaderboards-col1 .allTime {
+padding: 20px 0px;
+}
+
+.multiplayer_scores{
+display: flex;
+justify-content: space-evenly;
+}
 .week, .allTime, .day {
 margin: 10px;
 padding: 10px 0px;
@@ -662,23 +671,6 @@ width: 50%;
 justify-content: center;
 }
 
-/*===============================================*/
-/*=========== quotes.html ================= */
-.space {
-height: 40px;
-}
-
-
-th {
-padding: 10px 20px;
-text-align: left;
-}
-
-th:nth-child(2) {
-text-align: right;
-}
-
-
 /*=========================================================================================*/
 /*=========== aboutUs.html ================= */
 /* about-us sidan*/
@@ -689,19 +681,6 @@ background-color: #1BC4BD;
 padding:80px 50px 80px 50px;
 border-radius: 60px;
 position: relative;
-}
-
-.mjau {
-display:flex;
-margin-left: -40px;
-}
-.mjau-text {
-color:#1BC4BD;
-}
-
-.mjau-text:hover{
-cursor: help;
-color:#18b0aa;
 }
 
 .winstonPic {
@@ -892,15 +871,15 @@ h2{
   }
   .extra, .quotes {
   margin-top: 680px;
-  border-radius: 60px;
-  padding: 20px 0px;
-  background-color: #1BC4BD;
   }
   .extra {
-  margin-left: 220px;
+  margin-right: 220px;
+  background-color: #1BC4BD;
+  border-radius: 60px;
+  padding: 20px 0px;
   }
   .quotes {
-  margin-right: 220px;
+  margin-left: 220px;
   }
   .small {
   width: 200px;
@@ -910,21 +889,14 @@ h2{
   .star {
   position: absolute;
   margin-left: 140px;
-  margin-top: -80px;
+  margin-top: -100px;
   transform: rotate(20deg);
   }
 
   .comment {
   position: absolute;
   margin-left: 130px;
-  margin-top: -80px;
-  }
-
-  .express {
-  margin-left:350px;
-  }
-  .man {
-  margin-left:20px;
+  margin-top: -120px;
   }
 
   .form-signin {
@@ -984,12 +956,10 @@ width: 70vw;
 margin-bottom: 250px;
 }
 
-/*-- Easter Egg Responsivitet */
-.quiet {
-display: none;
+.leaderboards-col2{
+grid-template-columns: repeat(1, 1fr);
+
 }
 
-.express {
-display: none;
 }
-}
+

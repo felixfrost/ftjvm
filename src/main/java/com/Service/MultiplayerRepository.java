@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MultiplayerRepository extends JpaRepository<Multiplayer, Long> {
     String findFirstByGameIdEqualsOrderByQuestionsAsc(String gameId);
@@ -16,4 +17,10 @@ public interface MultiplayerRepository extends JpaRepository<Multiplayer, Long> 
     Long findFirstByGameIdEqualsOrderByIdAsc(String gameId);
 
     boolean existsByGameIdEquals(String gameId);
+
+    Multiplayer findByGameIdEquals(String gameId);
+
+    Multiplayer findByIdEquals(Long id);
+
+
 }

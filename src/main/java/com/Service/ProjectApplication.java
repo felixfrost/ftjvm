@@ -22,5 +22,3 @@ public class ProjectApplication extends SpringBootServletInitializer {
 	}
 
 }
-
-
