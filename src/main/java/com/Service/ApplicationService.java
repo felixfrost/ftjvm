@@ -4,7 +4,6 @@ import com.Model.QuizCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -172,9 +172,9 @@ public class ApplicationService {
 
         System.out.println(myHighScores);
 
-        for (HighScore h: myHighScores) {
+        for (HighScore h : myHighScores) {
             if (mpHsRepo.findByHsIdEquals(h.getId()) != null) {
-                scores.add(new ShowMultiplayerScore(h,null));
+                scores.add(new ShowMultiplayerScore(h, null));
             }
         }
         System.out.println(scores);
@@ -184,28 +184,23 @@ public class ApplicationService {
         List<HighScore> matchingScores = new ArrayList<>();
         List<MultiplayerHighScore> myMultiplayerGames = myHighScores.stream().map(m -> mpHsRepo.findByHsIdEquals(m.getId())).collect(Collectors.toList());
         List<Multiplayer> myGamesIds = myMultiplayerGames.stream().map(m -> mpRepo.findByIdEquals(m.getMpId())).collect(Collectors.toList());
-        //borde vara lista med alla mina spelId (System.out.println(myGamesIds);
-        myGamesIds.forEach(m -> System.out.println(m.getGameId()));
+        List<HighScore> matchingGamesScores = new ArrayList<>();
+        List<MultiplayerHighScore> matchingGames = new ArrayList<>();
+
+        return scores;
+    }
+}
+        /*
         int i = 0;
         for (Multiplayer m : myGamesIds) {
             mp = mpRepo.findByGameIdEquals(m.getGameId());
             System.out.println(mp);
             mpHs = mpHsRepo.findByMpIdEquals(mp.getId());
             System.out.println(mpHs);
-            for (MultiplayerHighScore mh: mpHs) {
-                if (hsRepo.findByIdEquals(mh.getHsId()) != scores.get(i).getMyScore()) {
-                    matchingScores.add(hsRepo.findByIdEquals(mh.getHsId()));
-                }
-            }
-            matchingScores.forEach(f -> System.out.println(f.getScore()));
-            scores.get(i).setOtherScores(matchingScores);
-            i++;
-        }
-        scores.forEach(f -> f.getOtherScores().forEach(p -> System.out.println(p.getScore())));
-        return scores;
-    }
 
-/*
+            hsRepo.findByIdEquals(matchingGames.get(i).getHsId())
+
+
     public List<HighScore> getHostScores(String username) {
         List<HighScore> myHighScores = hsRepo.findByUsername(username);
         List<HighScore> hostMultiplayerScores = new ArrayList<>();
@@ -229,6 +224,42 @@ public class ApplicationService {
 
         return matchingScores;
     }
+
+
+
+
+
+    List<MultiplayerHighScore> mphs123 = mpHsRepo.findByMpIdEquals(mphs1.getMpId());
+        for (MultiplayerHighScore mphs1: matchingGames) {
+            for (:
+                 ) {
+
+            }
+            matchingGames.add);
+        }
+
+        //myMultiplayerGames.stream().map(ms -> matchingGames.addAll();
+        //fram hit  är allt som det ska vara, du har dina MultiplayerSpel i en lista och kan  skriva  ut gameId
+        myGamesIds.forEach(m -> System.out.println(m.getGameId()));
+
+        for (int i = 0; i < matchingGames.size(); i++) {
+            System.out.println(matchingGames.get(i));
+            if(hsRepo.findByIdEquals(matchingGames.get(i).getHsId()) != null) {
+                matchingGamesScores.add(hsRepo.findByIdEquals(matchingGames.get(i).getHsId()));
+                System.out.println(matchingGamesScores);
+            }
+            for (HighScore h: matchingGamesScores) {
+                if (h != scores.get(i).getMyScore()) {
+                    matchingScores.add(h);
+                }
+            }
+            scores.get(i).setOtherScores(matchingScores);
+        }
+
+        matchingScores.forEach(f -> System.out.println(f.getScore()));
+        scores.forEach(f -> f.getOtherScores().forEach(p -> System.out.println(p.getScore())));
+        return scores;
+    }
 */
 
-}
+
