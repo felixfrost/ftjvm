@@ -291,6 +291,12 @@ width: 100%;
 flex: 1;
 }
 
+#create-account-box{
+margin-top: 10px;
+}
+.create-account-link:hover{
+text-decoration: underline;
+}
 /* Wave */
 .custom-shape-divider-top-1648027069 {
     position: absolute;
