@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <script src="script/scriptSound.js">
+    </script>
+
+    <title>Trivimania - Multiplayer</title>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="center">
+    <h1>Multiplayer Selection</h1>
+</div>
+<div class="center">
+    <div class="center gameboard">
+        <div class="center">
+            <img class="profile"
+                 th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"
+                 src="../Static/IMG/Avatar/18.png">
+        </div>
+        <div>
+            <div>
+                <a th:href="@{'/createmultiplayergame'}" class="option-button center" type="submit" name="answer" onmouseover="hoverOver()" style="cursor: pointer;"> Create
+                    Game
+                </a>
+            </div>
+            <div class="center">
+                <a th:href="@{'/multiplayerguest'}" class="option-button center" type="submit" name="answer" onmouseover="hoverOver()" style="cursor: pointer;"> Join
+                    Existing Game
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+

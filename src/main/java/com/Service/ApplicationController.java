@@ -1,16 +1,25 @@
 package com.Service;
 
-import com.Model.Question;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.validation.Valid;
+import java.io.File;
 import java.time.LocalDate;
+
+import java.util.ArrayList;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import java.util.List;
 
 @Controller
@@ -18,11 +27,6 @@ public class ApplicationController {
 
     @Autowired
     ApplicationService service;
-
-    @Autowired
-    UserRepository userRepo;
-
-
 
     @GetMapping("/")
     public String home (Model model, HttpSession session){
@@ -48,6 +52,7 @@ public class ApplicationController {
     public String avatar(HttpSession session, @PathVariable Integer num) {
         User user = (User) session.getAttribute("currentUser");
         user.setAvatarId(num);
+        service.saveAvatar(num, user.getUsername());
         return "redirect:/settings";
     }
 
@@ -56,13 +61,52 @@ public class ApplicationController {
         return "aboutUs";
     }
 
-    @GetMapping("/multiplayer")
-    public String multiPlayer (HttpSession session) {
+    //skapar ett spelId och sätter spelaren till host och visar host spelId att skicka till utmanare
+    @GetMapping("/createmultiplayergame")
+    public String multiPlayerInit(HttpSession session, Model model){
         User user = (User) session.getAttribute("currentUser");
         if(user == null){
             return ("redirect:/login");
         }
+        model.addAttribute("user", user);
+        String gameId = RandomString.make(7);
+        session.setAttribute("multiplayerHost", true);
+        session.setAttribute("gameId", gameId);
+        model.addAttribute("gameId", gameId);
+        return "multiplayerhost";
+    }
+
+    //du kommer till sida med 2 val (create game / join existing game)
+    @GetMapping("/multiplayer")
+    public String multiPlayer (HttpSession session, Model model) {
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
         return "multiplayer";
+    }
+
+    @GetMapping("/multiplayerguest")
+    public String multiPlayerGuest (HttpSession session, Model model){
+        User user = (User) session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
+        return "multiplayerguest"; }
+
+    //när du skriver in spel id + validering
+    @PostMapping("/multiplayerguest")
+    public String joinGame(@RequestParam("gameId") String gameId, HttpSession session, Model model){
+        if (gameId != "" && service.validGameId(gameId)) {
+            session.setAttribute("gameId", gameId);
+            session.setAttribute("multiplayerGuest", true);
+            System.out.println(session.getAttribute("multiplayerGuest"));
+            return ("redirect:/game");
+        }
+        model.addAttribute("invalid", true);
+        return "multiplayerguest";
     }
 
     @GetMapping("/trivimania")
@@ -70,10 +114,25 @@ public class ApplicationController {
         return "game";
     }
 
+    @GetMapping("/multiplayerscore")
+    public String multiplayerScore(Model model, HttpSession session){
+        User user = (User)session.getAttribute("currentUser");
+        if(user == null){
+            return ("redirect:/login");
+        }
+        model.addAttribute("user", user);
+        List<ShowMultiplayerScore> showScores = service.getMultiplayerScores(user.getUsername());
+        model.addAttribute("showScores", showScores);
+
+        return "multiplayerScore";
+    }
+
     @GetMapping("/score")
     public String score (HttpSession session, Model model){
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("score", session.getAttribute("scoreCounter"));
+        session.removeAttribute("multiplayerHost");
+        session.removeAttribute("multiplayerGuest");
         return "score";
     }
 
@@ -106,9 +165,8 @@ public class ApplicationController {
         if(result.hasErrors()){
             return "createUser";
         }
-        if(userRepo.findByUsernameEquals(user.getUsername()) == null) {
-            userRepo.save(user);
-            System.out.println(user.getUsername() + user.getFirstname() + user.getLastname());
+        if(service.findUser(user.getUsername()) == null) {
+            service.saveUser(user);
             return "redirect:/";
         }
         else return "login";
@@ -121,9 +179,10 @@ public class ApplicationController {
 
     @PostMapping("/login")
     public String login (HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (session.getAttribute("currentUser") == null && userRepo.findByUsernameEquals(username) != null) {
-            if (userRepo.findByUsernameEquals(username).getPassword().equals(password)) {
-                session.setAttribute("currentUser", userRepo.findByUsernameEquals(username));
+        User user = service.findUser(username);
+        if (session.getAttribute("currentUser") == null && user != null) {
+            if (user.getPassword().equals(password)) {
+                session.setAttribute("currentUser", user);
                 System.out.println("Success logging in...");
                 return "redirect:/";
             }
@@ -140,10 +199,32 @@ public class ApplicationController {
 
     @GetMapping("/game")
     public String getQuiz(HttpSession session, Model model) {
-        List<Question> questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+
+        System.out.println(session.getAttribute("multiplayerHost"));
+        Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
+        Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
+        List<Question> questions = new ArrayList<>();
+        if (multiplayerHost == null && multiplayerGuest == null)
+            questions = service.getQuestions((int)session.getAttribute("limit"),(String)session.getAttribute("category"));
+        //är du host?
+        if(multiplayerHost != null && multiplayerHost) {
+            String gameId = (String)session.getAttribute("gameId");
+            session.setAttribute("multiplayerId" , service.createMultiplayerGame(gameId, service.getQuestionsJSON((int)session.getAttribute("limit"),(String)session.getAttribute("category"))));
+            questions = service.getMultiplayerQuestions(gameId);
+        }
+        //har du joinat ett spel?
+        if(multiplayerGuest != null && multiplayerGuest) {
+            String gameId = (String)session.getAttribute("gameId");
+            questions = service.getMultiplayerQuestions(gameId);
+        }
+        
+        LocalDateTime startTime = LocalDateTime.now();
+
+
         session.setAttribute("questionCounter", 0);
         session.setAttribute("scoreCounter", 0);
         session.setAttribute("questions", questions);
+        session.setAttribute("startTime", startTime);
         model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
         model.addAttribute("user", session.getAttribute("currentUser"));
         model.addAttribute("currentQuestionNumber", 1);
@@ -174,27 +255,133 @@ public class ApplicationController {
 
     @PostMapping("/nextQuestion")
     public String nextQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
+        Boolean multiplayerGuest = (Boolean)session.getAttribute("multiplayerGuest");
+        Boolean multiplayerHost = (Boolean)session.getAttribute("multiplayerHost");
+
         int ctr = (int)session.getAttribute("questionCounter");
+
         List<Question> questionList = (List<Question>)session.getAttribute("questions");
+
 
         if (answer != null) {
             if (questionList.get(ctr).getMixedAnswers().get(answer).equals(questionList.get(ctr).getCorrectAnswer())) {
-                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter")+100);
+                long setPoints = 10000;
+                long timeDiff = ChronoUnit.MILLIS.between((LocalDateTime)session.getAttribute("startTime"), LocalDateTime.now());
+                int points = (int) (setPoints - timeDiff);
 
+                session.setAttribute("scoreCounter",(Integer)session.getAttribute("scoreCounter") + points);
+
+                System.out.println(timeDiff);
                 System.out.println("Correct!");
+
+                try {
+                    File wavFile = new File("src/main/resources/static/Sound/Right16.wav");
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(wavFile));
+                    clip.start();
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            } else {
+                try {
+                    File wavFile = new File("src/main/resources/static/Sound/Wrong16.wav");
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(wavFile));
+                    clip.start();
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
+
         }
         if(ctr == questionList.size()-1) {
-            service.saveScore(new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser")));
+            HighScore sc = new HighScore(null, (int)session.getAttribute("scoreCounter"), LocalDate.now(), (User)session.getAttribute("currentUser"));
+            Long hsId = service.saveScore(sc);
+
+            if (multiplayerHost != null || multiplayerGuest != null) {
+                service.addMultiplayerScore((String)session.getAttribute("gameId"), hsId);
+            }
             return "redirect:/score";
         }
+        // updates values of the user
             ctr++;
+            session.setAttribute("startTime", LocalDateTime.now());
             session.setAttribute("questionCounter", ctr);
             model.addAttribute("currentQuestion", questionList.get(ctr));
             model.addAttribute("user", session.getAttribute("currentUser"));
             model.addAttribute("currentQuestionNumber", ctr+1);
             model.addAttribute("totalNumberOfQuestions", questionList.size());
             return "game";
+
     }
+
+    @GetMapping("/secret")
+    public String easterEgg(HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        return "easterEgg";
+    }
+
+    @GetMapping("/secretGame")
+    public String secretGame(HttpSession session, Model model) {
+        List<SecretQuestion> questions = service.getSecretQuestions();
+        LocalDateTime startTime = LocalDateTime.now();
+        session.setAttribute("questions", questions);
+
+
+        session.setAttribute("questionCounter", 0);
+        session.setAttribute("scoreCounter", 0);
+        session.setAttribute("questions", questions);
+        session.setAttribute("startTime", startTime);
+        model.addAttribute("currentQuestion", questions.get((int)session.getAttribute("questionCounter")));
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("currentQuestionNumber", 1);
+        model.addAttribute("totalNumberOfQuestions", questions.size());
+        return "secretGame";
+    }
+
+    @PostMapping("/nextSecretQuestion")
+    public String nextSecretQuestion(HttpSession session, Model model, @RequestParam(required = false) Integer answer) {
+
+        int ctr = (int) session.getAttribute("questionCounter");
+
+        List<SecretQuestion> questionList = (List<SecretQuestion>) session.getAttribute("questions");
+
+
+        if (answer != null) {
+            if (questionList.get(ctr).getMixedSecretAnswers().get(answer).equals(questionList.get(ctr).getCorrect_answer())) {
+                long setPoints = 10000;
+                long timeDiff = ChronoUnit.MILLIS.between((LocalDateTime) session.getAttribute("startTime"), LocalDateTime.now());
+                int points = (int) (setPoints - timeDiff);
+
+                session.setAttribute("scoreCounter", (Integer) session.getAttribute("scoreCounter") + points);
+
+            }
+
+        }
+        if (ctr == questionList.size() - 1) {
+            HighScore sc = new HighScore(null, (int) session.getAttribute("scoreCounter"), LocalDate.now(), (User) session.getAttribute("currentUser"));
+            Long hsId = service.saveScore(sc);
+
+            return "redirect:/score";
+        }
+        // updates values of the user
+        ctr++;
+        session.setAttribute("startTime", LocalDateTime.now());
+        session.setAttribute("questionCounter", ctr);
+        model.addAttribute("currentQuestion", questionList.get(ctr));
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        model.addAttribute("currentQuestionNumber", ctr + 1);
+        model.addAttribute("totalNumberOfQuestions", questionList.size());
+        return "secretGame";
+    }
+
+    @GetMapping("/quotes")
+    public String quotes(HttpSession session, Model model) {
+        model.addAttribute("user", session.getAttribute("currentUser"));
+        return "quotes";
+    }
+
 
 }

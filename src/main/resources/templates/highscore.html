@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Trivimania - Highscore</title>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="center">
+    <div class="myScore">
+        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"></div>
+        <h1 class="center" th:text="${user.username}">Quizslayer1337</h1>
+        <h3 class="textC">Personal best</h3>
+        <p class="textC" th:text="${userTop.score}">1200</p>
+    </div>
+</div>
+<div class="leaderboards">
+    <div class="steps">
+        <div class="week">
+            <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+            <h1 class="textC"> This Week </h1>
+            <table>
+                <tr th:each="wt : ${weekTop}">
+                    <td th:text="${wt.user.username}">Name</td>
+                    <td th:text="${wt.score}">Score</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="steps">
+        <div class="allTime">
+            <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+            <h1 class="textC"> Top scores </h1>
+            <table>
+                <tr th:each="ts : ${topScores}">
+                    <td th:text="${ts.user.username}">Name</td>
+                    <td th:text="${ts.score}">Score</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="steps">
+        <div class="day">
+            <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+            <h1 class="textC"> Today </h1>
+            <table>
+                <tr th:each="tt : ${todayTop}">
+                    <td th:text="${tt.user.username}">Name</td>
+                    <td th:text="${tt.score}">Score</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

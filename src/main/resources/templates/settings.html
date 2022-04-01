@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Trivimania - Settings</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="../Static/profilepic.css" th:href="'/profilepic.css'">
+    <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/Style.css'">
+    <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="back">
+<div class="center">
+    <div class="center myScore">
+        <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
+            <div class="card">
+                <h2 th:text="${user.username}">Quizslayer1337</h2>
+            </div>
+            <img class="profile-img"
+                 th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'"
+                 src="../Static/IMG/Avatar/18.png">
+        </div>
+    </div>
+</div>
+<div class="center sound-container">
+    <div class="speaker">
+        <div id="on" onclick="changeSound(1)" style="cursor: pointer;">
+            <i class="fa-3x fa-solid fa-volume-high"></i>
+        </div>
+        <div id="off" onclick="changeSound(2)" style="cursor: pointer;">
+            <i class="fa-3x fa-solid fa-volume-xmark"></i>
+        </div>
+    </div>
+    <div class="note">
+        <div id="on-n" onclick="changeMusic(1)" style="cursor: pointer;">
+            <i class="fa-3x fa-brands fa-itunes-note"></i>
+        </div>
+        <div id="off-n" onclick="changeMusic(2)" style="cursor: pointer;">
+            <i class="fa-3x fa-solid fa-pause"></i>
+        </div>
+    </div>
+</div>
+<div class="center darkmode-container">
+    <div class="darkmode-switch">
+        <label class="switch" for="checkbox">
+            <input type="checkbox" id="checkbox"/>
+            <div class="slider round"></div>
+        </label>
+        <div class="darkmode-text">
+            <h3 class="darkmode"> Dark Mode</h3>
+        </div>
+    </div>
+</div>
+</div>
+<div class=" profilepos">
+    <nav class="menu">
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" onclick="darken()"/>
+        <label class="menu-open-button" for="menu-open">
+            <span class="lines line-1"></span>
+            <span class="lines line-2"></span>
+            <span class="lines line-3"></span>
+        </label>
+        <span class="avatars">
+            <!---create buttons--->
+    </span>
+    </nav>
+</div>
+
+
+<script src="../Static/script/scriptSettings.js" th:src="@{'/script/scriptSettings.js'}"></script>
+</body>
+</html>

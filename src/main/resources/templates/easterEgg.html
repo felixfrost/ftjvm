@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>What are you doing here!?</title>
+    <script src="script/scriptSound.js"></script>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="quiet">
+    <h1 class="center">Shhhhh...</h1>
+</div>
+<div class="center">
+    <div class="myScore color">
+        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'">
+        </div>
+        <h1 class="center">Quizslayer1337</h1>
+    </div>
+</div>
+<div class="all">
+    <div class="center">
+        <div class="quotes">
+            <div style="cursor: pointer;" onclick="location.href='/quotes'">
+                <div>
+                    <h1 class="small color textC" onmouseover="hoverOver()">Funny Quotes</h1>
+                </div>
+                <div class="comment">
+                    <i class="fa-4x fa-solid fa-comments"></i>
+                </div>
+            </div>
+        </div>
+        <div class="secret">
+            <div onclick="" style="cursor: pointer;">
+                <div class="center" onclick="location.href='/secretGame'">
+                    <h1 class="big color textC" onmouseover="hoverOver()"> Play secret game</h1>
+                    <span class="express">?!</span>
+                </div>
+                <div class="game">
+                    <img class="man" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="extra">
+            <div onclick="" style="cursor: pointer;">
+                <div>
+                    <h1 class="small color textC">-W.I.P- Extra -W.I.P-</h1>
+                </div>
+                <div class="star">
+                    <i class="fa-4x fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

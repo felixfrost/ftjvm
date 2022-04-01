@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <title>Start Multiplayergame</title>
+</head>
+<body>
+<div class="center">
+    <div class="center gameboard">
+        <div class="center">
+            <img class="profile" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'" src="../Static/IMG/Avatar/18.png">
+        </div>
+        <div>
+            <div class="center">
+                <div th:text="${gameId}"> Your random Id should be here</div>
+            </div>
+            <div class="center">
+                <a th:href="@{'/select'}" class="option-button"> Start Game
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

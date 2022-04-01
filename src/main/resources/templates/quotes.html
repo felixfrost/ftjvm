@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+    <script src="https://kit.fontawesome.com/d7d94cd613.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="script/scriptSound.js"></script>
+    <title>Andreas Quotes</title>
+</head>
+<body>
+<div class="center">
+    <div class="myScore color">
+        <div class="center"><img class="profile" src="../Static/IMG/Avatar/18.png" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'">
+        </div>
+        <h1 class="center">Quizslayer1337</h1>
+    </div>
+</div>
+<div class="space"></div>
+<div class="steps">
+    <div class="allTime">
+        <img class="hat" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg" alt="">
+        <h1 class="textC"> Quotes by Andreas </h1>
+        <table>
+            <tr>
+                <th>Said</th>
+                <th>About</th>
+            </tr>
+            <tr>
+                <td>What happens in vegas, skiter vi i här nere!</td>
+                <td>Om en void metod</td>
+            </tr>
+            <tr>
+                <td>Dubbel quote, Dubbel quote... eller dubbelfnutt, dubbelfnutt som jag brukar säga!</td>
+                <td>Om citattecken</td>
+            </tr>
+            <tr>
+                <td>Helst ska ju detta funka också, och inte bara se ut som om det inte är helt fel!</td>
+                <td>För att fylla ut tid vid kompilering</td>
+            </tr>
+            <tr>
+                <td>... och nu är författaren Olsson (skriver oloson) ... jaa... nästan iallafall!</td>
+                <td>Om springboot</td>
+            </tr>
+            <tr>
+                <td>Genre(på engelska)... Nu har jag glömt vad det heter på Svenska igen!</td>
+                <td>1 min efter vi diskuterat uttall av genre(Svenska)</td>
+            </tr>
+            <tr>
+                <td>Gloopa på det, eller googla på det!</td>
+                <td>Om google</td>
+            </tr>
+            <tr>
+                <td>Vi kan inte casta en katt till en hund, vi kan inte trycka in katten i hunden, det blir synd om katten!</td>
+                <td>Om inheritance</td>
+            </tr>
+            <tr>
+                <td>Den vill inte få barn genom att en barnklass pekar ut den och säger "Du är min pappa". Här har man klippt av förmågan att föröka sig!</td>
+                <td>Om final klasser</td>
+            </tr>
+            <tr>
+                <td>Alla p taggar är röda, förutom dem med Bluep klassen som är gröna, inte helt intuitivt kanske!</td>
+                <td>HTML och CSS</td>
+            </tr>
+            <tr>
+                <td>Om vi låtsas att världen är enkel så... (Förhoppningsfull suck) så blir den enkel!</td>
+                <td>Om allt, för djupt för att definiera!</td>
+            </tr>
+            <tr>
+                <td>Det återkommer ofta, lite då och då!</td>
+                <td>Förvirring</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>

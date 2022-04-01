@@ -20,15 +20,11 @@ public class HighScore implements Comparator<HighScore> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int score;
-
     @DateTimeFormat(pattern = "YYYY-MM-DD")
     private LocalDate date;
-
     @ManyToOne
     private User user;
-
 
     @Override
     public int compare(HighScore o1,HighScore o2) {

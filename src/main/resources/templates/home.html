@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Trivimania</title>
+
+    <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
+    <link rel="stylesheet" href="../static/style.css" th:href="'/style.css'">
+
+    <script src="script/scriptSound.js">
+    </script>
+
+</head>
+
+<body>
+
+<div th:insert="fragments/header :: header"></div>
+<section class="site-column">
+    <div class="large-wrapper">
+        <div class="top" onclick="location.href='/404'" style="cursor: pointer;">
+            <div class="card">
+                <h2 th:text="${user.username}" onmouseover="hoverOver()">Quizslayer1337</h2>
+            </div>
+            <img class="profile-img" th:src="${user.avatarId != null} ? 'IMG/Avatar/'+${user.avatarId}+'.png': '/IMG/Avatar/18.png'" src="../Static/IMG/Avatar/18.png">
+        </div>
+
+        <div class="small-wrapper">
+            <div class="left">
+                <div class="againstFriend">
+                    <div class="card"  onclick="location.href='/multiplayer'" style="cursor: pointer;">
+                        <h2 onmouseover="hoverOver()"><a>Play against a friend (wip)</a></h2>
+                        <img class="friends" th:src="${'/IMG/icons/friends.svg'}" src="../Static/IMG/icons/friends.svg"
+                             alt="">
+                    </div>
+                </div>
+                <div class="disapear">
+                    <div class="card-small" onclick="location.href='/about-us'"
+                         style="cursor: pointer;">
+                        <h2 onmouseover="hoverOver()"><a>About us </a></h2>
+                        <div> <!--Ikoner syns inte-->
+                            <i class="fa-solid fa-hand-back-point-right fa-4x"></i>
+                            <i class="fa-solid fa-hand-back-point-left fa-4x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ändra onclick länk-->
+
+            <div class="middle" onclick="location.href='/select'; onClickPlay()" style="cursor: pointer;">
+                <h2 onmouseover="hoverOver()">Play a game </h2>
+                <span class="rotate">?!</span>
+                <img class="user" th:src="${'/IMG/icons/user.svg'}" src="../Static/IMG/icons/user.svg" alt="">
+            </div>
+
+            <div class="right">
+                <div class="lead">
+                    <div class="card " onclick="location.href='/highscore'" style="cursor: pointer;">
+                        <img class="crown" th:src="${'/IMG/icons/crown.svg'}" src="../Static/IMG/icons/crown.svg"
+                             alt="">
+                        <h2 onmouseover="hoverOver()"><a>Leaderboards</a></h2>
+                    </div>
+                </div>
+                <div class="settings">
+                    <div class="card-small" onclick="location.href='/settings'"
+                         style="cursor: pointer;">
+                        <!-- add a onclick function that dropdowns menu-->
+                        <h2 onmouseover="hoverOver()"><a> Settings</a></h2>
+                        <i class="fa-solid fa-gears fa-4x"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
