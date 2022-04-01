@@ -144,7 +144,7 @@ border: 0px solid;
 }
 
 .icon-one, .icon-two, .icon-text-one, .icon-text-two,
-.icon-three, .icon-text-three, .icon-four, .icon-text-four,
+.icon-three, .icon-text-three, .icon-four, .icon-text-four, .icon-five, .icon-text-five,
 .trivimania-text, #navbardrop{
 display: inline-block;
 }
@@ -167,14 +167,14 @@ z-index: 1;
 }
 
 /*Knappar som andas när man hover nedanför*/
-#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover , #music-on:hover {
+#logo-front, #leaderboard-button:hover, #navbardrop:hover, #start-button:hover, #about-button:hover, #log-out:hover , #music-on:hover, #crown-button:hover {
     -webkit-animation: breathing 5s ease-out infinite normal;
     animation: breathing 5s ease-out infinite normal;
     -webkit-font-smoothing: antialiased;
     }
 
 .icon-text-one, .icon-text-two,
- .icon-text-three,.icon-text-four {
+ .icon-text-three,.icon-text-four, .icon-text-five {
 display: inline-block;
 margin: 0 100px 0 0;
 }
